@@ -168,7 +168,6 @@ sequencia_2 = np.arange(1, 10, 0.5)
 
 - `&` : E (and)
 - `|` : Ou (or)
-- `not` : Não (negação)
 
 #### 4.3 Exemplos de Comparações
 
@@ -704,15 +703,26 @@ fig_line.write_html('grafico_linhas.html')
 #### 10.9 Gráfico de Calor (Heatmap)
 
 ```python
-# Matriz de correlação
-correlacao = vendas_reg.corr()
+# Matriz de correlação de Pearson (apenas variáveis quantitativas)
+corr = vendas_reg.corr()
 
-# Plotar
-plt.figure(figsize=(15, 9), dpi=600)
-sns.heatmap(correlacao, annot=True, cmap='coolwarm',
-            fmt='.2f', linewidths=0.5)
-plt.title("Matriz de Correlação", fontsize=20)
-plt.show()
+# Plotando com Plotly (graph_objects)
+fig_heat = go.Figure()
+
+fig_heat.add_trace(
+    go.Heatmap(
+        x=corr.columns,
+        y=corr.index,
+        z=np.array(corr),
+        text=corr.values,
+        texttemplate='%{text:.2f}',
+        colorscale='ice'))
+
+fig_heat.update_layout(height=600, width=600)
+fig_heat.show()
+
+# Salvando a figura
+fig_heat.write_html('grafico_calor.html')
 ```
 
 ---
@@ -728,8 +738,6 @@ plt.show()
 ### Recursos de Ajuda
 
 - **Control + I**: abre documentação da função no Spyder
-- **help(funcao)**: documentação no console
-- **dir(objeto)**: lista atributos e métodos do objeto
 
 ---
 
@@ -767,9 +775,8 @@ plt.show()
 
 ### 4. Comunicação de Resultados
 
-- Criar visualizações profissionais
-- Gráficos interativos com Plotly
-- Dashboards básicos
+- Criar visualizações profissionais (Matplotlib/Seaborn)
+- Gráficos interativos com Plotly, exportados como HTML
 
 ---
 
@@ -777,25 +784,19 @@ plt.show()
 
 ### Boas Práticas de Programação
 
-1. **Comentar o código**: explique a lógica, não o óbvio
-2. **Nomes descritivos**: use nomes claros para variáveis e funções
-3. **DRY (Don't Repeat Yourself)**: crie funções para código repetitivo
-4. **Organização**: use células (#%%) para estruturar o script
-5. **Documentação**: documente funções e código complexo
+1. **Reduzir duplicidade de código**: se um código se repete, crie uma função (facilita leitura, manutenção e evita erros de duplicação)
+2. **Organização**: use células (#%%) para estruturar o script e executar blocos com Shift+Enter
 
 ### Eficiência no Python
 
-- **Vetorização**: operações em Series/arrays são mais rápidas que loops
-- **Apelidos**: use `pd`, `np` para códigos mais limpos
-- **Chaining**: encadeie operações quando possível
-- **Inplace**: use `inplace=True` para economizar memória
+- **Apelidos**: use `pd`, `np` para facilitar a declaração de pacotes com nomes grandes
+- **Inplace**: use `inplace=True` para reescrever o objeto existente em vez de criar uma cópia
 
 ### Debugging
 
-- **Ler mensagens de erro**: identifique linha e tipo do erro
+- **Ler mensagens de erro**: identifique se é erro (impede a execução) ou warning (aviso que não trava o código)
 - **Print statements**: use `print()` para verificar valores
 - **Tipo de dados**: verifique com `type()` e `.info()`
-- **Valores ausentes**: verifique com `.isna()` ou `.isnull()`
 
 ---
 
@@ -832,27 +833,26 @@ plt.show()
 2. **Importar pacotes em cada sessão**
    - Sempre que iniciar o Spyder, reimporte os pacotes necessários
 
-3. **iloc vs loc**
-   - `iloc`: seleção por posição numérica (índice)
-   - `loc`: seleção por rótulo/nome
+3. **iloc e loc no pandas**
+   - `iloc`: seleção por posição numérica (índice de linha/coluna), como em `pisa.iloc[46, 2]`
+   - `loc`: usado, por exemplo, para atribuir valores a uma nova coluna com base em uma condição, como em `atlas_ambiental.loc[atlas_ambiental['favel']<5.93, "indica_favel"] = "Abaixo"`
 
 4. **None vs NaN**
-   - `None`: ausência de valor em Python puro
-   - `NaN`: valor ausente em pandas (Not a Number)
+   - `None`: indicação de dado "não disponível" (missing value) atribuído diretamente
+   - `NaN`: valor ausente gerado pelo pandas, por exemplo ao converter texto para número com `pd.to_numeric(..., errors='coerce')`
 
-5. **Range excludes endpoint**
-   - `range(0, 10)` gera números de 0 a 9 (exclui o 10)
-   - `iloc[0:5]` seleciona linhas 0 a 4 (exclui a 5)
+5. **Intervalos excluem o limite final**
+   - `np.arange(1, 10)` inclui o número inicial, mas exclui o final
+   - Em seleções por posição (`iloc[0:7, ]`, `iloc[:, 0:3]`), é necessário somar uma posição a mais no final para incluir o elemento desejado
 
 6. **Inplace modifica o original**
-   - Operações com `inplace=True` alteram o objeto original
-   - Sem `inplace`, retorna uma cópia modificada
+   - Operações com `inplace=True` alteram o objeto original em vez de retornar uma cópia
 
 7. **Funções reduzem duplicação**
-   - Se você copia código 3+ vezes, crie uma função
+   - Se o mesmo código se repete, crie uma função
 
-8. **Visualizações contam histórias**
-   - Escolha o gráfico certo para o tipo de dado e mensagem
+8. **Formatação dos gráficos**
+   - Título, rótulos dos eixos e tamanho da fonte (`plt.title`, `plt.xlabel`, `plt.ylabel`, `fontsize`) tornam os gráficos mais informativos
 
 ---
 
@@ -867,17 +867,13 @@ plt.show()
 - Seaborn Documentation: https://seaborn.pydata.org/
 - Plotly Documentation: https://plotly.com/python/
 
-### Livros e Tutoriais
+### Sugestão de Leitura (Material Complementar da Disciplina)
 
-- McKinney, W. (2022). Python for Data Analysis, 3rd Edition. O'Reilly.
-- VanderPlas, J. (2016). Python Data Science Handbook. O'Reilly.
-- Wickham, H. & Grolemund, G. R for Data Science (conceitos aplicáveis)
-
-### Online
-
-- Real Python: https://realpython.com/
-- Kaggle Learn: https://www.kaggle.com/learn
-- DataCamp: cursos interativos de Python
+- Grus, J. (2021). Data Science do zero: noções fundamentais com Python. Alta Books. (disponível na Biblioteca ABCD_USP)
+- Bruce, P.; Bruce, A.; Gedeck, P. (2020). Practical Statistics for Data Scientists. 2nd Edition. O'Reilly Media.
+- Fávero, L.P.; Belfiore, P. (2024). Manual de análise de dados: estatística e machine learning com Excel®, SPSS®, Stata®, R® e Python®. LTC.
+- McKinney, W. (2018). Python Para Análise de Dados: Tratamento de Dados com Pandas, NumPy e IPython. Novatec.
+- Vanderplas, J. (2023). Python Data Science Handbook: Essential Tools for Working with Data. 2 ed. O'Reilly Media.
 
 ---
 

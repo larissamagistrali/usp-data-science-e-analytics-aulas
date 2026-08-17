@@ -12,587 +12,165 @@ Desenvolver conhecimentos sólidos em conceitos estatísticos fundamentais neces
 
 ## 📚 Conteúdo Principal
 
+### 0. **Tipos de Variáveis**
+
+- **Qualitativas**: variáveis não métricas, atribuem categorias ou classificações (ex.: faixa de renda, nacionalidade, estado civil, escolaridade, cor do veículo, crédito aprovado ou não, escalas Likert)
+  - A análise descritiva é feita por meio de tabelas de frequência e gráficos, pois não permitem cálculo de medidas de posição e dispersão
+- **Quantitativas**: variáveis métricas, atribuem contagem ou mensuração (ex.: idade, renda, quantidade de filhos, altura, peso, retorno de ações, temperatura, lucro/prejuízo)
+  - Podem ser discretas ou contínuas
+
 ### 1. **Estatística Descritiva**
 
-#### 1.1 Medidas de Tendência Central
+#### 1.1 Tabela de Frequências
 
-- **Média Aritmética**: soma dos valores dividida pelo número de observações
-- **Mediana**: valor central que divide o conjunto de dados em duas partes iguais
+- Frequência absoluta, frequência relativa, frequência absoluta acumulada e frequência relativa acumulada
+
+#### 1.2 Medidas de Posição
+
+- **Média**: soma dos valores dividida pelo número de observações
+- **Mediana**: elemento central da distribuição (valores organizados de forma crescente)
 - **Moda**: valor que ocorre com maior frequência
-- **Média Ponderada**: média considerando pesos diferentes para cada observação
-
-#### 1.2 Medidas de Dispersão
-
-- **Amplitude**: diferença entre o maior e o menor valor
-- **Variância**: média dos quadrados dos desvios em relação à média
-- **Desvio Padrão**: raiz quadrada da variância
-- **Coeficiente de Variação**: razão entre desvio padrão e média (expressa em %)
-- **Amplitude Interquartil (IQR)**: diferença entre Q3 e Q1
-
-#### 1.3 Medidas de Posição
-
+- **Percentis**: dividem a distribuição em 100 partes iguais
 - **Quartis**: Q1 (25%), Q2 (50% - mediana), Q3 (75%)
 - **Decis**: dividem a distribuição em 10 partes iguais
-- **Percentis**: dividem a distribuição em 100 partes iguais
+
+#### 1.3 Medidas de Dispersão
+
+- **Amplitude**: diferença entre o valor máximo e o mínimo
+- **Amplitude Interquartil (AIQ)**: AIQ = Q3 − Q1; usada para identificar outliers univariados (representada no boxplot)
+  - Outlier: valor < Q1 − 1,5·AIQ ou valor > Q3 + 1,5·AIQ
+- **Variância** (amostral): S² = Σ(Xᵢ − X̄)² / (n − 1)
+- **Desvio Padrão**: S = √S²
+- **Erro Padrão**: S_x̄ = S / √n — quanto maior a amostra, menor o erro padrão (mais precisa a média estimada)
+- **Coeficiente de Variação (CV)**: CV = (S / X̄) × 100 — medida de dispersão relativa; quanto menor o CV, mais homogêneos os valores
 
 #### 1.4 Medidas de Forma
 
-- **Assimetria (Skewness)**:
-  - Simétrica: média = mediana = moda
-  - Assimétrica positiva: média > mediana > moda
-  - Assimétrica negativa: média < mediana < moda
-- **Curtose (Kurtosis)**:
-  - Leptocúrtica: concentração alta ao redor da média
-  - Mesocúrtica: distribuição normal
-  - Platicúrtica: distribuição mais achatada
+- **Assimetria**: curva simétrica (média = mediana = moda); assimétrica à direita (média > mediana); assimétrica à esquerda (média < mediana)
+  - Coeficiente de assimetria de Fisher (g₁): g₁ = 0 indica simetria; g₁ > 0 assimétrica positiva; g₁ < 0 assimétrica negativa
+- **Curtose**: achatamento da curva em relação à normal (mesocúrtica, platicúrtica, leptocúrtica)
+  - Coeficiente de curtose de Fisher (g₂): g₂ = 0 indica distribuição normal; g₂ > 0 alongada; g₂ < 0 achatada
 
 ---
 
-### 2. **Probabilidade**
+### 2. **Distribuições de Probabilidade**
 
-#### 2.1 Conceitos Fundamentais
+#### 2.1 Distribuições Discretas
 
-- **Experimento Aleatório**: processo que gera resultados não determinísticos
-- **Espaço Amostral**: conjunto de todos os resultados possíveis
-- **Evento**: subconjunto do espaço amostral
-- **Probabilidade**: medida da chance de ocorrência de um evento (0 ≤ P(A) ≤ 1)
+- **Uniforme discreta**: todos os resultados têm a mesma probabilidade de ocorrência — P(X = xᵢ) = 1/n
+- **Bernoulli**: variável com apenas dois resultados possíveis (sucesso x=1, fracasso x=0) — P(X = x) = pˣ · (1−p)^(1−x)
+- **Binomial**: n repetições independentes do experimento de Bernoulli com probabilidade de sucesso p constante — P(X = k) = C(n,k) · pᵏ · (1−p)^(n−k)
+- **Binomial Negativa**: quantidade de ensaios (x) necessários até se obter uma quantidade fixa (k) de sucessos — P(X = x) = C(x−1, k−1) · pᵏ · (1−p)^(x−k)
+- **Poisson**: número de sucessos (k) em uma exposição contínua (tempo ou área) — P(X = k) = e^(−λ) · λᵏ / k!
 
-#### 2.2 Regras de Probabilidade
+#### 2.2 Distribuições Contínuas
 
-- **Regra da Adição**: P(A ∪ B) = P(A) + P(B) - P(A ∩ B)
-- **Regra da Multiplicação**:
-  - Eventos independentes: P(A ∩ B) = P(A) × P(B)
-  - Eventos dependentes: P(A ∩ B) = P(A) × P(B|A)
-- **Probabilidade Condicional**: P(A|B) = P(A ∩ B) / P(B)
-- **Teorema de Bayes**: P(A|B) = [P(B|A) × P(A)] / P(B)
+- **Normal (Gaussiana)**: curva em formato de sino, simétrica em torno da média; parâmetros μ e σ
+  - 68,26% dos dados entre μ ± 1σ; 95,44% entre μ ± 2σ; 99,74% entre μ ± 3σ
+  - **Normal Padrão**: transformação por Z-score → Z = (X − μ)/σ, resultando em média 0 e desvio padrão 1
+- **Qui-Quadrado (χ²)**: forma influenciada pelos graus de liberdade; assimétrica e positiva para poucos graus de liberdade, aproximando-se da normal conforme eles aumentam. Aplicação: teste de associação entre variáveis categóricas
+- **t de Student**: parecida com a normal padrão, porém com caudas mais longas (permite valores mais extremos); aproxima-se da normal conforme os graus de liberdade aumentam. Aplicação: teste de médias, útil para amostras pequenas
+- **F de Snedecor**: trabalha com razões entre valores; forma influenciada pelos graus de liberdade do numerador e denominador. Aplicação: comparação de variâncias
 
-#### 2.3 Independência Estatística
+#### 2.3 Graus de Liberdade
 
-- Dois eventos são independentes se: P(A|B) = P(A)
-- Ou equivalentemente: P(A ∩ B) = P(A) × P(B)
-
----
-
-### 3. **Distribuições de Probabilidade**
-
-#### 3.1 Distribuições Discretas
-
-**Distribuição Binomial**
-
-- Aplicação: eventos com dois resultados possíveis (sucesso/fracasso)
-- Parâmetros: n (número de tentativas), p (probabilidade de sucesso)
-- Fórmula: P(X = k) = C(n,k) × p^k × (1-p)^(n-k)
-- Exemplos: lançamento de moedas, testes de qualidade
-
-**Distribuição de Poisson**
-
-- Aplicação: eventos raros em intervalo de tempo/espaço
-- Parâmetro: λ (taxa média de ocorrência)
-- Fórmula: P(X = k) = (e^(-λ) × λ^k) / k!
-- Exemplos: chegada de clientes, defeitos em produtos
-
-**Distribuição Uniforme Discreta**
-
-- Todos os resultados têm a mesma probabilidade
-- Exemplo: lançamento de dado justo
-
-#### 3.2 Distribuições Contínuas
-
-**Distribuição Normal (Gaussiana)**
-
-- A mais importante em estatística
-- Parâmetros: μ (média) e σ² (variância)
-- Forma de sino, simétrica em relação à média
-- Propriedades:
-  - 68% dos dados entre μ ± 1σ
-  - 95% dos dados entre μ ± 2σ
-  - 99,7% dos dados entre μ ± 3σ
-- **Distribuição Normal Padrão**: Z ~ N(0,1)
-  - Transformação: Z = (X - μ) / σ
-
-**Distribuição t de Student**
-
-- Utilizada quando σ populacional é desconhecido
-- Mais achatada que a normal para amostras pequenas
-- Converge para normal quando n → ∞
-
-**Distribuição Qui-Quadrado (χ²)**
-
-- Utilizada para testes de variância e independência
-- Sempre positiva e assimétrica à direita
-- Parâmetro: graus de liberdade (gl)
-
-**Distribuição F**
-
-- Comparação de variâncias
-- Utilizada em ANOVA
-- Parâmetros: gl1 e gl2
-
-**Distribuição Exponencial**
-
-- Tempo entre eventos em processo de Poisson
-- Parâmetro: λ (taxa)
-- Aplicação: tempo de vida de componentes, tempo de espera
+- Quantidade de observações da amostra que pode variar de forma independente e aleatória e ainda assim permitir obter o valor em análise
+- Cada teste estatístico tem um cálculo específico de graus de liberdade (não há padrão único); normalmente considera-se o tamanho da amostra e a quantidade de parâmetros estimados
+- Os graus de liberdade influenciam o valor crítico da distribuição, impactando o teste de hipótese
 
 ---
 
-### 4. **Amostragem**
+### 3. **Intervalo de Confiança**
 
-#### 4.1 Conceitos Básicos
-
-- **População**: conjunto completo de todos os elementos de interesse
-- **Amostra**: subconjunto da população
-- **Parâmetro**: medida descritiva da população (μ, σ, π)
-- **Estatística**: medida descritiva da amostra (x̄, s, p)
-
-#### 4.2 Tipos de Amostragem
-
-**Amostragem Probabilística**
-
-- **Aleatória Simples**: cada elemento tem mesma chance
-- **Estratificada**: população dividida em estratos homogêneos
-- **Por Conglomerados**: população dividida em grupos heterogêneos
-- **Sistemática**: seleção a intervalos regulares
-
-**Amostragem Não Probabilística**
-
-- Por conveniência
-- Por julgamento
-- Por quotas
-- Bola de neve (snowball)
-
-#### 4.3 Teorema Central do Limite (TCL)
-
-- Para n suficientemente grande, a distribuição das médias amostrais aproxima-se de uma distribuição normal
-- Independente da forma da distribuição populacional original
-- Geralmente, n ≥ 30 é considerado suficiente
-- **Erro Padrão da Média**: σx̄ = σ / √n
+- Fornece um intervalo de valores possíveis para o parâmetro populacional, dado um nível de confiança (ex.: 95%)
+- **Grandes amostras / variância conhecida**: IC = (X̄ − Z·σ/√n, X̄ + Z·σ/√n)
+- **Pequenas amostras / variância desconhecida**: IC = (X̄ − t·s/√n, X̄ + t·s/√n), com t utilizando n−1 graus de liberdade
+- Z e t utilizados são os valores bicaudais
 
 ---
 
-### 5. **Inferência Estatística**
+### 4. **Testes de Hipóteses**
 
-#### 5.1 Estimação por Ponto
+#### 4.1 Conceitos Fundamentais
 
-- Estimativa única do parâmetro populacional
-- Propriedades desejáveis: não-viesado, consistente, eficiente
+- **Hipótese Nula (H₀)** e **Hipótese Alternativa (H₁)**
+- **Nível de Significância (α)**: probabilidade de rejeitar H₀ quando ela é verdadeira (erro tipo I); valores comuns: 1%, 5%, 10%
+- **Nível de confiança do teste**: 1 − α
+- **p-valor**: probabilidade associada ao valor da estatística de teste calculada
+  - Se p-valor < α: rejeita-se H₀
+  - Se p-valor > α: não rejeita H₀
 
-#### 5.2 Estimação por Intervalo (Intervalo de Confiança)
+#### 4.2 Tipos de Erros
 
-**Para a Média (σ conhecido)**
+|  | H₀ é Verdadeira | H₀ é Falsa |
+|---|---|---|
+| **Não Rejeitar H₀** | Correto | Erro Tipo II |
+| **Rejeitar H₀** | Erro Tipo I (α) | Correto |
 
-- IC = x̄ ± z(α/2) × (σ/√n)
-- Nível de confiança comum: 90%, 95%, 99%
+#### 4.3 Tipos de Testes
 
-**Para a Média (σ desconhecido)**
+- **Teste bilateral (bicaudal)**: H₀: θ = θ₀ / H₁: θ ≠ θ₀ — região crítica em ambas as caudas
+- **Teste unilateral à esquerda**: H₀: θ = θ₀ / H₁: θ < θ₀
+- **Teste unilateral à direita**: H₀: θ = θ₀ / H₁: θ > θ₀
 
-- IC = x̄ ± t(α/2, n-1) × (s/√n)
-- Usa distribuição t de Student
+#### 4.4 Testes Estatísticos Abordados
 
-**Para Proporção**
-
-- IC = p̂ ± z(α/2) × √[p̂(1-p̂)/n]
-
-#### 5.3 Interpretação do Intervalo de Confiança
-
-- IC de 95% significa que, se repetirmos o processo de amostragem muitas vezes, 95% dos intervalos conterão o parâmetro populacional verdadeiro
-
----
-
-### 6. **Testes de Hipóteses**
-
-#### 6.1 Conceitos Fundamentais
-
-- **Hipótese Nula (H₀)**: afirmação a ser testada (status quo)
-- **Hipótese Alternativa (H₁ ou Hₐ)**: afirmação que contradiz H₀
-- **Nível de Significância (α)**: probabilidade de rejeitar H₀ quando ela é verdadeira (erro tipo I)
-  - Valores comuns: 0,01, 0,05, 0,10
-- **p-valor**: menor nível de significância que levaria à rejeição de H₀
-  - Se p-valor < α: rejeita H₀
-  - Se p-valor ≥ α: não rejeita H₀
-
-#### 6.2 Tipos de Erros
-
-- **Erro Tipo I (α)**: rejeitar H₀ quando ela é verdadeira (falso positivo)
-- **Erro Tipo II (β)**: não rejeitar H₀ quando ela é falsa (falso negativo)
-- **Poder do Teste**: 1 - β (probabilidade de rejeitar H₀ quando ela é falsa)
-
-#### 6.3 Tipos de Testes
-
-**Teste Bilateral (bicaudal)**
-
-- H₀: μ = μ₀
-- H₁: μ ≠ μ₀
-- Região crítica em ambas as caudas
-
-**Teste Unilateral (unicaudal)**
-
-- **Cauda direita**: H₀: μ ≤ μ₀ | H₁: μ > μ₀
-- **Cauda esquerda**: H₀: μ ≥ μ₀ | H₁: μ < μ₀
-
-#### 6.4 Testes Paramétricos
-
-**Teste Z para Média (σ conhecido)**
-
-- z = (x̄ - μ₀) / (σ/√n)
-- Distribuição: Normal Padrão
-
-**Teste t para Média (σ desconhecido)**
-
-- t = (x̄ - μ₀) / (s/√n)
-- Distribuição: t de Student com (n-1) gl
-
-**Teste t para Duas Médias Independentes**
-
-- Compara médias de dois grupos independentes
-- Pressupõe normalidade e variâncias homogêneas
-
-**Teste t Pareado (amostras dependentes)**
-
-- Compara médias antes/depois de intervenção
-- Analisa as diferenças entre pares
-
-**Teste Z para Proporção**
-
-- z = (p̂ - p₀) / √[p₀(1-p₀)/n]
-
-**Teste F para Igualdade de Variâncias**
-
-- F = s₁²/s₂²
-- Pressupõe normalidade
-
-**ANOVA (Análise de Variância)**
-
-- Compara médias de três ou mais grupos
-- H₀: μ₁ = μ₂ = ... = μₖ
-- Estatística F compara variância entre grupos vs dentro dos grupos
-
-#### 6.5 Testes Não Paramétricos
-
-**Teste Qui-Quadrado (χ²)**
-
-- **Teste de Aderência**: compara distribuição observada vs esperada
-- **Teste de Independência**: verifica associação entre variáveis categóricas
-- χ² = Σ [(Oᵢ - Eᵢ)² / Eᵢ]
-
-**Teste de Kolmogorov-Smirnov**
-
-- Verifica se dados seguem distribuição específica
-
-**Teste de Mann-Whitney (Wilcoxon rank-sum)**
-
-- Alternativa não paramétrica ao teste t para duas amostras independentes
-
-**Teste de Wilcoxon (signed-rank)**
-
-- Alternativa não paramétrica ao teste t pareado
-
-**Teste de Kruskal-Wallis**
-
-- Alternativa não paramétrica à ANOVA
+- **Teste Z para a média de uma amostra**: aplicado quando o desvio padrão populacional é conhecido — Z = (X̄ − μ₀)/(σ/√n); distribuição normal padrão
+- **Teste t para a média de uma amostra**: aplicado quando o desvio padrão populacional é desconhecido — T = (X̄ − μ₀)/(S/√n); t de Student com n−1 graus de liberdade
+- **Teste qui-quadrado para uma amostra**: verifica se há diferença entre frequência observada (O) e esperada (E) — χ² = Σ(Oᵢ − Eᵢ)²/Eᵢ; qui-quadrado com k−1 graus de liberdade
+- **Teste F para comparação de variâncias de duas amostras independentes**: F = S²maior/S²menor; distribuição F de Snedecor
+- **Teste t para comparação de médias de duas amostras independentes**: exige antes verificar (por exemplo, com teste F) se as variâncias populacionais são homogêneas ou diferentes, pois o cálculo da estatística T e dos graus de liberdade muda conforme o caso
 
 ---
 
-### 7. **Correlação**
+### 5. **Relação entre Variáveis**
 
-#### 7.1 Coeficiente de Correlação de Pearson (r)
+#### 5.1 Variáveis Qualitativas — Teste Qui-Quadrado de Associação
 
-- Mede associação linear entre duas variáveis quantitativas
-- Valores: -1 ≤ r ≤ 1
-  - r = 1: correlação positiva perfeita
-  - r = -1: correlação negativa perfeita
-  - r = 0: ausência de correlação linear
-- Interpretação da força:
-  - |r| < 0,3: fraca
-  - 0,3 ≤ |r| < 0,7: moderada
-  - |r| ≥ 0,7: forte
+- Parte-se de uma **tabela de contingência** com as frequências absolutas observadas para cada par de categorias
+- Calculam-se as **frequências absolutas esperadas**: freq. esperada₁₁ = (ΣL1 · ΣC1)/N
+- Calcula-se o **resíduo** de cada célula: resíduo₁₁ = freq. observada₁₁ − freq. esperada₁₁
+- Calcula-se o χ² individual de cada célula: χ²₁₁ = (resíduo₁₁)² / freq. esperada₁₁, e soma-se para obter o χ² total (estatística do teste)
+- H₀: as variáveis se associam de forma aleatória / H₁: a associação não se dá de forma aleatória
+- Valor crítico com (I−1)·(J−1) graus de liberdade
 
-#### 7.2 Coeficiente de Determinação (r²)
+#### 5.2 Variáveis Métricas — Correlação de Pearson
 
-- Proporção da variabilidade de Y explicada por X
-- Valores: 0 ≤ r² ≤ 1
-
-#### 7.3 Correlação de Spearman (ρ)
-
-- Versão não paramétrica da correlação de Pearson
-- Utiliza postos (ranks) ao invés dos valores originais
-- Menos sensível a outliers
-
-#### 7.4 Correlação vs Causalidade
-
-- **Importante**: Correlação não implica causalidade
-- Pode haver variáveis confundidoras (confounders)
+- Inicia-se pelo cálculo da **covariância**: cov(X,Y) = Σ(Xᵢ − X̄)·(Yᵢ − Ȳ) / (n−1)
+- Coeficiente de correlação de Pearson: r_XY = cov(X,Y) / (S_X · S_Y), variando entre −1 e 1
+  - r = −1: correlação perfeita negativa; r = 0: sem correlação; r = 1: correlação perfeita positiva
+- **Teste t para significância da correlação de Pearson**: t = r / √[(1−r²)/(n−2)]; distribuição t de Student com n−2 graus de liberdade
 
 ---
 
-### 8. **Visualização de Dados Estatísticos**
-
-#### 8.1 Gráficos para Variáveis Quantitativas
-
-- **Histograma**: distribuição de frequências
-- **Box Plot (Diagrama de caixa)**: mediana, quartis e outliers
-- **Gráfico de dispersão**: relação entre duas variáveis
-- **Gráfico de linhas**: evolução temporal
-
-#### 8.2 Gráficos para Variáveis Qualitativas
-
-- **Gráfico de barras**: frequências de categorias
-- **Gráfico de pizza**: proporções de categorias
-- **Gráfico de Pareto**: ordenação por importância
-
-#### 8.3 Gráficos Especializados
-
-- **Q-Q Plot**: verificação de normalidade
-- **Matriz de correlação (heatmap)**: correlações múltiplas
-- **Pair Plot**: dispersão múltipla de variáveis
-
----
-
-## 🐍 Implementação em Python
-
-### Bibliotecas Essenciais
-
-```python
-import numpy as np              # Cálculos numéricos
-import pandas as pd             # Manipulação de dados
-import scipy.stats as stats     # Funções estatísticas
-import matplotlib.pyplot as plt # Visualização básica
-import seaborn as sns          # Visualização estatística
-```
-
-### Estatística Descritiva
-
-```python
-# Medidas de tendência central
-dados.mean()    # Média
-dados.median()  # Mediana
-dados.mode()    # Moda
-
-# Medidas de dispersão
-dados.std()     # Desvio padrão
-dados.var()     # Variância
-dados.min()     # Mínimo
-dados.max()     # Máximo
-
-# Medidas de posição
-dados.quantile([0.25, 0.5, 0.75])  # Quartis
-
-# Resumo completo
-dados.describe()
-```
-
-### Distribuições de Probabilidade
-
-```python
-from scipy.stats import norm, binom, poisson, t
-
-# Distribuição Normal
-norm.pdf(x, loc=mu, scale=sigma)    # Função densidade
-norm.cdf(x, loc=mu, scale=sigma)    # Função acumulada
-norm.ppf(q, loc=mu, scale=sigma)    # Quantil
-
-# Distribuição Binomial
-binom.pmf(k, n, p)                  # P(X = k)
-binom.cdf(k, n, p)                  # P(X ≤ k)
-
-# Distribuição de Poisson
-poisson.pmf(k, mu)                  # P(X = k)
-
-# Distribuição t de Student
-t.ppf(q, df)                        # Quantil
-```
-
-### Testes de Hipóteses
-
-```python
-from scipy.stats import ttest_1samp, ttest_ind, ttest_rel
-from scipy.stats import chi2_contingency, f_oneway
-
-# Teste t para uma média
-t_stat, p_value = ttest_1samp(dados, popmean=mu0)
-
-# Teste t para duas médias independentes
-t_stat, p_value = ttest_ind(grupo1, grupo2)
-
-# Teste t pareado
-t_stat, p_value = ttest_rel(antes, depois)
-
-# ANOVA
-f_stat, p_value = f_oneway(grupo1, grupo2, grupo3)
-
-# Teste Qui-Quadrado
-chi2, p_value, dof, expected = chi2_contingency(tabela)
-```
-
-### Correlação
-
-```python
-# Correlação de Pearson
-correlacao = dados.corr()
-dados['var1'].corr(dados['var2'])
-
-# Correlação de Spearman
-correlacao_spearman = dados.corr(method='spearman')
-```
-
-### Visualizações
-
-```python
-# Histograma
-plt.hist(dados, bins=20, edgecolor='black')
-
-# Box Plot
-sns.boxplot(data=dados)
-
-# Gráfico de dispersão
-plt.scatter(x, y)
-sns.scatterplot(x='var1', y='var2', data=df)
-
-# Matriz de correlação
-sns.heatmap(correlacao, annot=True, cmap='coolwarm')
-
-# Q-Q Plot (teste de normalidade visual)
-from scipy.stats import probplot
-probplot(dados, dist="norm", plot=plt)
-```
-
----
-
-## 📊 Aplicações Práticas em Data Science
-
-### 1. Análise Exploratória de Dados (EDA)
-
-- Estatísticas descritivas para entender distribuições
-- Identificação de outliers usando box plots e IQR
-- Análise de correlações entre variáveis
-
-### 2. Preparação de Dados para Machine Learning
-
-- Teste de normalidade para escolha de transformações
-- Análise de correlação para seleção de features
-- Detecção de multicolinearidade
-
-### 3. Validação de Modelos
-
-- Testes de hipóteses para comparar performance
-- Intervalos de confiança para métricas de avaliação
-- Testes estatísticos para significância de features
-
-### 4. A/B Testing
-
-- Testes de hipóteses para comparar grupos de controle e tratamento
-- Cálculo de tamanho de amostra necessário
-- Determinação de significância estatística
-
-### 5. Controle de Qualidade
-
-- Gráficos de controle estatístico
-- Testes de proporções e variâncias
-- Análise de capacidade de processo
-
----
-
-## 💡 Conceitos-Chave para Data Science
-
-### Premissas dos Testes Estatísticos
-
-1. **Normalidade**: dados seguem distribuição normal
-2. **Independência**: observações independentes entre si
-3. **Homocedasticidade**: variâncias homogêneas entre grupos
-4. **Aleatoriedade**: amostragem aleatória
-
-### Verificação de Premissas
-
-- **Teste de Shapiro-Wilk**: normalidade (n < 50)
-- **Teste de Shapiro-Francia**: normalidade (n ≥ 30)
-- **Teste de Kolmogorov-Smirnov**: normalidade
-- **Teste de Levene**: homocedasticidade
-- **Teste de Bartlett**: homocedasticidade (assumindo normalidade)
-
-### Quando Usar Testes Paramétricos vs Não Paramétricos
-
-**Paramétricos** (mais poderosos, mas com premissas):
-
-- Dados seguem distribuição conhecida (geralmente normal)
-- Variáveis quantitativas
-- Amostras grandes
-
-**Não Paramétricos** (mais robustos, menos premissas):
-
-- Distribuição desconhecida ou não normal
-- Variáveis ordinais ou com outliers
-- Amostras pequenas
-
----
-
-## 📚 Materiais de Apoio
+## 📊 Materiais de Apoio
 
 ### Arquivos da Disciplina
 
-- **PDF**: Fundamentos de Estatistica 0914 e 16052025pdf Portugues.pdf
-- **Exercícios**: Lista de Exercicios Complementares (PDF e Excel)
-- **Planilha**: Planilha Suporte - Fundamentos de Estatística
+- **PDF principal (slides)**: Fundamentos de Estatistica 0914 e 16052025pdf Portugues.pdf — Prof. Dr. Wilson Tarantin Junior
+- **Material complementar**: Lista de Exercícios Complementares (PDF e Excel)
+- **Planilha de suporte**: Planilha Suporte - Fundamentos de Estatística (contém as abas com os bancos de dados de cada exemplo/exercício, resolvidos em Excel)
 
-### Recursos Python
+### Referência bibliográfica citada no material
 
-- **NumPy**: computação numérica
-- **Pandas**: análise de dados
-- **SciPy.stats**: funções estatísticas
-- **Statsmodels**: modelagem estatística avançada
-- **Seaborn**: visualizações estatísticas
-
----
-
-## 🎯 Pontos Importantes para Memorizar
-
-1. **Significância estatística ≠ Relevância prática**
-   - Um resultado pode ser estatisticamente significativo mas sem importância prática
-
-2. **P-valor não é a probabilidade de H₀ ser verdadeira**
-   - É a probabilidade de observar os dados (ou mais extremos) assumindo H₀ verdadeira
-
-3. **Tamanho da amostra importa**
-   - Amostras grandes podem detectar diferenças pequenas
-   - Amostras pequenas podem não detectar diferenças grandes
-
-4. **Correlação ≠ Causalidade**
-   - Sempre considerar variáveis confundidoras
-
-5. **Escolha do teste apropriado**
-   - Considerar tipo de variável, distribuição e premissas
-   - Quando em dúvida, use testes não paramétricos
-
-6. **Intervalo de Confiança > Teste de Hipótese**
-   - IC fornece mais informação (magnitude e precisão)
-
----
-
-## 📖 Referências Recomendadas
-
-- Fávero, L. P., & Belfiore, P. (2017). Manual de Análise de Dados. Elsevier.
-- Bussab, W. O., & Morettin, P. A. (2017). Estatística Básica. Saraiva.
-- Montgomery, D. C., & Runger, G. C. (2018). Applied Statistics and Probability for Engineers.
-- Field, A. (2013). Discovering Statistics Using IBM SPSS Statistics.
+- Fávero, L. P.; Belfiore, P. (2024). *Manual de Análise de Dados: estatística e machine learning com Excel, SPSS, Stata, R e Python*. 2ª ed. Rio de Janeiro: LTC.
 
 ---
 
 ## ✅ Checklist de Estudo
 
-- [ ] Compreender medidas descritivas (média, mediana, desvio padrão)
-- [ ] Calcular probabilidades básicas
-- [ ] Identificar e aplicar distribuições de probabilidade adequadas
-- [ ] Construir e interpretar intervalos de confiança
-- [ ] Formular hipóteses nula e alternativa
-- [ ] Realizar e interpretar testes de hipóteses
-- [ ] Calcular e interpretar correlações
-- [ ] Verificar premissas de testes estatísticos
-- [ ] Escolher teste apropriado para cada situação
-- [ ] Criar visualizações adequadas para cada tipo de dado
-- [ ] Interpretar resultados estatísticos no contexto do problema
-- [ ] Implementar análises estatísticas em Python
+- [ ] Diferenciar variáveis qualitativas e quantitativas
+- [ ] Compreender medidas de posição, dispersão e forma
+- [ ] Identificar outliers pela amplitude interquartil (boxplot)
+- [ ] Reconhecer as distribuições de probabilidade discretas (uniforme, Bernoulli, binomial, binomial negativa, Poisson) e contínuas (normal, qui-quadrado, t de Student, F de Snedecor) e suas aplicações
+- [ ] Entender o papel dos graus de liberdade em cada distribuição/teste
+- [ ] Construir intervalos de confiança para a média (variância conhecida e desconhecida)
+- [ ] Formular hipóteses nula e alternativa e identificar os tipos de erro (I e II)
+- [ ] Aplicar os testes Z e t para médias, teste F para variâncias e teste qui-quadrado (uma amostra e associação entre variáveis)
+- [ ] Calcular e testar a significância da correlação de Pearson
+- [ ] Resolver os exercícios das planilhas de suporte e da lista de exercícios complementares
 
 ---
 
-**Última atualização**: Março 2026
 **Curso**: MBA em Data Science e Analytics - USP/ESALQ
 **Módulo**: 1 - Fundamentos de Estatística

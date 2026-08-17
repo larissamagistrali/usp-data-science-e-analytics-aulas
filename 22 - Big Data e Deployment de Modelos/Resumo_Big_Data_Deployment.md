@@ -369,50 +369,91 @@ Passo a passo para criar uma conta gratuita e utilizá-la nas aulas práticas:
 
 ---
 
-## 🐍 Implementação Python / Ferramentas Essenciais
+## 🐍 Implementação Python (Script da Aula Prática — Databricks + MLflow)
 
-### Bibliotecas e Ferramentas do Ecossistema
+O material complementar `aula-1_MCzip` traz um notebook (`Script - Aula Deployment De Modelos.ipynb`) executado no Databricks Community Edition, usando os datasets `tempodist.csv` e `estudante_escola.csv` carregados via Unity Catalog. Trechos principais:
+
+### Importações e leitura de dados via Unity Catalog
 
 ```python
-# Processamento distribuído
-import pyspark
-from pyspark.sql import SparkSession
-
-# Rastreamento e deployment de modelos (MLOps)
+import pandas as pd
 import mlflow
-import mlflow.sklearn
-
-# Bibliotecas de ML integráveis ao MLflow
-import sklearn
-import xgboost
-import lightgbm
 import statsmodels.api as sm
-import tensorflow as tf
-import torch
+import json
+import requests
+import matplotlib.pyplot as plt
+from mlflow.models.signature import infer_signature
+
+# Lendo a tabela do catálogo padrão do Databricks (Spark → Pandas)
+df_tempodist = spark.table("tempodist").toPandas()
 ```
 
-### Fluxo Básico de Rastreamento com MLflow
+### Rastreamento de um modelo (regressão OLS) com MLflow Tracking
 
 ```python
-import mlflow
+mlflow.set_experiment(experiment_name="/Shared/Regressão Linear Simples - tempodist")
 
-# Iniciar um experimento
-mlflow.set_experiment("meu_experimento")
+with mlflow.start_run(run_name="Modelo Final") as run_final:
+    mlflow.set_tag("Fase", "Final")
+    mlflow.set_tag("Algoritmo", "OLS")
 
-with mlflow.start_run():
-    # Registrar parâmetros do modelo
-    mlflow.log_param("n_estimators", 100)
-    mlflow.log_param("max_depth", 5)
+    mlflow.log_input(mlflow.data.from_pandas(df_tempodist), context="training")
+    mlflow.log_param("Fórmula", "tempo ~ distancia")
 
-    # Treinar o modelo (exemplo genérico)
-    modelo.fit(X_train, y_train)
+    modelo_final = sm.OLS.from_formula(formula="tempo ~ distancia", data=df_tempodist).fit()
 
-    # Registrar métricas
-    mlflow.log_metric("acuracia", acuracia)
-    mlflow.log_metric("auc", auc)
+    mlflow.log_metric("Estatística F", modelo_final.fvalue)
+    mlflow.log_metric("R2", modelo_final.rsquared)
 
-    # Salvar o modelo treinado como artefato
-    mlflow.sklearn.log_model(modelo, "modelo")
+    assinatura = infer_signature(df_tempodist[["distancia"]], modelo_final.fittedvalues)
+    mlflow.statsmodels.log_model(modelo_final, "modelo-final", signature=assinatura)
+```
+
+### Carregando modelos por estágio (Model Registry / aliases)
+
+```python
+# Carrega o modelo pelo alias de estágio (staging ou production)
+modelo_em_producao = mlflow.statsmodels.load_model(
+    "models:/workspace.default.tempo-distancia@production"
+)
+previsao = modelo_em_producao.predict(pd.DataFrame({"distancia": [20]}))
+```
+
+### Modelos Mistos (HLM2) com Autolog do MLflow
+
+```python
+mlflow.statsmodels.autolog(log_models=False, log_datasets=True, disable=False)
+
+with mlflow.start_run(run_name="Modelo com Interceptos e Inclinações Aleatórios HLM2"):
+    modelo_hlm2 = sm.MixedLM.from_formula(
+        formula="desempenho ~ horas",
+        groups="escola",
+        re_formula="horas",
+        data=df_estudante_escola,
+    ).fit()
+```
+
+### Consumo de API externa (GET) e simulação de serving via MLflow
+
+```python
+# Consumindo uma API externa
+resposta = requests.get("https://dogapi.dog/api/v2/facts",
+                         headers={"Content-Type": "application/json"}).json()
+
+# Simulando o payload que seria enviado a um endpoint MLflow (POST)
+df_novos_dados = pd.DataFrame({"distancia": [20]})
+dados_transformados = json.dumps({"dataframe_records": df_novos_dados.to_dict(orient="records")})
+```
+
+### Observabilidade com MLflow Tracing
+
+```python
+import time
+
+@mlflow.trace(name="Inferencia_Componente_Fixo")
+def calcular_previsao(df_input, modelo):
+    time.sleep(0.2)
+    return modelo.predict(df_input)
 ```
 
 ### Comandos de Deployment (linha de comando)
@@ -424,24 +465,7 @@ mlflow deployments
 
 # Serve o modelo localmente (servidor Flask) para inferência local
 # ou predição em lote (batch prediction)
-mlflow models serve
-```
-
-### Sessão Básica com Apache Spark (PySpark)
-
-```python
-from pyspark.sql import SparkSession
-
-# Criar a sessão Spark (Driver Program + SparkContext)
-spark = SparkSession.builder.appName("BigDataApp").getOrCreate()
-
-# Ler dados em formato Parquet (formato otimizado, colunar)
-df = spark.read.parquet("caminho/dados.parquet")
-
-# Operações de alto nível (Spark SQL / DataFrames)
-df_filtrado = df.filter(df["ano"] == 2024).groupBy("categoria").count()
-
-df_filtrado.show()
+mlflow models serve -m models:/tempo-distancia@production -p 5200 --no-conda
 ```
 
 ---
@@ -477,6 +501,12 @@ df_filtrado.show()
 
 - **Contexto**: material complementar pré-aula guiando o cadastro na **Databricks Free Edition**, preparando o ambiente que seria usado para a prática de MLflow em aula ("Mãos à obra": MLflow ↔ Databricks).
 - **Resultado**: ambiente Databricks disponível com Workspace, Compute, Jobs & Pipelines, SQL Editor, Catalog, etc.
+
+### Exemplo 7: Prática Completa no Notebook (Databricks + MLflow)
+
+- **Contexto**: script da aula (`aula-1_MCzip`) usando os datasets `tempodist.csv` e `estudante_escola.csv`, carregados via Unity Catalog (`spark.table(...).toPandas()`).
+- **Passos realizados**: treino de um "Modelo Nulo" e um "Modelo Final" de regressão OLS (`tempo ~ distancia`) com `statsmodels`, rastreados via `mlflow.start_run` (tags, `log_param`, `log_metric`, `log_figure`, `log_text`, `infer_signature`, `log_model`); carregamento do modelo por alias de estágio (`models:/tempo-distancia@staging` / `@production`); busca programática de runs com `mlflow.search_runs`; treino de modelos mistos HLM2 (`sm.MixedLM`) para o dataset de desempenho de estudantes, com **Autolog** do MLflow; consumo de uma API externa (dogapi.dog) para ilustrar `GET`/JSON; simulação de um payload de requisição `POST` para um endpoint MLflow; e uso do decorador `@mlflow.trace` para observabilidade (MLflow Tracing) de um pipeline de inferência.
+- **Resultado**: percurso completo do ciclo "treinar → rastrear → versionar/promover → servir → observar" aplicado tanto a um modelo de regressão simples quanto a um modelo hierárquico (HLM2).
 
 ---
 
@@ -582,7 +612,8 @@ mlflow models serve   → serve o modelo localmente
 ### Material Complementar (MC)
 
 - **Tutorial Cadastro Databricks** (4 páginas): passo a passo para criação de conta gratuita na Databricks Free Edition, usada na prática de "Mãos à obra" (MLflow ↔ Databricks).
-- **aula-1_MCzip**: arquivo compactado com material complementar adicional da aula (não explorado neste resumo).
+- **aula-1_MCzip**: contém o notebook `Script - Aula Deployment De Modelos.ipynb` e os datasets `tempodist.csv` e `estudante_escola.csv`, usados na prática de regressão OLS/HLM2 com MLflow (ver seção de Implementação Python e Exemplo 7).
+- **aula-2_MCzip**: arquivo não pôde ser aberto (apenas um ponteiro Git LFS não baixado); conteúdo não explorado neste resumo.
 
 ### Ferramenta Central
 

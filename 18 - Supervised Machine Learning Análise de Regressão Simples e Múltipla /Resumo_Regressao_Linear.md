@@ -185,8 +185,8 @@ plt.show()
 #### 3.1 Problema das Variáveis Qualitativas
 
 - **Erro Comum**: Atribuir números arbitrários a categorias
-  - Exemplo ERRADO: África=1, Américas=2, Ásia=3, Europa=4, Oceania=5
-  - **Problema**: Isso implica que Oceania é "5x melhor" que África, o que não faz sentido!
+  - Exemplo do curso (dataset `corrupcao.csv`, variável `regiao` com 5 categorias: América do Sul, Ásia, EUA e Canadá, Europa, Oceania): usar `LabelEncoder` gera uma "ponderação arbitrária" (regiao_numerico de 1 a 5)
+  - **Problema**: Isso trata a variável qualitativa como se fosse quantitativa, implicando uma escala/hierarquia entre as regiões que não existe
 
 #### 3.2 Solução: Variáveis Dummy
 
@@ -201,20 +201,20 @@ plt.show()
 # Método 1: get_dummies com drop_first
 df_dummies = pd.get_dummies(df, columns=['regiao'], dtype=int, drop_first=True)
 
-# Resultado para 5 regiões: cria 4 dummies
-# regiao_Americas, regiao_Asia, regiao_Europa, regiao_Oceania
-# África fica como referência (todas as dummies = 0)
+# Resultado para 5 regiões (dataset corrupcao.csv): cria 4 dummies
+# regiao_Asia, regiao_EUA_e_Canada, regiao_Europa, regiao_Oceania
+# America_do_sul fica como referência (todas as dummies = 0), por ser a
+# primeira categoria em ordem alfabética (drop_first=True)
 ```
 
 #### 3.4 Interpretação de Coeficientes com Dummies
 
 ```python
-modelo_dummy = sm.OLS.from_formula('cpi ~ regiao_Americas + regiao_Asia + regiao_Europa + regiao_Oceania', df_dummies).fit()
+modelo_dummy = sm.OLS.from_formula('cpi ~ regiao_Asia + regiao_EUA_e_Canada + regiao_Europa + regiao_Oceania', df_dummies).fit()
 ```
 
-- **Intercepto**: Média da categoria de referência (África)
-- **Coeficiente da dummy**: Diferença média em relação à categoria de referência
-  - Exemplo: β_Americas = 2.5 → Américas tem CPI 2.5 pontos maior que África, em média
+- **Intercepto**: Média da categoria de referência (América do Sul)
+- **Coeficiente da dummy**: Diferença média em relação à categoria de referência (América do Sul)
 
 #### 3.5 Visualização com Dummies
 
@@ -412,11 +412,11 @@ print(VIF)
 #### 6.5 Exemplo Prático
 
 ```python
-# EXEMPLO 1: Correlação baixa (r = 0.168) entre rh1 e econometria1
-# Resultado: VIF ≈ 1.03, Tolerância ≈ 0.97 → SEM problema
+# EXEMPLO 1 (dataset salarios.csv): correlação baixa entre rh1 e econometria1
+# Resultado: VIF ≈ 1.08, Tolerância ≈ 0.93 → SEM problema
 
-# EXEMPLO 2: Correlação alta (r = 0.964) entre rh2 e econometria2
-# Resultado: VIF ≈ 14.16, Tolerância ≈ 0.07 → PROBLEMA SEVERO!
+# EXEMPLO 2 (dataset salarios.csv): correlação muito alta entre rh2 e econometria2
+# Resultado: VIF ≈ 82.1, Tolerância ≈ 0.01 → PROBLEMA SEVERO!
 ```
 
 #### 6.6 Soluções para Multicolinearidade
@@ -592,21 +592,6 @@ plt.legend(['Distribuição Normal Teórica', 'Distribuição Real', 'Histograma
 plt.show()
 ```
 
-#### 8.5 Q-Q Plot
-
-```python
-import scipy.stats as stats
-
-fig, ax = plt.subplots(figsize=(12, 8))
-stats.probplot(modelo.resid, dist="norm", plot=ax)
-ax.set_title("Q-Q Plot", fontsize=18)
-ax.set_xlabel("Quantis Teóricos", fontsize=14)
-ax.set_ylabel("Quantis Observados", fontsize=14)
-plt.show()
-
-# Interpretação: Pontos devem estar próximos à linha diagonal
-```
-
 ---
 
 ### 9. REGRESSÃO NÃO LINEAR MÚLTIPLA COM BOX-COX
@@ -686,27 +671,28 @@ plt.show()
 #### 10.1 Exemplo: Planos de Saúde
 
 ```python
-# Dataset com variável categórica 'plano' (3 categorias)
+# Dataset com variável categórica 'plano' (3 categorias: bronze, esmeralda, ouro)
 df_planosaude = pd.read_csv('planosaude.csv')
 
-# Variáveis: despmed (Y), idade, renda, plano (categórica)
+# Variáveis: despmed (Y), idade, dcron, renda, plano (categórica)
 
 # Dummização
 df_dummies = pd.get_dummies(df_planosaude, columns=['plano'],
                             dtype=int, drop_first=True)
 
-# Resultado: plano_2, plano_3 (plano_1 é referência)
+# Resultado: plano_esmeralda, plano_ouro (plano_bronze é a referência, por
+# ser a primeira categoria em ordem alfabética)
 
-# Modelo
-modelo = sm.OLS.from_formula('despmed ~ idade + renda + plano_2 + plano_3',
+# Modelo (fórmula construída dinamicamente no script a partir das colunas)
+modelo = sm.OLS.from_formula('despmed ~ idade + dcron + renda + plano_esmeralda + plano_ouro',
                              df_dummies).fit()
 ```
 
 #### 10.2 Interpretação com Múltiplas Dummies
 
-- **Intercepto**: Despesa média para plano_1 (referência) com idade=0, renda=0
-- **β_plano_2**: Diferença de despesa entre plano_2 e plano_1, controlando idade e renda
-- **β_plano_3**: Diferença de despesa entre plano_3 e plano_1, controlando idade e renda
+- **Intercepto**: Despesa média para plano_bronze (referência)
+- **β_plano_esmeralda**: Diferença de despesa entre plano_esmeralda e plano_bronze, controlando as demais variáveis
+- **β_plano_ouro**: Diferença de despesa entre plano_ouro e plano_bronze, controlando as demais variáveis
 
 ---
 
@@ -833,7 +819,7 @@ plt.show()
 - **Dataset**: tempodist.csv
 - **Objetivo**: Predizer tempo de percurso em função da distância
 - **Variáveis**: tempo (Y), distancia (X)
-- **Resultado**: R² ≈ 0.97, relação linear forte
+- **Resultado**: Y = 5,8784 + 1,4189X, com R² = 0,8194
 
 ### Exemplo 2: Regressão Múltipla - Corrupção em Países
 
@@ -846,7 +832,7 @@ plt.show()
 
 - **Dataset**: corrupcao.csv
 - **Objetivo**: Comparar CPI entre regiões do mundo
-- **Variáveis**: cpi (Y), regiao (categórica - 5 níveis)
+- **Variáveis**: cpi (Y), regiao (categórica - 5 níveis: América do Sul, Ásia, EUA e Canadá, Europa, Oceania)
 - **Técnicas**: n-1 dummies, interpolação spline
 
 ### Exemplo 4: Box-Cox - Crescimento de Bebês
@@ -854,7 +840,7 @@ plt.show()
 - **Dataset**: bebes.csv
 - **Objetivo**: Modelar crescimento não linear (comprimento vs idade)
 - **Variáveis**: comprimento (Y), idade (X)
-- **Resultado**: λ ≈ 2.66, R² saltou de 0.87 para 0.97
+- **Resultado**: λ ≈ 2,66, R² do modelo linear ≈ 0,90 e R² do modelo Box-Cox ≈ 0,96
 
 ### Exemplo 5: Regressão Múltipla com Box-Cox - Retorno de Empresas
 
@@ -869,8 +855,8 @@ plt.show()
 - **Dataset**: salarios.csv
 - **Objetivo**: Demonstrar efeitos da multicolinearidade
 - **Comparação**:
-  - rh1 vs econometria1: r = 0.168, VIF = 1.03 (OK)
-  - rh2 vs econometria2: r = 0.964, VIF = 14.16 (PROBLEMA!)
+  - rh1 vs econometria1: correlação baixa, VIF ≈ 1.08 (OK)
+  - rh2 vs econometria2: correlação muito alta, VIF ≈ 82.1 (PROBLEMA!)
 
 ### Exemplo 7: Heterocedasticidade - Desempenho SAEB
 
@@ -884,8 +870,8 @@ plt.show()
 
 - **Dataset**: planosaude.csv
 - **Objetivo**: Explicar despesas médicas
-- **Variáveis**: despmed (Y), idade, renda, plano (categórica - 3 níveis)
-- **Técnicas**: Dummização, Stepwise, diagnósticos completos
+- **Variáveis**: despmed (Y), idade, dcron, renda, plano (categórica - 3 níveis: bronze, esmeralda, ouro)
+- **Técnicas**: Dummização, Stepwise, Box-Cox, teste de Breusch-Pagan, teste de Shapiro-Francia
 
 ---
 
@@ -1050,40 +1036,30 @@ Y = 50 + 2.5X + 10Dummy₂ + 20Dummy₃
 
 ### Checklist de Qualidade do Modelo
 
-✅ **R² ou R² Ajustado razoável** (depende do contexto, mas > 0.6 é bom em muitos casos)  
-✅ **Todos os coeficientes significantes** (p < 0.05)  
-✅ **Sinais dos coeficientes fazem sentido** teórico  
-✅ **Resíduos normalmente distribuídos** (Shapiro-Francia p > 0.05)  
-✅ **Ausência de heterocedasticidade** (Breusch-Pagan p > 0.05)  
-✅ **VIF < 10** para todas as variáveis  
-✅ **Gráfico resíduos vs fitted sem padrão** sistemático  
+✅ **R² ou R² Ajustado razoável** para o contexto do problema
+✅ **Todos os coeficientes significantes** (p < 0.05)
+✅ **Sinais dos coeficientes fazem sentido** teórico
+✅ **Resíduos normalmente distribuídos** (Shapiro-Francia p > 0.05)
+✅ **Ausência de heterocedasticidade** (Breusch-Pagan p > 0.05)
+✅ **VIF < 10** para todas as variáveis
+✅ **Gráfico resíduos vs fitted sem padrão** sistemático
 ✅ **Predições fazem sentido** prático
 
 ---
 
-## 📖 Referências Recomendadas
+## 📖 Referências Recomendadas (conforme slide de encerramento da aula)
 
-### Livros
-
-1. **Fávero, L. P. & Belfiore, P.** "Manual de Análise de Dados: Estatística e Modelagem Multivariada com Excel, SPSS e Stata"
-2. **James, G., Witten, D., Hastie, T., & Tibshirani, R.** "An Introduction to Statistical Learning" (disponível gratuitamente)
-3. **Montgomery, D. C., Peck, E. A., & Vining, G. G.** "Introduction to Linear Regression Analysis"
-4. **Kutner, M. H., Nachtsheim, C. J., Neter, J., & Li, W.** "Applied Linear Statistical Models"
-
-### Artigos e Tutoriais
-
-- **Box, G. E. P., & Cox, D. R. (1964).** "An Analysis of Transformations" - Journal of the Royal Statistical Society
-- **Breusch, T. S., & Pagan, A. R. (1979).** "A Simple Test for Heteroscedasticity and Random Coefficient Variation"
-- Documentação statsmodels: https://www.statsmodels.org/
-- Documentação scikit-learn: https://scikit-learn.org/
-
-### Recursos Online
-
-- **Statsmodels**: Documentação completa de regressão OLS
-- **Seaborn/Matplotlib**: Galeria de visualizações para regressão
-- **Plotly**: Gráficos 3D interativos
-- **Stack Overflow**: Comunidade para dúvidas específicas
-- **Kaggle**: Datasets e notebooks de regressão
+- **Fávero, L. P.; Belfiore, P.** "Data Science for Business and Decision Making". Cambridge: Academic Press, 2019.
+- **Fávero, L. P.; Belfiore, P.** "Manual de Análise de Dados: estatística e machine learning com Excel®, SPSS®, Stata®, R® e Python®". Rio de Janeiro: GEN, 2024.
+- **Gujarati, D. N.** "Econometria Básica". 5. ed. Porto Alegre: Bookman, 2011.
+- **Heiss, F.; Brunner, D.** "Using Python for Introductory Econometrics". Independently Published, 2020.
+- **Kutner, M. H.; Nachtsheim, C. J.; Neter, J.** "Applied Linear Regression Models". 4. ed. Chicago: Irwin, 2004.
+- **McNulty, K.** "Handbook of Regression Modeling in People Analytics: with examples in R and Python". New York: CRC Press, 2022.
+- **Oswald, F.; Viers, V.; Robin, J.-M.; Villedieu, P.; Kenedi, G.** "Introduction to Econometrics with R". Syllabus, 2020.
+- **Wooldridge, J. M.** "Introductory Econometrics: a modern approach". 5. ed. Mason: Cengage Learning, 2012.
+- Artigo: https://itforum.com.br/coluna/machine-learning-e-modelos-supervisionados-o-uso-correto-do-glm-na-tomada-de-decisao/
+- Artigo original de Box-Cox: **Box, G. E. P.** "An Analysis of Transformations". Journal of the Royal Statistical Society, Series B, Vol. 26, No. 2 (1964).
+- Autores do pacote `statstests` (usado no script): Luiz Paulo Fávero e Helder Prado Santos — https://stats-tests.github.io/statstests/
 
 ---
 
@@ -1093,14 +1069,9 @@ Y = 50 + 2.5X + 10Dummy₂ + 20Dummy₃
 
 - [ ] Entender diferença entre regressão simples e múltipla
 - [ ] Saber interpretar R², R² ajustado, p-values
-- [ ] Conhecer pressupostos da regressão linear (LÍNEA)
-  - **L**inearidade
-  - **I**ndependência dos resíduos
-  - **N**ormalidade dos resíduos
-  - **E**quality of variance (homocedasticidade)
-  - **A**usência de multicolinearidade
+- [ ] Conhecer os pressupostos abordados (linearidade, normalidade dos resíduos, homocedasticidade, ausência de multicolinearidade)
 - [ ] Compreender conceito de ceteris paribus
-- [ ] Entender diferença entre correlação e causalidade
+- [ ] Entender que correlação não implica causalidade (exemplos do curso: consumo de chocolate x prêmios Nobel; "spurious correlations")
 
 ### Técnicas de Diagnóstico
 
@@ -1160,9 +1131,9 @@ Y = 50 + 2.5X + 10Dummy₂ + 20Dummy₃
 
 ---
 
-**📌 Nota Final:** A Regressão Linear é a base de todo Machine Learning Supervisionado. Dominar esses conceitos é essencial para avançar para técnicas mais complexas como Regressão Logística, GLM, LASSO, Ridge, Elastic Net, e até mesmo Redes Neurais. A compreensão profunda dos diagnósticos e pressupostos garante modelos confiáveis e interpretáveis.
+**📌 Nota Final:** A Regressão Linear é um dos Modelos Lineares Generalizados (GLM) apresentados no início da aula, ao lado da Regressão Logística Binária, Multinomial, Poisson e Binomial Negativa (temas dos módulos seguintes). A compreensão profunda dos diagnósticos e pressupostos vistos aqui (normalidade, heterocedasticidade, multicolinearidade) é a base para os módulos seguintes do curso.
 
 ---
 
-_Resumo elaborado para o MBA em Data Science & Analytics da USP/ESALQ_  
+_Resumo elaborado para o MBA em Data Science & Analytics da USP/ESALQ_
 _Módulo 18 - Supervised Machine Learning - Análise de Regressão Simples e Múltipla_
