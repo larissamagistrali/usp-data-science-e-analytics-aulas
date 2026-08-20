@@ -35,9 +35,9 @@ Uma distinção central destacada na aula:
 
 > ⚠️ Scraping não é, por definição, uma atividade maliciosa — mas depende de **como** e **o que** é coletado.
 
-#### 1.3 Como o Scrapy Funciona (fluxo conceitual)
+#### 1.3 Fluxo Geral de um Raspador de Dados
 
-O fluxo geral de um raspador (independente da ferramenta) segue a lógica:
+Um slide da aula (intitulado "Como o Scrapy funciona") ilustra o fluxo geral de coleta com o seguinte esquema:
 
 ```
 CÓDIGO  →  SITE  →  HTML  →  Extrai os dados
@@ -127,7 +127,7 @@ Cliente-servidor → Como as partes se organizam
 - **Principais funções**:
   - **Ler páginas da web** e extrair títulos, links, tabelas, etc.
   - **Transformar o HTML em objetos Python navegáveis**, facilitando buscas por **tags, classes, IDs e conteúdos**
-- **Curiosidade histórica**: O nome é uma **homenagem ao poema/livro** *Alice's Adventures in Wonderland*, de **Lewis Carroll** — no qual a personagem "Mock Turtle Soup" inspirou o nome da biblioteca ("sopa bonita")
+- **Curiosidade histórica**: o nome é apresentado na aula como uma **homenagem ao livro/poema** *Alice's Adventures in Wonderland*, de **Lewis Carroll**
 
 #### 3.2 A Web é imprevisível: "Web e um quarto bagunçado"
 
@@ -204,45 +204,17 @@ from bs4 import BeautifulSoup
 import pandas as pd
 ```
 
-### Fluxo Básico de um Scraper (baseado nos conceitos da aula)
+### Exemplo Comentado em Aula (slide 42)
 
 ```python
-import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# 1. DEFINIR A URL DE ORIGEM
 url = "https://br.investing.com/currencies/"
-
-# 2. FAZER A REQUISIÇÃO HTTP (o "Cliente" pedindo dados ao "Servidor")
 response = requests.get(url)
-
-# 3. VERIFICAR O STATUS CODE ANTES DE SEGUIR
-#    (boa prática ausente no exemplo original da aula — discutida em sala)
-if response.status_code == 200:
-    # 4. TRANSFORMAR O HTML EM OBJETO PYTHON NAVEGÁVEL
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    # 5. BUSCAR ELEMENTOS POR TAG, CLASSE OU ID
-    #    (ex.: soup.find_all('tag'), soup.select('.classe'))
-    dados = soup.find_all("tr")
-
-    # 6. ESTRUTURAR OS DADOS EXTRAÍDOS EM UM DATAFRAME
-    df = pd.DataFrame(dados)
-else:
-    print(f"Erro na requisição: {response.status_code}")
 ```
 
-### Boas Práticas Reforçadas em Aula
-
-```python
-# Sempre prever exceções — a web é "um quarto bagunçado"
-try:
-    response = requests.get(url, timeout=10)
-    response.raise_for_status()
-except requests.exceptions.RequestException as e:
-    print(f"Falha na coleta: {e}")
-```
+A aula usa esse trecho incompleto/com erro proposital para uma discussão em sala sobre o que poderia falhar nele (ver item 3.3), reforçando a necessidade de importar as bibliotecas corretamente, verificar o `status_code` da resposta e prever exceções antes de seguir com o parsing, já que "a web é um quarto bagunçado" e um scraper pode falhar por um simples erro de estrutura.
 
 ---
 
@@ -339,7 +311,7 @@ Status Code    → Resultado da resposta (200 OK, 403, 404, 429...)
 - **BeautifulSoup (bs4)** — parsing de HTML em Python
 - **requests** — biblioteca Python para requisições HTTP
 - **pandas** — estruturação dos dados coletados
-- **Scrapy** — citado conceitualmente como exemplo de framework de scraping (fluxo Código → Site → HTML → Extração)
+- Um slide intitulado "Como o Scrapy funciona" ilustra o fluxo genérico Código → Site → HTML → Extração
 
 ### Organizações de Governança da Internet
 

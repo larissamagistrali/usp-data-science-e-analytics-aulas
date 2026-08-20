@@ -334,13 +334,11 @@ modelo_nulo = smf.mixedlm(
 
 print(modelo_nulo.summary())
 
-# Componentes de variância
-var_entre_grupos = modelo_nulo.cov_re.iloc[0, 0]   # Var(nu0j)
-var_residual = modelo_nulo.scale                    # Var(eps_ij)
-
-# Coeficiente de Correlação Intraclasse (ICC)
-icc = var_entre_grupos / (var_entre_grupos + var_residual)
-print(f"ICC: {icc:.4f}")
+# Teste de significância estatística do efeito aleatório de intercepto
+# (razão entre a variância do efeito aleatório e seu erro-padrão, comparada à normal)
+teste = float(modelo_nulo.cov_re.iloc[0, 0]) / float(pd.DataFrame(modelo_nulo.summary().tables[1]).iloc[1, 1])
+p_value = 2 * (1 - stats.norm.cdf(abs(teste)))
+print(f"Estatística z: {teste:.3f} | P-valor: {p_value:.3f}")
 ```
 
 ### Pipeline HLM2 - Modelo com Interceptos e Inclinações Aleatórios

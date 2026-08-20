@@ -209,14 +209,9 @@ def matriz_confusao(predicts, observado, cutoff):
 
 #### 3.7 Trade-off: Sensitividade vs Especificidade
 
-- **Cutoff baixo (ex: 0.3)**:
-  - ↑ Sensitividade: Detecta mais positivos
-  - ↓ Especificidade: Mais falsos alarmes
-  - **Uso**: Doenças graves (melhor errar para mais)
-- **Cutoff alto (ex: 0.7)**:
-  - ↓ Sensitividade: Perde alguns positivos
-  - ↑ Especificidade: Menos falsos alarmes
-  - **Uso**: Spam, fraude (evitar incomodar)
+- **Cutoff baixo (ex: 0.3)**: ↑ Sensitividade (detecta mais positivos), ↓ Especificidade (mais falsos alarmes)
+- **Cutoff alto (ex: 0.7)**: ↓ Sensitividade (perde alguns positivos), ↑ Especificidade (menos falsos alarmes)
+- No script da aula, o modelo `atrasado` e o modelo `fidelidade` foram testados nos cutoffs 0.3, 0.5 e 0.7, com o aviso explícito de que a escolha de um cutoff que iguale sensitividade e especificidade tem fins **apenas didáticos** e não garante maximizar a acurácia do modelo
 
 ```python
 # Testando diferentes cutoffs
@@ -287,13 +282,8 @@ print(f"Cutoff equilibrado: {cutoff_equilibrado}")
 #### 4.3 AUC (Area Under the Curve)
 
 - **Intervalo**: 0 a 1
-- **Interpretação**:
-  - **AUC = 0.5**: Modelo tão bom quanto jogar moeda
-  - **0.5 < AUC < 0.7**: Discriminação pobre
-  - **0.7 ≤ AUC < 0.8**: Discriminação aceitável
-  - **0.8 ≤ AUC < 0.9**: Discriminação excelente
-  - **AUC ≥ 0.9**: Discriminação excepcional
-  - **AUC = 1.0**: Modelo perfeito (raro, suspeitar de overfitting)
+- **AUC = 0.5**: Modelo tão bom quanto jogar moeda (equivale à linha diagonal do gráfico)
+- Quanto mais próxima de 1, melhor a capacidade de discriminação do modelo
 
 #### 4.4 Coeficiente de GINI
 
@@ -392,33 +382,15 @@ else:
 
 - **Análogo ao R² da regressão linear**, mas para regressão logística
 - **Fórmula**: Pseudo R² = 1 - (LL_modelo / LL_nulo)
-- **Interpretação**:
-  - 0.2 - 0.4: Ajuste excelente (muito melhor que regressão linear!)
-  - > 0.4: Ajuste excepcional
-- **⚠️ NÃO** interpretar como "variância explicada"
 
 ```python
 # Cálculo do Pseudo R² de McFadden
 pseudoR2 = 1 - (modelo.llf / modelo_nulo.llf)
 print(f"Pseudo R² de McFadden: {pseudoR2:.4f}")
 
-# Método alternativo (equivalente)
+# Método alternativo (equivalente), demonstrado no script da aula
 pseudoR2_alt = ((-2*modelo_nulo.llf) - (-2*modelo.llf)) / (-2*modelo_nulo.llf)
 print(f"Verificação: {pseudoR2_alt:.4f}")
-```
-
-#### 5.5 AIC e BIC
-
-- **AIC (Akaike Information Criterion)**: -2×LL + 2k
-- **BIC (Bayesian Information Criterion)**: -2×LL + k×ln(n)
-- **k**: Número de parâmetros
-- **n**: Tamanho da amostra
-- **Interpretação**: Menor é melhor
-- **Uso**: Comparar modelos (não tem valor absoluto interpretável)
-
-```python
-print(f"AIC: {modelo.aic:.4f}")
-print(f"BIC: {modelo.bic:.4f}")
 ```
 
 ---
@@ -1072,16 +1044,9 @@ plt.show()
 
 ## ⚠️ Erros Comuns a Evitar
 
-1. **Usar regressão linear para Y binária**: Pode gerar P<0 ou P>1
+1. **Usar regressão linear para Y binária**: pode gerar P<0 ou P>1 (o script traz explicitamente esse gráfico como "errado, apenas para fins didáticos")
 2. **Interpretar β como efeito direto na probabilidade**: β afeta o logito, não P diretamente
-3. **Comparar Pseudo R² com R² tradicional**: Escalas diferentes!
-4. **Ignorar desbalanceamento de classes**: Afeta acurácia
-5. **Usar cutoff=0.5 sem pensar**: Ajustar conforme contexto
-6. **Confundir sensitividade com acurácia**: São métricas diferentes
-7. **Esquecer de adicionar constante em MNLogit**: `sm.add_constant(X)`
-8. **Interpretar p-value dos coeficientes como qualidade do modelo**: Use AUC, ROC
-9. **Não validar o modelo (train/test split)**: Risco de overfitting
-10. **Comparar modelos apenas por acurácia**: Use AUC e outras métricas
+3. **Esquecer de adicionar a constante em MNLogit**: a função exige que a constante seja definida manualmente com `sm.add_constant(X)`
 
 ---
 
@@ -1118,21 +1083,14 @@ plt.show()
 | Y com 2 classes                  | Regressão Logística Binária             |
 | Y com 3+ classes (não ordenadas) | Regressão Logística Multinomial         |
 | Y com 3+ classes (ordenadas)     | Regressão Logística Ordinal (não visto) |
-| Detectar doença grave            | Cutoff baixo (↑ Sensitividade)          |
-| Filtro de spam                   | Cutoff alto (↑ Especificidade)          |
-| Classes desbalanceadas           | Use AUC, não acurácia                   |
-| Comparar modelos                 | AIC, BIC, AUC                           |
 
 ### Checklist de Qualidade do Modelo
 
 ✅ **Coeficientes significantes** (p < 0.05)  
-✅ **Teste Chi² significante** (p < 0.05) → Modelo melhor que nulo  
-✅ **Pseudo R² > 0.2** (excelente ajuste)  
-✅ **AUC > 0.7** (aceitável) ou **AUC > 0.8** (excelente)  
-✅ **Sensitividade e Especificidade razoáveis** (depende do contexto)  
-✅ **Acurácia > 70%** (mas não confiar só nela se classes desbalanceadas)  
-✅ **Cutoff bem justificado** (trade-off sens/espec apropriado)  
-✅ **Validação cruzada ou train/test split** (evitar overfitting)
+✅ **Teste Chi² significante** (p < 0.05) → Modelo melhor que o nulo  
+✅ **Pseudo R² de McFadden calculado**  
+✅ **AUC calculada e próxima de 1** (quanto maior, melhor a discriminação)  
+✅ **Sensitividade e Especificidade calculadas para o(s) cutoff(s) escolhido(s)**
 
 ### Interpretação de Resultados - Passo a Passo
 
@@ -1148,8 +1106,8 @@ Cada unidade adicional de X₁ multiplica as chances de Y=1 por 10.59
 
 ```
 Chi² = 45.32, p < 0.001 → Modelo é significativamente melhor que o nulo
-Pseudo R² = 0.38 → Excelente ajuste
-AUC = 0.87 → Discriminação excelente
+Pseudo R² = 0.38
+AUC = 0.87
 ```
 
 **3. Escolha do Cutoff:**
@@ -1170,27 +1128,18 @@ Com cutoff=0.9 → Classificar como 0
 
 ---
 
-## 📖 Referências Recomendadas
+## 📖 Sugestão de Leitura (Material Complementar da aula)
 
-### Livros
-
-1. **Fávero, L. P. & Belfiore, P.** "Análise de Dados: Modelagem Multivariada para Tomada de Decisões"
-2. **Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X.** "Applied Logistic Regression" (3ª ed.)
-3. **James, G., Witten, D., Hastie, T., & Tibshirani, R.** "An Introduction to Statistical Learning"
-4. **Agresti, A.** "Categorical Data Analysis" (3ª ed.)
-5. **Long, J. S. & Freese, J.** "Regression Models for Categorical Dependent Variables Using Stata"
-
-### Artigos
-
-- **McFadden, D. (1974).** "Conditional logit analysis of qualitative choice behavior"
-- **Hosmer, D. W. & Lemeshow, S. (2000).** "Applied Logistic Regression" - Capítulo ROC
-
-### Recursos Online
-
-- **Statsmodels**: Documentação completa de Logit e MNLogit
-- **Scikit-learn**: Métricas de classificação
-- **Kaggle**: Datasets e notebooks de classificação
-- **ROC Curve Tutorial**: https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
+- Christensen, R. 1997. *Log-linear models and logistic regression.* 2. ed. New York: Springer-Verlag.
+- Fávero, L.P.; Belfiore, P. 2019. *Data science for business and decision making.* Cambridge: Academic Press.
+- Fávero, L.P.; Belfiore, P. 2024. *Manual de análise de dados: estatística e machine learning com Excel®, SPSS®, Stata®, R® e Python®.* Rio de Janeiro: GEN.
+- Garson, G.D. 2012. *Logistic regression: binary & multinomial.* Asheboro: Statistical Associates Publishing.
+- Gujarati, D.N. 2011. *Econometria básica.* 5. ed. Porto Alegre: Bookman.
+- Hilbe, J.M. 2009. *Logistic regression models.* London: Chapman & Hall / CRC Press.
+- Hosmer, D.W.; Lemeshow, S.; Sturdivant, R.X. 2013. *Applied logistic regression.* 3. ed. New York: John Wiley & Sons.
+- Hosmer, D.W.; Taber, S.; Lemeshow, S. 1991. *The importance of assessing the fit of logistic regression models: a case study.* American Journal of Public Health, v. 81, p. 1630-1635.
+- Kleinbaum, D.G.; Klein, M. 2010. *Logistic regression: a self-learning text.* 3. ed. New York: Springer.
+- Fávero, L.P. 2019. *Machine Learning e modelos supervisionados: o uso correto do GLM na tomada de decisão.* IT Forum.
 
 ---
 
@@ -1267,8 +1216,6 @@ Com cutoff=0.9 → Classificar como 0
 - [ ] Apresentar resultados com visualizações
 
 ---
-
-**📌 Nota Final:** Regressão Logística é uma das técnicas mais utilizadas em Machine Learning para problemas de classificação. É a base para redes neurais (função de ativação sigmoide), modelos de deep learning, e técnicas avançadas como XGBoost para classificação. Dominar logística é essencial para qualquer cientista de dados.
 
 ---
 

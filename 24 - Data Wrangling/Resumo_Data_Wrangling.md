@@ -35,9 +35,8 @@ Compreender o processo de **Data Wrangling** — a preparação, organização, 
 
 ### 2. CRISP-DM (Cross-Industry Standard Process for Data Mining)
 
-- Modelo de referência amplamente utilizado em projetos de mineração de dados e ciência de dados
-- Fases do ciclo: **Business Understanding → Data Understanding → Data Preparation → Modeling → Evaluation → Deployment** (com retorno ao Business Understanding)
-- O **Data Wrangling** se insere principalmente nas fases de **Data Understanding** e **Data Preparation**, antecedendo a etapa de **Modeling**
+- Diagrama apresentado no slide com as fases: **Business Understanding ⇄ Data Understanding → Data Preparation → Modeling → Evaluation → Deployment**, com a base de dados (**Data**) ao centro
+- No diagrama, o slide destaca as etapas de **Data Understanding** e **Data Preparation** como aquelas relacionadas ao Data Wrangling
 - Fonte de referência do diagrama: https://commons.wikimedia.org/wiki/File:CRISP-DM_Process_Diagram.png
 
 ```
@@ -213,7 +212,7 @@ git push
 2. **Caso já tenha uma conta Google**: clique em "Fazer login" e realize o acesso
    - Nota: se ao acessar o site não aparecer a opção "Fazer login", mas sim uma janela "Abrir notebook (Open notebook)", significa que já está logado e pronto para iniciar
 3. **Caso não tenha uma conta Google**: clique em "Fazer login" → "Criar conta" → "Para uso pessoal" e finalize o cadastro
-4. Após a criação/login da conta, o Google Colab estará disponível para uso, permitindo a execução de notebooks Python (`.ipynb`) diretamente no navegador, sem necessidade de instalação local
+4. Após a criação/login da conta, o Google Colab estará disponível para uso
 
 ---
 
@@ -282,23 +281,13 @@ git merge <nome_da_branch>
   8. Sincronização (`git pull`) e integração da branch `nova` à `main` (`git merge nova`, `git push`)
 - **Resultado**: fluxo completo de versionamento colaborativo, do arquivo local até o histórico compartilhado no GitHub
 
-### Exemplo 3: Acesso ao Ambiente de Execução em Nuvem (Google Colab)
+### Exemplo 3: Acesso ao Google Colab
 
-- **Cenário**: acesso ao Google Colab via conta Google (login existente ou criação de conta nova) para execução de notebooks Python sem instalação local, útil para os exercícios práticos de pandas do módulo
+- **Cenário**: acesso ao Google Colab via conta Google (login existente ou criação de conta nova)
 
 ---
 
 ## 💡 Conceitos-Chave para Memorizar
-
-### 🔑 Data Wrangling: Onde se Encaixa
-
-| **Etapa do CRISP-DM** | **Papel do Data Wrangling** |
-| --- | --- |
-| Business Understanding | Não é foco do Data Wrangling |
-| Data Understanding | Familiarização inicial com os dados (Discovery) |
-| **Data Preparation** | Núcleo do Data Wrangling (Structuring, Cleaning, Enriching, Verifying, Publishing) |
-| Modeling | Ocorre **depois** do Data Wrangling |
-| Evaluation / Deployment | Dependem da qualidade dos dados tratados anteriormente |
 
 ### 🎯 As 3 Atividades Comuns do Tratamento de Dados
 
@@ -336,20 +325,6 @@ Discovery → Structuring → Cleaning → Enriching → Verifying → Publishin
 7. git branch/switch → cria e alterna entre ramificações
 8. git merge   → integra as alterações de uma branch a outra
 ```
-
----
-
-## ⚠️ Erros Comuns a Evitar
-
-1. **Pular a etapa de Data Wrangling e ir direto para a modelagem**: compromete a qualidade e a confiabilidade das informações extraídas
-2. **Tratar Data Wrangling como processo padronizado**: cada contexto exige etapas diferentes — não existe um "checklist" único aplicável a todos os casos
-3. **Ignorar a etapa de Junção quando há múltiplas fontes de dados**: sem variáveis-chave corretamente definidas, a união das tabelas gera inconsistências
-4. **Esquecer a configuração inicial do Git** (`user.email`/`user.name`) antes do primeiro commit
-5. **Fazer commit sem mensagem clara**: dificulta o entendimento do histórico de versões (`git log --oneline`)
-6. **Esquecer o `git push` após o `git commit`**: as alterações permanecem apenas localmente, sem chegar ao GitHub
-7. **Trabalhar direto na branch `main` sem criar branches de trabalho**: aumenta o risco de sobrescrever versões estáveis
-8. **Não fazer `git pull` antes de iniciar novas alterações em uma branch compartilhada**: pode gerar conflitos de versão
-9. **Confundir o papel do Git (controle de versão local) com o do GitHub (hospedagem/colaboração na nuvem)**
 
 ---
 

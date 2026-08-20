@@ -1,797 +1,215 @@
 # 📊 Resumo: Análise da Conjuntura Econômica em Cenários de Tecnologias Disruptivas
 
 **MBA Data Science e Analytics - USP/ESALQ**
+**Professor Dr. Fernando de Souza Coelho**
 
 ---
 
 ## 🎯 Objetivo do Módulo
 
-Compreender os fundamentos de **análise da conjuntura econômica** e interpretar indicadores macroeconômicos em contextos de **transformação digital e tecnologias disruptivas**. Analisar como inovações tecnológicas (AI, blockchain, IoT, automação) impactam mercados, políticas econômicas, emprego e competitividade empresarial. Desenvolver capacidade de antecipar tendências econômicas para tomada de decisão estratégica em Data Science.
+Oferecer um instrumental para compreensão das dados/informações econômicas e interpretação do ambiente de negócios à luz da conjuntura e dos cenários macroeconômicos. A disciplina foi organizada em 2 aulas e 3 "degraus": (1) Fundamentos sobre o Nível de Atividade — PIB, Inflação, Desemprego (aula 16/09); (2) Princípios de Política Econômica — Fiscal, Monetária, Cambial (aula 23/09); (3) Sistema Financeiro, Mercados e Ambiente Econômico — análise da conjuntura e projeção de cenários (aula 23/09).
+
+_Observação: apesar do nome do módulo mencionar "tecnologias disruptivas", o conteúdo efetivamente ministrado nas duas aulas foi de fundamentos de macroeconomia e política econômica. A tecnologia aparece apenas como um dos fatores do macroambiente (dimensão "T" do PESTEL) e como um fator que influencia o investimento ("ritmo das inovações tecnológicas"), sem aprofundamento em tecnologias específicas._
 
 ---
 
 ## 📚 Conteúdo Principal
 
-### 1. **Fundamentos de Economia**
-
-#### 1.1 Microeconomia vs. Macroeconomia
-
-- **Microeconomia:** comportamento de agentes individuais
-  - Oferta e demanda de produtos
-  - Decisões de consumidores e empresas
-  - Formação de preços em mercados
-  - Elasticidade (sensibilidade a preços)
-- **Macroeconomia:** economia como um todo
-  - PIB, inflação, desemprego, juros
-  - Crescimento econômico
-  - Políticas monetária e fiscal
-  - Comércio internacional
-
-#### 1.2 Conceitos Centrais
-
-- **PIB (Produto Interno Bruto):**
-  - Soma de todos os bens e serviços produzidos
-  - PIB nominal vs. real (ajustado por inflação)
-  - PIB per capita (PIB / população)
-- **Inflação:**
-  - Aumento generalizado de preços
-  - **IPCA (Brasil):** índice oficial
-  - **Hiperinflação:** >50%/mês (colapso econômico)
-  - **Deflação:** queda de preços (rara, ruim para crescimento)
-- **Taxa de Juros:**
-  - **Selic (Brasil):** taxa básica, controlada pelo Banco Central
-  - Influencia: crédito, investimento, câmbio, inflação
-  - **Juros reais = juros nominais - inflação**
-- **Desemprego:**
-  - Taxa de desemprego = (desempregados / força de trabalho) × 100
-  - Tipos: friccional, estrutural, cíclico
-- **Câmbio:**
-  - Taxa de conversão entre moedas (R$/US$)
-  - Afeta: exportações, importações, inflação
-
-#### 1.3 Ciclos Econômicos
-
-```
-Expansão → Pico → Recessão → Vale → Recuperação → Expansão
-```
-
-- **Expansão:** crescimento de PIB, emprego alto, investimentos
-- **Recessão:** 2+ trimestres consecutivos de queda do PIB
-- **Depressão:** recessão severa e prolongada
-- **Indicadores antecedentes:** sinalizam mudanças antes de ocorrerem (ex: índice de confiança)
-
----
-
-### 2. **Indicadores Macroeconômicos**
-
-#### 2.1 Indicadores de Atividade Econômica
-
-- **PIB:**
-  - Divulgação: trimestral (IBGE)
-  - Composição: Consumo (C) + Investimento (I) + Gastos Gov (G) + Exportações líquidas (X-M)
-  - **PIB Brasil (2024):** ~R$11 trilhões, crescimento ~2-3% a.a.
-- **Produção Industrial:**
-  - Medido pelo IBGE
-  - Indicador antecedente de PIB
-- **PMI (Purchasing Managers' Index):**
-  - > 50: expansão industrial
-  - <50: contração
-- **Vendas no Varejo:**
-  - Proxy de consumo das famílias (60-70% do PIB)
-
-#### 2.2 Indicadores de Preços
-
-- **IPCA (Índice de Preços ao Consumidor Amplo):**
-  - Inflação oficial, usado para meta (Brasil: 3% ± 1.5%)
-  - Cesta de bens e serviços de famílias
-- **IGP-M:**
-  - Índice Geral de Preços - Mercado
-  - Usado em contratos (aluguéis)
-  - Inclui atacado (mais volátil)
-- **PPI (Producer Price Index):**
-  - Inflação no atacado (preços ao produtor)
-  - Indicador antecedente de inflação ao consumidor
-
-#### 2.3 Indicadores de Emprego
-
-- **Taxa de Desemprego:**
-  - **Brasil (PNAD Contínua - IBGE):** ~8-10% (2024)
-  - **EUA (BLS):** ~3.5-4% (2024)
-- **Taxa de Participação:**
-  - % da população em idade ativa que está na força de trabalho
-- **Payroll (EUA):**
-  - Número de vagas criadas/mês
-  - Indicador crucial para Fed (banco central EUA)
-
-#### 2.4 Indicadores Financeiros
-
-- **Taxa Selic (Brasil):**
-  - Meta definida pelo Copom (Comitê de Política Monetária)
-  - Reuniões a cada 45 dias
-  - **2024:** ~10-12% (varia conforme inflação)
-- **Fed Funds Rate (EUA):**
-  - Taxa de referência do Federal Reserve
-  - **2024:** ~5-5.5% (após ciclo de alta contra inflação)
-- **Curva de Juros:**
-  - Relação entre taxa de juros e prazo
-  - **Normal:** longo prazo > curto prazo (crescimento esperado)
-  - **Invertida:** curto > longo (sinaliza recessão)
+### 1. A Economia como Macroambiente
+
+- O **macroambiente** engloba o **ambiente setorial**, que por sua vez engloba a **organização**.
+- Dimensões do macroambiente (framework **PESTEL**): Político, Econômico, Social, Tecnológico, Ecológico, Legal.
+- Exemplos de fatores por dimensão (conforme slide do professor):
+  - **Político:** instabilidade política, falta de liderança, falta de legitimidade do governo
+  - **Econômico:** tributação, aumento da taxa de juros, volatilidade da taxa de câmbio
+  - **Social:** aumento da população de idosos, migração para o interior, aumento da população com nível superior
+  - **Tecnológico:** novas tecnologias de comunicação, novos modelos de negócio, aumento da velocidade da internet
+  - **Ecológico:** grandes períodos de estiagem, perda de cobertura vegetal, leis ambientais mais rígidas
+  - **Legal:** extraterritorialidade de leis, novas leis anticorrupção, novas leis de comércio exterior
+
+### 2. Elementos Básicos para uma Análise Econômica
+
+- **Que ambiente analisar?**
+  - Análise **Microeconômica**: agentes e mercado
+  - Análise **Macroeconômica**: agregados e políticas
+- **Qual abordagem utilizar?**
+  - **Conjuntural:** curto/médio prazo, oscilações no panorama
+  - **Estrutural:** longo prazo, alterações na base da economia
+- **Caixa de ferramentas mínima:** conceitos (vocabulário econômico), modelos (operacionalização dos conceitos) e índices (expressões numéricas/taxas e indicadores da economia).
+- **Dificuldades iniciais da análise macroeconômica:** desconhecimento do "economês" + complexidade das relações de causa-efeito = aparência de complicação.
+
+### 3. Nível de Atividade Econômica
+
+Economicamente, os países objetivam: **crescimento do produto**, **estabilidade de preços** e **geração de emprego** — sintetizados no "nível de atividade", medido respectivamente por **PIB**, **taxa de inflação** e **taxa de desemprego**.
+
+#### 3.1 PIB (Produto Interno Bruto)
+
+- **Definição:** medida aproximada da geração de renda de uma economia em um período; valor monetário do total de bens e serviços **finais** produzidos dentro dos limites geográficos de um território. É indicador de fluxo (não confundir com estoque de riqueza).
+- **Modelo (ótica do dispêndio/despesa/demanda):** **PIB = C + I + G + (Ex – Im)** (Consumo, Investimento, Gastos do Governo, Exportações − Importações). Existem também as óticas da oferta/produção (VA agropecuária + indústria + serviços + outros) e da renda (salários + lucros/juros/aluguéis + impostos indiretos) — as três óticas resultam no mesmo valor.
+- **Fatores que impactam os componentes do PIB:**
+  - Consumo: renda disponível, expectativas das famílias, distribuição de renda
+  - Investimento: ritmo das inovações tecnológicas, taxa de retorno projetada, taxa de juros (trade-off)
+  - Gastos do Governo: controle da atividade econômica, serviços públicos, políticas sociais
+  - Balança Comercial: taxa de câmbio, competitividade internacional, políticas de comércio exterior
+- **PIB do Brasil (2024):** R$ 11,745 trilhões nominal; composição pela ótica da demanda: Consumo 64%, Gastos Públicos 18%, Investimento 17%, Balança Comercial e Serviços 0,5%, Variação de Estoques 0,5%.
+- **Série histórica do crescimento real do PIB do Brasil (2015-2024):** -3,5 / -3,3 / 1,3 / 1,8 / 1,2 / -3,3 / 4,8 / 3,0 / 3,2 / 3,4 (%) — trajetória "stop and go" ("voo de galinha").
+- **Crescimento ≠ Desenvolvimento:** crescimento econômico é necessário mas não suficiente para o desenvolvimento socioeconômico. Indicadores de desenvolvimento, qualidade de vida e distribuição de renda: **IDH/PNUD**, **IPQV/IBGE** e **Índice de Gini**. Brasil: IDH 0,786 (posição 84 no mundo, 9ª na América Latina, dados 2025 para 2023).
+
+#### 3.2 Inflação
+
+- **Definição:** aumento do nível de preços de uma economia.
+- **Três tipos:**
+  - **Inflação de Demanda:** nível dos salários, disponibilidade de crédito, meios de pagamento
+  - **Inflação de Oferta:** choque de oferta negativo, preços administrados, custos de produção/administração
+  - **Inflação Inercial:** memória inflacionária + expectativa dos agentes + indexação (contratos de curto prazo) → espiral inflacionário
+- **Principais índices de inflação ao consumidor no Brasil:** IPCA (IBGE, usado como meta de inflação), IGP-M (FGV, usado em contratos), IPC (FIPE, impostos de SP), ICV (DIEESE, acordos salariais).
+- **Histórico:** hiperinflação brasileira entre 1985-2000 passando pelos planos Cruzado, Bresser, Verão, Collor 1 e 2, até a estabilização com o Real (fim da âncora cambial a partir de jan./1999).
+- **Série IPCA/IGP-M Brasil (2015-2024):** IPCA variou entre 2,9% (2017) e 10,7% (2015); IGP-M variou entre -3,2% (2023) e 23,1% (2020).
+
+#### 3.3 Desemprego
+
+- A partir da população total do país, calcula-se: **PIA/PIT** (população em idade ativa) → **PEA/PFT** (população economicamente ativa) → **Inativos**.
+- **Taxa de Desemprego = Nº de Desempregados / PEA.**
+- **Três tipos de desemprego:**
+  - **Friccional:** incompatibilidades, assimetria de informação, rotatividade
+  - **Estrutural:** mecanização agrícola, automação industrial, inteligência artificial
+  - **Conjuntural:** crise econômica, sazonalidade, choque externo
+- **Fontes/metodologias:** PNAD Contínua (IBGE) mede desocupação por amostra domiciliar; CAGED (Ministério do Trabalho e Emprego) mede emprego formal via eSocial/Caged/Empregador Web.
+- **Discussão em aula:** conceito de **NAIRU** (Non-Accelerating Inflation Rate of Unemployment) — nível de desemprego que mantém a taxa de inflação estável; alta informalidade e precarização no mercado de trabalho brasileiro.
+
+### 4. Política Econômica
+
+**Política Econômica:** intervenção do governo na economia, para lidar com trade-offs (ex.: equilibrar receitas/despesas do governo, manter crescimento sem pressão inflacionária, decidir manter ou reduzir juros). Pode ser **conjuntural** (Política Fiscal, Monetária, Cambial) ou **estrutural** (Política Industrial, de Transição Energética, de Distribuição de Renda).
+
+**Funções do Governo na Economia:** Alocativa (bens públicos, ex.: infraestrutura), Estabilizadora (combate ao desemprego, estabilidade de preços, crescimento — ex.: controle da demanda agregada) e Distributiva (redução da desigualdade — ex.: transferências e impostos).
+
+#### 4.1 Política Fiscal
+
+- **Problema fiscal:** equilíbrio entre Receitas e Despesas do setor público.
+- **Balancete simplificado de um governo:** Receitas (impostos diretos e indiretos, contribuições, transferências intergovernamentais) x Despesas (consumo do governo, transferências, subsídios, investimentos públicos, pagamento de juros).
+- **Impostos Diretos:** sobre renda e propriedade, respeitando progressividade (ex.: IRPF, IPTU, IPVA). **Impostos Indiretos:** sobre venda de bens/serviços, contrariando a progressividade (ex.: ICMS, IPI, ISS).
+- **Tributos por esfera de governo:** União (57% da arrecadação: IR, Contribuição Previdenciária, IPI, IOF, COFINS, PIS, CSLL, etc.), Estados (25%: ICMS, IPVA, ITCMD), Municípios (18%: IPTU, ISS, ITBI).
+- **Reforma Tributária:** unificação de tributos federais (IPI, COFINS, PIS → CBS) e estadual/municipal (ICMS, ISS → IBS).
+- **Resultado das contas públicas:** Déficit Público quando Despesas > Receitas. **Superávit/Déficit Primário** = Receitas − Despesas não financeiras (exceto juros). **Déficit/Superávit Nominal** = Despesa Total − Receita Total (inclui pagamento de juros).
+- **Financiamento do déficit (NFSP):** emissão de moeda pelo Banco Central (não usual) e/ou emissão de títulos pelo governo (tradicional, via Tesouro Nacional — ex.: Tesouro Selic, Tesouro Prefixado, Tesouro IPCA+).
+- **Série Brasil (2015-2024):** resultado primário variou de -9,2% do PIB (2020) a 1,2% (2022); dívida pública bruta variou entre 65,5% (2015) e 86,9% (2020) do PIB.
+
+#### 4.2 Política Monetária
+
+- **Objetivo:** conciliar crescimento econômico com estabilidade de preços, por meio da administração da taxa de juros básica (Selic) e da gestão da meta de inflação (controle da oferta monetária).
+- **Selic:** definida pelo **Copom** (Comitê de Política Monetária do Banco Central), em reuniões periódicas, considerando a conjuntura nacional (crescimento, inflação, mercado financeiro doméstico) e o panorama externo (risco-país, juros internacionais). Selic em 15% (set./2025).
+- **Instrumentos clássicos de política monetária:** Open Market (compra/venda de títulos públicos já em circulação no mercado secundário), Taxa de Recolhimento Compulsório e Taxa de Redesconto.
+- **Série Selic Brasil (2015-2024, final do ano):** 14,25% / 13,75% / 7,00% / 6,50% / 4,50% / 2,00% / 9,25% / 13,75% / 11,75% / 12,25%.
+
+#### 4.3 Política Cambial
+
+- **Transações externas e taxa de câmbio:** entradas de US$ (exportações, remessa de lucro, pagamento de juros, amortização) e saídas (importações, empréstimos, investimento direto, capital de curto prazo) determinam a taxa de câmbio R$/US$.
+- **Regimes cambiais:**
+  - **Câmbio Fixo:** Bacen estipula taxa fixa (vantagem: previsibilidade; desvantagem: perda de credibilidade)
+  - **Bandas Cambiais:** Bacen define limites máximo/mínimo
+  - **Flutuação Suja:** Bacen negocia títulos cambiais (swaps) em momentos de stress
+  - **Câmbio Flutuante:** Bacen não interfere (regime atual do Brasil)
+- **Balanço de Pagamentos:** registro das transações externas.
+  - Balança Comercial (I) = Exportação − Importação
+  - Balança de Serviços e Rendas (II)
+  - Transferências Unilaterais (III)
+  - **Conta Corrente (IV = I + II + III)**
+  - Conta Capital e Financeira (V): investimentos diretos, empréstimos, amortizações, capitais de curto prazo
+  - **Saldo do Balanço de Pagamentos (VI = IV + V)**
+- **Relação BP–reservas–câmbio:** Saldo do BP positivo → aumentam as reservas internacionais, valorização/apreciação cambial. Saldo negativo → diminuem as reservas, desvalorização/depreciação cambial.
 
-#### 2.5 Indicadores de Confiança
+### 5. Sistema Financeiro Nacional (SFN) e Mercados
 
-- **ICC (Índice de Conf. do Consumidor - FGV):**
-  - Expectativas sobre economia e renda
-  - > 100: otimismo, <100: pessimismo
-- **ICI (Índice de Conf. da Indústria - FGV)**
-- **VIX (Volatility Index):**
-  - "Índice do medo" (volatilidade esperada da bolsa)
-  - > 20: incerteza alta
+- O SFN capta, distribui e normatiza/fiscaliza recursos financeiros, subdividido em 4 mercados: **Mercado Monetário** (papel-moeda e moeda escritural), **Mercado de Crédito** (recursos para consumo e funcionamento das empresas), **Mercado de Capitais** (captação de recursos de terceiros pelas empresas) e **Mercado de Câmbio** (compra e venda de moeda estrangeira).
+- **Estrutura do SFN no Brasil:**
+  - **Órgãos Normativos:** CMN (Conselho Monetário Nacional), CNSP (Conselho Nacional de Seguros Privados), CNPC (Conselho Nacional de Previdência Complementar)
+  - **Entidades Supervisoras:** BACEN, CVM (Comissão de Valores Mobiliários), SUSEP (Superintendência de Seguros Privados), PREVIC (Superintendência Nacional de Previdência Complementar)
+  - **Operadores:** bancos, cooperativas e fintechs, sociedades seguradoras, resseguradores, bolsas de valores, fundos de pensão, entre outros
 
----
+### 6. Conjuntura Econômica e Projeção de Cenários (Brasil)
 
-### 3. **Política Econômica**
-
-#### 3.1 Política Monetária
-
-- **Objetivo:** controlar inflação e estimular economia
-- **Instrumento principal:** taxa de juros (Selic, Fed Funds)
-- **Banco Central (BC):**
-  - Independente do governo (Brasil: desde 2021)
-  - Meta de inflação: 3% (Brasil), 2% (EUA/Europa)
-
-**Mecanismo de Transmissão:**
-
-```
-BC sobe Selic → Crédito mais caro → Consumo/Investimento caem →
-Demanda cai → Inflação cai
-```
-
-**Quantitative Easing (QE):**
-
-- BC compra títulos (injetando dinheiro)
-- Usado em crises (2008, COVID)
-- Estímulo quando juros já estão em zero
-
-#### 3.2 Política Fiscal
-
-- **Objetivo:** estimular economia via gastos e impostos
-- **Instrumentos:**
-  - **Gastos públicos:** investimentos em infraestrutura, programas sociais
-  - **Impostos:** reduzir (estímulo) ou aumentar (contração)
-
-**Déficit Fiscal:**
-
-- Gastos > Receitas
-- **Brasil:** déficit primário crônico
-- Aumenta dívida pública
-
-**Dívida Pública:**
-
-- **Brasil:** ~75% do PIB
-- **Japão:** >250% (alto mas sustentável por juros baixos)
-- **Rating de crédito:** Fitch, Moody's, S&P (risco de calote)
-
-**Regras Fiscais:**
-
-- **Teto de Gastos (Brasil até 2023):** limite de crescimento de despesas
-- **Arcabouço Fiscal (Brasil desde 2023):** nova regra, mais flexível
-
-#### 3.3 Política Cambial
-
-- **Câmbio Fixo:** governo define taxa (raro hoje)
-- **Câmbio Flutuante:** mercado define (Brasil, EUA, Europa)
-- **Intervenção:** BC compra/vende dólares para suavizar volatilidade
-
-**Impactos:**
-
-- **Valorização do Real (R$ forte):** importações baratas, inflação baixa, exportações difíceis
-- **Desvalorização do Real (R$ fraco):** exportações competitivas, inflação sobe (importados caros)
-
----
-
-### 4. **Tecnologias Disruptivas e Economia**
-
-#### 4.1 Definição de Disrupção
-
-- **Inovação Disruptiva (Christensen):**
-  - Transforma mercado, criando novo ou tornando obsoleto
-  - Ex: streaming (Netflix) vs. Blockbuster, smartphone vs. telefone fixo
-- **Vs. Inovação Incremental:**
-  - Incremental: melhorias graduais (novo iPhone)
-  - Disruptiva: mudança de paradigma (primeiro iPhone)
-
-#### 4.2 Principais Tecnologias Disruptivas
-
-**Inteligência Artificial e Machine Learning:**
-
-- **Impactos econômicos:**
-  - **Produtividade:** automação de tarefas cognitivas (atendimento, análise)
-  - **Novos produtos:** assistentes virtuais, carros autônomos, diagnósticos médicos
-  - **Emprego:** substituição de funções repetitivas, criação de novas profissões
-  - **Estimativa:** adicionar $13 trilhões ao PIB global até 2030 (McKinsey)
-
-**Blockchain:**
-
-- **Descentralização:** elimina intermediários (bancos, cartórios)
-- **Aplicações:** criptomoedas (Bitcoin), contratos inteligentes (Ethereum), supply chain
-- **Impactos:** redução de custos transacionais, transparência, desintermediação financeira
-
-**Internet das Coisas (IoT):**
-
-- **50 bilhões de dispositivos conectados até 2030**
-- **Aplicações:** smart cities, indústria 4.0, agricultura de precisão
-- **Impactos:** eficiência operacional, novos modelos de negócio (as-a-service)
-
-**Automação e Robótica:**
-
-- **Indústria 4.0:** fábricas inteligentes, manufatura customizada
-- **Impactos:** redução de custos, aumento de qualidade, deslocamento de empregos
-
-**5G e Conectividade:**
-
-- **Velocidade:** 100x mais rápida que 4G
-- **Latência:** <1ms (crítico para IoT, carros autônomos)
-- **Impactos:** novos serviços (telemedicina, realidade aumentada), indústria conectada
-
-**Energias Renováveis:**
-
-- **Solar, eólica:** custo caiu 90% em 10 anos
-- **Impactos:** descarbonização, descentralização energética, novos empregos
-
-#### 4.3 Modelo de Difusão de Tecnologia
-
-**Curva S de Adoção:**
-
-```
-Inovadores (2.5%) → Early Adopters (13.5%) →
-Maioria Inicial (34%) → Maioria Tardia (34%) →
-Retardatários (16%)
-```
-
-- **Chasm (abismo):** entre early adopters e maioria inicial
-  - Muitas tecnologias morrem aqui
-  - Superar: product-market fit, cases de sucesso
-
----
-
-### 5. **Impactos das Tecnologias no Mercado de Trabalho**
-
-#### 5.1 Automação de Empregos
-
-**Estudos:**
-
-- **Frey & Osborne (Oxford, 2013):** 47% dos empregos nos EUA em risco de automação
-- **McKinsey (2017):** 60% das ocupações têm 30%+ de tarefas automatizáveis
-- **OCDE:** 14% de empregos de alto risco, 32% de médio risco
-
-**Setores de Maior Risco:**
-
-- **Transporte:** motoristas (carros autônomos)
-- **Manufatura:** operários (robôs)
-- **Varejo:** caixas (self-checkout)
-- **Atendimento:** telemarketing (chatbots)
-- **Escritório:** entrada de dados, contabilidade básica
-
-**Setores de Menor Risco:**
-
-- **Criatividade:** artistas, designers, escritores
-- **Empatia:** profissionais de saúde, educação, terapia
-- **Estratégia:** gestores, cientistas, engenheiros
-- **Habilidades manuais complexas:** encanadores, eletricistas
-
-#### 5.2 Novas Profissões
-
-- **Cientista de Dados, Engenheiro de ML**
-- **Especialista em Cibersegurança**
-- **Desenvolvedor de IoT**
-- **Especialista em Blockchain**
-- **Designer de UX/UI**
-- **Analista de ESG (Environmental, Social, Governance)**
-
-#### 5.3 Polarização do Mercado de Trabalho
-
-- **Alta qualificação:** crescimento (engenheiros, cientistas, gestores)
-- **Média qualificação:** declínio (rotineiros, administrativos)
-- **Baixa qualificação:** crescimento (serviços pessoais não-automatizáveis: cuidadores, limpeza)
-
-**Conseqüências:**
-
-- **Desigualdade de renda:** skill premium aumenta
-- **Necessidade de reciclagem (reskilling):** lifelong learning
-
----
-
-### 6. **Economia Digital e Modelos de Negócio**
-
-#### 6.1 Economia de Plataforma
-
-- **Conceito:** intermediários digitais conectam múltiplos lados de mercado
-- **Exemplos:** Uber (motoristas-passageiros), Airbnb (anfitriões-hóspedes), Amazon Marketplace (vendedores-compradores)
-
-**Características:**
-
-- **Efeitos de rede:** valor cresce exponencialmente com usuários
-- **Winner-takes-most:** tendência a monopólio/oligopólio
-- **Custos marginais baixos:** escala rápida
-- **Network effects:** quanto mais usuários, mais valioso (ex: WhatsApp)
-
-**Desafios regulatórios:**
-
-- **Concorrência:** poder de mercado excessivo (antitruste)
-- **Trabalho:** status de trabalhadores (CLT vs. autônomos)
-- **Privacidade:** dados pessoais (LGPD, GDPR)
-- **Tributação:** evasão fiscal (lucros offshore)
-
-#### 6.2 Economia do Compartilhamento (Sharing Economy)
-
-- **Subutilização de ativos:** carros ociosos (Uber), quartos vazios (Airbnb)
-- **Benefícios:** sustentabilidade, renda extra, acesso acessível
-- **Críticas:** precarização, evasão regulatória (hotéis, táxis)
-
-#### 6.3 Freemium e Assinatura
-
-- **Freemium:** serviço básico grátis, premium pago (Spotify, LinkedIn)
-- **Subscription:** receita recorrente (Netflix, SaaS)
-- **Vantagens:** previsibilidade de receita, LTV (Lifetime Value) alto
-
-#### 6.4 Data-Driven Business
-
-- **Dados como ativo estratégico:**
-  - Personalização (recomendações Netflix, Amazon)
-  - Otimização de operações (logística, pricing dinâmico)
-  - Novos produtos (seguros baseados em comportamento)
-- **Monetização de dados:**
-  - Venda de insights (Nielsen, comScore)
-  - Publicidade direcionada (Google, Facebook)
-
----
-
-### 7. **Desigualdade e Tecnologia**
-
-#### 7.1 Concentração de Riqueza
-
-- **Big Tech:** FAANG (Facebook/Meta, Apple, Amazon, Netflix, Google) + Microsoft
-- **Capitalização de mercado:** >$10 trilhões combinado
-- **Efeito vencedor-leva-tudo:** poucas empresas dominam
-
-**Índice de Gini:**
-
-- Medida de desigualdade (0 = perfeita igualdade, 1 = desigualdade máxima)
-- **Brasil:** ~0.53 (um dos mais desiguais)
-- **EUA:** ~0.41 (crescimento desde 1980)
-- **Tecnologia contribui:** skill premium, capital vs. trabalho
-
-#### 7.2 Divisão Digital (Digital Divide)
-
-- **Acesso desigual à tecnologia:**
-  - Países desenvolvidos vs. em desenvolvimento
-  - Áreas urbanas vs. rurais
-  - Ricos vs. pobres
-- **Consequências:**
-  - **Educação:** aprendizado online excluiu muitos na pandemia
-  - **Emprego:** vagas remotas inacessíveis sem internet
-  - **Saúde:** telemedicina não universal
-
-#### 7.3 Políticas de Mitigação
-
-- **Renda Básica Universal (UBI):**
-  - Pagamento incondicional a todos
-  - Piloto: Finlândia, Quênia
-  - Debate: financiamento, incentivo ao trabalho
-- **Taxação de Robôs/AI:**
-  - Proposta: Bill Gates, Benoit Hamon
-  - Objetivo: compensar perda de arrecadação (menos empregos formais)
-- **Reskilling/Upskilling:**
-  - Programas de requalificação profissional
-  - Educação continuada
-
----
-
-### 8. **Criptomoedas e Finanças Descentralizadas (DeFi)**
-
-#### 8.1 Criptomoedas
-
-- **Bitcoin (2009):** primeira criptomoeda, reserva de valor digital ("ouro digital")
-- **Ethereum:** smart contracts, base para DeFi e NFTs
-- **Stablecoins (USDT, USDC):** atreladas ao dólar (reduzir volatilidade)
-
-**Características:**
-
-- **Descentralização:** sem banco central
-- **Blockchain:** registro distribuído e imutável
-- **Oferta limitada (Bitcoin):** máximo 21 milhões (vs. real/dólar: ilimitado)
-
-**Volatilidade:**
-
-- Bitcoin: de $60k (2021) para $16k (2022) e de volta a $60k+ (2024)
-- Risco alto: especulação, regulação incerta
-
-#### 8.2 DeFi (Finanças Descentralizadas)
-
-- **Conceito:** serviços financeiros sem intermediários (bancos)
-- **Aplicações:**
-  - **Lending/Borrowing:** Aave, Compound (emprestar/tomar empréstimos)
-  - **DEX (Exchanges Descentralizadas):** Uniswap (trocar tokens)
-  - **Yield Farming:** earn juros altos com liquidez
-  - **Staking:** travar tokens para validar rede (Ethereum 2.0)
-
-**Riscos:**
-
-- **Hacks:** smart contracts vulneráveis (bilhões roubados)
-- **Regulação:** incerteza jurídica (é seguro? commodity?)
-- **Escams:** projetos fraudulentos (rug pulls)
-
-#### 8.3 CBDCs (Central Bank Digital Currencies)
-
-- **Moeda digital de banco central:**
-  - **China:** e-Yuan (piloto avançado)
-  - **Europa:** euro digital (em estudo)
-  - **Brasil:** Drex (Real Digital, lançamento previsto 2024-2025)
-
-**Vantagens:**
-
-- Pagamentos instantâneos
-- Inclusão financeira (acesso via celular)
-- Rastreabilidade (combate à lavagem de dinheiro)
-
-**Desvantagens:**
-
-- Privacidade reduzida (governo rastreia tudo)
-- Risco de controle autoritário
-
----
-
-### 9. **ESG e Economia Sustentável**
-
-#### 9.1 Conceito ESG
-
-- **Environmental:** impacto ambiental (emissões, recursos naturais)
-- **Social:** direitos trabalhistas, diversidade, comunidade
-- **Governance:** transparência, ética, estrutura de governança
-
-**Por que importa:**
-
-- **Investidores:** fundos ESG crescem (>$30 trilhões em ativos)
-- **Consumidores:** preferência por marcas sustentáveis
-- **Regulação:** disclosure obrigatório (Europa: CSRD, Brasil: crescendo)
-- **Risco:** empresas com ESG ruim têm maior risco operacional e reputacional
-
-#### 9.2 Economia Circular
-
-- **Linear:** extrair → produzir → descartar
-- **Circular:** reduzir, reutilizar, reciclar, regenerar
-- **Exemplos:** Patagonia (reparo de roupas), Philips (luz-as-a-service)
-
-#### 9.3 Precificação de Carbono
-
-- **Carbon tax:** taxa por tonelada de CO2 emitida
-- **Cap-and-trade:** limite de emissões, empresas negociam créditos
-- **Créditos de Carbono:** mercado voluntário (compensação)
-
-**Objetivo:** internalizar externalidade (custo ambiental que não estava no preço)
-
----
-
-### 10. **Cenários Futuros e Análise de Tendências**
-
-#### 10.1 Métodos de Análise de Cenários
-
-- **Análise SWOT:**
-  - Strengths, Weaknesses, Opportunities, Threats
-  - Aplicar em contexto tecnológico
-- **Análise PESTEL:**
-  - Political, Economic, Social, Technological, Environmental, Legal
-  - Framework para analisar macro-ambiente
-- **Cenários Alternativos:**
-  - **Otimista:** adoção rápida de IA, crescimento acelerado, desigualdade controlada
-  - **Pessimista:** desemprego em massa, desigualdade extrema, instabilidade social
-  - **Moderado:** transição gradual, políticas de adaptação eficazes
-
-#### 10.2 Tendências Econômicas para 2025-2030
-
-**Global:**
-
-- **Desglobalização:** cadeias de suprimento mais regionalizadas (geopolítica)
-- **Transição energética:** investimento massivo em renováveis
-- **IA generativa:** transformação de setores criativos e conhecimento
-- **Envelhecimento populacional:** pressão em sistemas de previdência (Europa, Japão)
-
-**Brasil:**
-
-- **Potencial:** agronegócio, energias limpas, commodities
-- **Desafios:** dívida pública, educação, infraestrutura
-- **Oportunidades:** nearshoring (produção voltando da Ásia para Américas)
-
-#### 10.3 Papel do Cientista de Dados
-
-- **Análise de Mercado:** prever demanda, identificar tendências
-- **Inteligência Competitiva:** monitorar concorrentes, tecnologias emergentes
-- **Otimização de Operações:** reduzir custos, aumentar eficiência
-- **Novos Produtos:** data-driven innovation
-- **Política Pública:** evidências para decisões (saúde, educação, segurança)
+- **Tripé Macroeconômico:** Responsabilidade Fiscal (meta de resultado primário), Metas de Inflação (política monetária) e Câmbio Flutuante (política cambial).
+- **Painel de indicadores do passado recente (2020-2024):** PIB, desemprego, inflação (IPCA/IGP-M), Selic, câmbio, balança comercial, reservas internacionais, resultado primário/nominal e dívida pública — todos com séries anuais apresentadas em aula (fonte: IBGE, Banco Central e Tesouro Nacional).
+- **Projeções para 2025 e 2026** (base 22/set./2025, Boletim Focus): PIB +2,16% (2025) / +1,80% (2026); Desemprego 6,0% / 7,0%; IPCA 4,83% / 4,29% (meta CMN de 3,00%); Selic 15,00% / 12,25%; Resultado Primário -0,50% / -0,60% do PIB; Câmbio 5,50 / 5,60 (R$/US$).
 
 ---
 
 ## 💡 Conceitos-Chave para Memorizar
 
-1. **Indicadores Macroeconômicos Principais:**
-   - **PIB:** crescimento econômico
-   - **Inflação (IPCA):** estabilidade de preços
-   - **Selic:** taxa de juros (custo do dinheiro)
-   - **Desemprego:** saúde do mercado de trabalho
-   - **Câmbio (R$/US$):** competitividade externa
-
-2. **Política Monetária vs. Fiscal:**
-   - **Monetária:** BC controla juros para conter inflação
-   - **Fiscal:** governo gasta/tributa para estimular economia
-
-3. **Tecnologias Disruptivas = Transformam mercados, criam novos, tornam obsoletos:**
-   - AI/ML, Blockchain, IoT, 5G, Automação
-
-4. **Impacto no Trabalho:**
-   - **47% de empregos em risco** de automação (Frey & Osborne)
-   - **Polarização:** alta e baixa qualificação crescem, média qualificação cai
-   - **Novas profissões:** Data Scientist, ML Engineer, Cybersecurity
-
-5. **Economia de Plataforma:**
-   - **Network effects:** valor cresce com usuários (Uber, Airbnb, Amazon)
-   - **Winner-takes-most:** tendência a oligopólio
-   - **Desafios:** regulação, concorrência, trabalho
-
-6. **Desigualdade:**
-   - **Índice de Gini:** medida de desigualdade (Brasil ~0.53)
-   - **Digital divide:** acesso desigual à tecnologia
-   - **Skill premium:** alta qualificação ganha cada vez mais
-
-7. **Criptomoedas e DeFi:**
-   - **Bitcoin:** reserva de valor digital, descentralizado
-   - **DeFi:** serviços financeiros sem bancos (Aave, Uniswap)
-   - **CBDCs:** moedas digitais de bancos centrais (Drex, e-Yuan)
-
-8. **ESG:**
-   - **Environmental, Social, Governance:** critérios de sustentabilidade
-   - **Investimento ESG:** >$30 trilhões em ativos
-   - **Economia circular:** reduzir, reutilizar, reciclar
-
-9. **Ciclos Econômicos:**
-   - **Expansão → Pico → Recessão → Vale → Recuperação**
-   - **Recessão:** 2+ trimestres de queda de PIB
-
-10. **Análise de Cenários:**
-    - **PESTEL:** Political, Economic, Social, Technological, Environmental, Legal
-    - **Cenários múltiplos:** otimista, pessimista, moderado
-    - **Antecipação de tendências:** crítico para estratégia
+1. **PESTEL:** Político, Econômico, Social, Tecnológico, Ecológico, Legal — framework para análise do macroambiente.
+2. **PIB = C + I + G + (Ex – Im)** — ótica do dispêndio; PIB não é sinônimo de desenvolvimento (ver IDH e Gini).
+3. **Três tipos de inflação:** demanda, oferta e inercial; principais índices: IPCA (meta), IGP-M (contratos), IPC-FIPE, ICV-DIEESE.
+4. **Três tipos de desemprego:** friccional, estrutural, conjuntural; PNAD Contínua x CAGED; conceito de NAIRU.
+5. **Política Fiscal:** resultado primário (sem juros) x resultado nominal (com juros); financiamento do déficit via emissão de moeda ou de títulos (NFSP).
+6. **Política Monetária:** Selic definida pelo Copom; instrumentos: open market, compulsório, redesconto.
+7. **Política Cambial:** regimes cambiais (fixo, bandas, flutuação suja, flutuante); Balanço de Pagamentos = Conta Corrente + Conta Capital e Financeira.
+8. **Tripé Macroeconômico:** responsabilidade fiscal + metas de inflação + câmbio flutuante.
+9. **SFN:** 4 mercados (monetário, crédito, capitais, câmbio) e 3 níveis de instituições (normativos, supervisores, operadores).
 
 ---
 
-## ⚠️ Erros Comuns a Evitar
+## 📚 Materiais de Apoio e Referências (indicados em aula)
 
-1. **❌ Confundir correlação com causalidade em dados econômicos**
-   - Problema: indicadores movem-se juntos, mas não um causa o outro
-   - ✅ Usar teoria econômica para interpretar relações
+### Sites e fontes de dados oficiais
 
-2. **❌ Ignorar defasagens (lags) em políticas econômicas**
-   - Problema: esperar efeito imediato de aumento de Selic (demora 6-12 meses)
-   - ✅ Considerar time lags em análises e previsões
+- **IBGE:** PIB, IPCA, PNAD Contínua (desemprego) — [ibge.gov.br/explica/pib.php](https://www.ibge.gov.br/explica/pib.php)
+- **Banco Central do Brasil:** Selic, câmbio, metas de inflação — [bcb.gov.br](https://www.bcb.gov.br)
+- **FGV IBRE:** Portal da Inflação (IGP-M) — [portal-da-inflacao-ibre.fgv.br](https://portal-da-inflacao-ibre.fgv.br/#!/)
+- **IPEA:** Carta de Conjuntura (mercado de trabalho) — [ipea.gov.br/cartadeconjuntura](https://www.ipea.gov.br/cartadeconjuntura/)
+- **Boletim Focus (Banco Central):** expectativas de mercado
+- **Tesouro Direto:** [tesourodireto.com.br](https://www.tesourodireto.com.br)
 
-3. **❌ Generalizar tendências globais sem considerar contexto local**
-   - Problema: "AI vai eliminar 50% dos empregos" (varia por país, setor)
-   - ✅ Análise específica por setor e geografia
+### Material Complementar (indicado pelo professor)
 
-4. **❌ Subestimar resistência à mudança (inércia institucional)**
-   - Problema: prever adoção rápida de tecnologia sem considerar regulação, cultura
-   - ✅ Considerar barreiras (regulatórias, sociais, econômicas)
+- IPEA. 2025. **Carta de Conjuntura nº 67 – Nota de Conjuntura 26 – 2º Trimestre de 2025.**
 
-5. **❌ Focar apenas em tecnologia, ignorando economia política**
-   - Problema: "Blockchain vai substituir bancos" (ignora lobbying, regulação)
-   - ✅ Analisar poder de stakeholders, interesses estabelecidos
+### Vídeo indicado em aula
 
-6. **❌ Não ajustar valores nominais por inflação**
-   - Problema: comparar PIB de 2010 e 2024 sem ajuste (valores nominais enganam)
-   - ✅ Usar valores reais (deflacionados)
+- Banco Central do Brasil. 2022. **BC te Explica #37 - Relatório Focus.** YouTube.
 
-7. **❌ Tratar indicadores como verdade absoluta**
-   - Problema: PIB não mede bem-estar, desigualdade, sustentabilidade
-   - ✅ Usar múltiplos indicadores (IDH, Gini, pegada ecológica)
+### Livros indicados em aula
 
-8. **❌ Desconsiderar externalidades em análise custo-benefício**
-   - Problema: projeto parece lucrativo mas polui rio (custo não contabilizado)
-   - ✅ Incluir externalidades (ambientais, sociais)
-
-9. **❌ Confiar em previsões econômicas de longo prazo (5+ anos)**
-   - Problema: incerteza muito alta (Black Swans: COVID, guerras)
-   - ✅ Usar cenários múltiplos, não única previsão
-
-10. **❌ Ignorar feedback loops e efeitos de segunda ordem**
-    - Problema: "Automação reduz custos" (também reduz empregos → consumo cai → vendas caem)
-    - ✅ Analisar efeitos indiretos e sistêmicos
-
----
-
-## 📚 Materiais de Apoio e Referências
-
-### Indicadores Econômicos (Fontes)
-
-- **Brasil:**
-  - **IBGE:** PIB, inflação (IPCA), desemprego (PNAD)
-  - **Banco Central:** Selic, câmbio, relatório de inflação
-  - **FGV:** índices de confiança (ICC, ICI), IGP-M
-  - **IPEA:** análises conjunturais, boletins
-- **Internacional:**
-  - **Federal Reserve (Fed):** política monetária EUA
-  - **Eurostat:** dados Zona do Euro
-  - **World Bank, IMF:** dados globais, relatórios (WEO, WDI)
-  - **OECD:** estudos de países desenvolvidos
-
-### Relatórios de Tecnologia e Economia
-
-📊 **McKinsey Global Institute:**
-
-- "The Future of Work" (automação e emprego)
-- "Notes from the AI Frontier" (impacto econômico de AI)
-
-📊 **World Economic Forum:**
-
-- "The Future of Jobs Report" (anual)
-- "Global Competitiveness Report"
-
-📊 **PwC:**
-
-- "Global Artificial Intelligence Study" (impacto de AI: $15.7 trilhões até 2030)
-
-📊 **Gartner Hype Cycle:**
-
-- Ciclo de maturidade de tecnologias emergentes
-
-### Livros Recomendados
-
-📖 **"The Second Machine Age" - Brynjolfsson & McAfee**
-
-- Impacto de automação e AI na economia
-
-📖 **"Capital in the Twenty-First Century" - Thomas Piketty**
-
-- Desigualdade de renda e riqueza (dados históricos)
-
-📖 **"The Innovator's Dilemma" - Clayton Christensen**
-
-- Teoria de inovação disruptiva
-
-📖 **"The Platform Economy" - Parker, Van Alstyne, Choudary**
-
-- Economia de plataformas e network effects
-
-📖 **"Blockchain Revolution" - Don & Alex Tapscott**
-
-- Aplicações de blockchain
-
-📖 **"Economia Básica" - Thomas Sowell**
-
-- Fundamentos de economia (acessível)
-
-### Podcasts e Canais
-
-🎙️ **Mamilos (Brasil):** economia e tecnologia
-🎙️ **Economia Mainstream (Brasil)**
-🎙️ **The Economist - Money Talks**
-🎙️ **Planet Money (NPR)**
-🎙️ **a16z Podcast:** tecnologia e negócios
-
-### Dashboards e Dados
-
-- **TradingEconomics.com:** indicadores econômicos de 200+ países
-- **FRED (Federal Reserve Economic Data):** dados econômicos EUA
-- **Our World in Data:** visualizações de tendências globais
-- **Statista:** estatísticas de mercado e tecnologia
+- **Economia Fácil** — Vasconcellos, Toneto Jr. e Sakurai (Editora Saraiva)
+- **Economia Brasileira Contemporânea**, 8ª edição — Gremaud, Vasconcellos e Toneto Júnior (Atlas)
+- **Manual de Economia**, 7ª edição — Equipe de Professores da USP (Saraiva)
+- **Políticas Públicas: Conceitos, Casos Práticos, Questões de Concursos**, 3ª edição — Secchi, Souza Coelho e Pires
 
 ---
 
 ## ✅ Checklist de Estudo
 
-### Fundamentos de Economia
+### Nível de Atividade
 
-- [ ] Diferenciar microeconomia vs. macroeconomia
-- [ ] Explicar PIB, inflação, juros, desemprego, câmbio
-- [ ] Entender ciclos econômicos (expansão → recessão → recuperação)
-- [ ] Conhecer Índice de Gini (medida de desigualdade)
-
-### Indicadores Macroeconômicos
-
-- [ ] Saber onde consultar: IBGE (PIB, IPCA, desemprego), BC (Selic, câmbio)
-- [ ] Interpretar IPCA (meta 3% Brasil)
-- [ ] Interpretar Selic (juros altos = contrair inflação, juros baixos = estimular)
-- [ ] Entender taxa de desemprego (Brasil ~8-10%, EUA ~3.5-4%)
-- [ ] Conhecer curva de juros (normal vs. invertida)
+- [ ] Explicar PIB (ótica do dispêndio: C+I+G+(Ex-Im)) e diferenciá-lo de desenvolvimento (IDH, Gini)
+- [ ] Diferenciar os 3 tipos de inflação (demanda, oferta, inercial) e os 4 índices (IPCA, IGP-M, IPC-FIPE, ICV-DIEESE)
+- [ ] Diferenciar os 3 tipos de desemprego (friccional, estrutural, conjuntural) e as metodologias PNAD Contínua x CAGED
+- [ ] Saber a fórmula da taxa de desemprego (desempregados/PEA)
 
 ### Política Econômica
 
-- [ ] **Política Monetária:** BC controla juros para inflação
-- [ ] **Política Fiscal:** governo gasta/tributa para estimular
-- [ ] Saber papel do Banco Central (independência, meta de inflação)
-- [ ] Entender déficit fiscal e dívida pública (Brasil ~75% PIB)
-- [ ] Conhecer Quantitative Easing (QE) em crises
+- [ ] Diferenciar política fiscal, monetária e cambial (conjunturais) de política industrial/energética/distributiva (estruturais)
+- [ ] Calcular resultado primário e resultado nominal a partir de receitas, despesas e juros
+- [ ] Explicar como o Copom define a Selic e os instrumentos clássicos de política monetária
+- [ ] Diferenciar os regimes cambiais (fixo, bandas, flutuação suja, flutuante)
+- [ ] Montar o Balanço de Pagamentos (balança comercial + serviços/rendas + transferências = conta corrente; + conta capital e financeira = saldo do BP)
 
-### Tecnologias Disruptivas
+### Sistema Financeiro Nacional
 
-- [ ] Definir inovação disruptiva vs. incremental
-- [ ] Listar 5 tecnologias disruptivas: AI, Blockchain, IoT, 5G, Automação
-- [ ] Explicar impacto de AI na produtividade ($13 trilhões até 2030 - McKinsey)
-- [ ] Entender blockchain: descentralização, smart contracts, criptomoedas
-- [ ] Conhecer IoT: 50 bilhões de dispositivos até 2030
+- [ ] Listar os 4 mercados do SFN (monetário, crédito, capitais, câmbio)
+- [ ] Listar os 3 níveis de instituições do SFN (órgãos normativos, entidades supervisoras, operadores)
 
-### Mercado de Trabalho
+### Conjuntura e Cenários
 
-- [ ] **Frey & Osborne:** 47% de empregos em risco de automação
-- [ ] Listar setores de maior risco: transporte, manufatura, varejo, atendimento
-- [ ] Listar setores de menor risco: criatividade, empatia, estratégia
-- [ ] Entender polarização: alta e baixa qualificação crescem, média cai
-- [ ] Conhecer novas profissões: Data Scientist, ML Engineer, Cybersecurity
-
-### Economia Digital
-
-- [ ] **Economia de Plataforma:** Uber, Airbnb, Amazon Marketplace
-- [ ] Explicar network effects (valor crescente com usuários)
-- [ ] Entender winner-takes-most (tendência a oligopólio)
-- [ ] Conhecer desafios regulatórios: concorrência, trabalho, privacidade
-- [ ] Explicar freemium vs. subscription
-
-### Desigualdade
-
-- [ ] Índice de Gini: Brasil ~0.53 (alto), EUA ~0.41
-- [ ] Entender digital divide (acesso desigual à tecnologia)
-- [ ] Conhecer propostas: Renda Básica Universal, taxação de robôs, reskilling
-
-### Criptomoedas e DeFi
-
-- [ ] **Bitcoin:** reserva de valor, descentralizado, oferta limitada (21M)
-- [ ] **Ethereum:** smart contracts, base para DeFi
-- [ ] **DeFi:** finanças sem bancos (Aave, Uniswap)
-- [ ] **CBDCs:** moedas digitais de bancos centrais (Drex, e-Yuan)
-- [ ] Conhecer riscos: volatilidade, hacks, regulação
-
-### ESG
-
-- [ ] Definir Environmental, Social, Governance
-- [ ] Saber que fundos ESG > $30 trilhões
-- [ ] Explicar economia circular (reduzir, reutilizar, reciclar)
-- [ ] Conhecer precificação de carbono (carbon tax, cap-and-trade)
-
-### Análise de Cenários
-
-- [ ] Aplicar framework PESTEL (Political, Economic, Social, Technological, Environmental, Legal)
-- [ ] Criar cenários múltiplos (otimista, pessimista, moderado)
-- [ ] Identificar tendências: desglobalização, transição energética, IA generativa, envelhecimento
-
-### Projeto Prático
-
-- [ ] **Escolher setor:** ex: varejo, saúde, transporte
-- [ ] **Coletar indicadores econômicos:** PIB setor, emprego, investimento
-- [ ] **Analisar tecnologias disruptivas:** como AI/automação impacta
-- [ ] **Estimar impacto no emprego:** quais funções em risco, quais emergem
-- [ ] **Analisar competitividade:** empresas adotando tecnologia vs. não-adotando
-- [ ] **Considerar regulação:** políticas que podem afetar setor
-- [ ] **Criar cenários:** otimista (adoção rápida), pessimista (resistência)
-- [ ] **Propor estratégias:** para empresa no setor (investir, adaptar, pivotar)
-- [ ] **Apresentar insights:** relatório com dados, gráficos, recomendações
-
-### Estudo de Caso
-
-- [ ] **Ex: Uber e mercado de transporte no Brasil**
-  - Indicadores: número de motoristas, viagens, receita
-  - Impacto econômico: empregos (aplicativo vs. táxi formal), preços (queda)
-  - Regulação: leis municipais, resistência de taxistas
-  - Tecnologia: algoritmos de matching, pricing dinâmico
-  - Cenários futuros: carros autônomos (elimina motoristas?), regulação mais rígida
+- [ ] Interpretar o painel de indicadores macroeconômicos do Brasil (2020-2024)
+- [ ] Interpretar as projeções do Boletim Focus para PIB, desemprego, inflação, Selic e câmbio (2025-2026)
+- [ ] Explicar o Tripé Macroeconômico (responsabilidade fiscal, metas de inflação, câmbio flutuante)
 
 ---
 
-**🎯 Meta de Aprendizado:**  
-Analisar um setor econômico específico (ex: saúde, educação, agronegócio) considerando: (1) indicadores macroeconômicos relevantes, (2) impacto de tecnologias disruptivas, (3) tendências de emprego, (4) cenários futuros, (5) recomendações estratégicas baseadas em dados. Apresentar análise estruturada com visualizações e fontes confiáveis.
-
-**💪 Desafio Avançado:**  
-Construir modelo econométrico (Python/R) para prever indicador macroeconômico (ex: PIB, inflação) usando variáveis explicativas (juros, câmbio, commodities, índice de tecnologia). Avaliar acurácia, interpretar coeficientes e discutir limitações. Incorporar análise de cenários (what-if: se Selic subir 2%, qual impacto no PIB?).
+**🎯 Meta de Aprendizado (conforme professor):**
+Adquirir uma visão rápida do funcionamento da economia; compreender de forma descomplicada relações de causa e efeito na conjuntura econômica e na dinâmica das políticas econômicas conjunturais; e pensar a relação entre o ambiente econômico e o contexto de gestão de negócios.
 
 ---
 
-_Documentado para MBA Data Science e Analytics - USP/ESALQ_  
-_Versão 1.0 - Análise da Conjuntura Econômica em Cenários Tecnológicos_
+_Documentado para MBA Data Science e Analytics - USP/ESALQ_
+_Revisado para conter apenas conteúdo efetivamente ministrado em aula (slides + material complementar)_

@@ -6,7 +6,7 @@
 
 ## 🎯 Objetivo do Módulo
 
-Compreender os fundamentos de engenharia de dados, incluindo modelagem de bancos de dados relacionais, linguagem SQL, manipulação de dados, otimização de consultas e boas práticas para estruturação e gerenciamento de dados em projetos de Data Science.
+Compreender os fundamentos de engenharia de dados vistos em aula: modelagem de bancos de dados relacionais, linguagem SQL (DDL/DML/DQL), views, stored procedures e otimização de consultas no MySQL.
 
 ---
 
@@ -14,61 +14,27 @@ Compreender os fundamentos de engenharia de dados, incluindo modelagem de bancos
 
 ### 1. **Fundamentos de Bancos de Dados**
 
-#### 1.1 Conceitos Básicos
+#### 1.1 Banco de Dados Relacional
 
-- **Banco de Dados**: coleção organizada de dados estruturados
-- **SGBD (Sistema Gerenciador de Banco de Dados)**: software que gerencia BD
-- **Tabela**: estrutura que armazena dados em linhas e colunas
-- **Linha (Registro/Tupla)**: conjunto de valores relacionados
-- **Coluna (Campo/Atributo)**: cada variável de uma tabela
-- **Schema**: estrutura lógica do banco de dados
+- São sistemas de armazenamento de dados onde as informações ficam organizadas em **tabelas** (linhas e colunas) que se relacionam entre si — por isso o nome "relacionais".
+- SGBDs relacionais citados em aula: Oracle, SQL Server, IBM DB2, PostgreSQL, SQLite e **MySQL**.
 
-#### 1.2 Tipos de Bancos de Dados
+#### 1.2 MySQL — Sistema Utilizado no Curso
 
-**Relacionais (SQL)**:
-
-- MySQL, PostgreSQL, SQL Server, Oracle
-- Dados estruturados em tabelas
-- Relacionamentos definidos por chaves
-- ACID (Atomicity, Consistency, Isolation, Durability)
-
-**Não Relacionais (NoSQL)**:
-
-- MongoDB, Cassandra, Redis
-- Flexibilidade de schema
-- Escalabilidade horizontal
-- Diferentes modelos: documento, chave-valor, colunar, grafo
-
-#### 1.3 MySQL - Sistema Utilizado
-
-- **Open source**: gratuito
-- **Amplamente adotado**: indústria e academia
-- **Performance**: rápido para leitura
-- **Compatibilidade**: Windows, macOS, Linux
-- **Ferramentas**: MySQL Workbench (interface gráfica)
+- Arquitetura cliente-servidor:
+  - **Cliente**: MySQL Workbench ou MySQL command line client
+  - **Servidor**: MySQL Community Server
+- Tutoriais de instalação fornecidos para Windows, macOS e Linux.
 
 ---
 
-### 2. **Modelagem de Dados**
+### 2. **Modelagem de Dados (MER)**
 
-#### 2.1 Modelo Entidade-Relacionamento (ER)
+#### 2.1 Entidades e Atributos
 
-**Entidades**:
-
-- Objetos do mundo real (Cliente, Produto, Pedido)
-- Representadas como tabelas no banco
-
-**Atributos**:
-
-- Características das entidades
-- Colunas das tabelas
-
-**Relacionamentos**:
-
-- Associações entre entidades
-- 1:1 (um-para-um)
-- 1:N (um-para-muitos)
-- N:M (muitos-para-muitos)
+- **Entidade**: qualquer elemento ou objeto do mundo real que pode ser identificado e possui relevância para o sistema, como um cliente ou um produto.
+- **Atributo**: característica ou propriedade que descreve uma entidade, como o nome de um cliente ou o preço de um produto.
+- Antes de relacionar tabelas, é preciso identificar as chaves primárias.
 
 #### 2.2 Chaves
 
@@ -83,7 +49,6 @@ create table cliente(
 ```
 
 - Identifica unicamente cada registro
-- Não pode ser NULL
 - `auto_increment`: incrementa automaticamente
 
 **Chave Estrangeira (Foreign Key - FK)**:
@@ -99,24 +64,7 @@ create table livros(
 );
 ```
 
-- Referencia chave primária de outra tabela
-- Define relacionamentos
-- Mantém integridade referencial
-
-#### 2.3 Normalização
-
-**Objetivos**:
-
-- Eliminar redundância
-- Evitar anomalias de inserção, atualização e exclusão
-- Facilitar manutenção
-
-**Formas Normais**:
-
-- **1FN**: atributos atômicos (sem listas)
-- **2FN**: sem dependências parciais
-- **3FN**: sem dependências transitivas
-- **BCNF**: forma normal de Boyce-Codd
+- Referencia a chave primária de outra tabela e define o relacionamento entre elas
 
 ---
 
@@ -380,56 +328,21 @@ group by l.id, l.nome;
 - Retorna **todos** os registros da tabela esquerda
 - NULL para registros sem correspondência à direita
 
-#### 4.3 RIGHT JOIN (RIGHT OUTER JOIN)
-
-```sql
--- Todos os autores, mesmo sem livros publicados
-select
-    a.nome as autor,
-    count(l.id) as quantidade_livros
-from livros l
-right join autores a on l.autor_id = a.id
-group by a.id, a.nome;
-```
-
-- Retorna **todos** os registros da tabela direita
-- NULL para registros sem correspondência à esquerda
-
-#### 4.4 FULL OUTER JOIN
-
-```sql
--- MySQL não suporta diretamente, usar UNION
-select * from livros l
-left join autores a on l.autor_id = a.id
-union
-select * from livros l
-right join autores a on l.autor_id = a.id;
-```
-
-- Retorna **todos** os registros de ambas as tabelas
-
-#### 4.5 CROSS JOIN
-
-```sql
--- Produto cartesiano (todas as combinações)
-select *
-from livros
-cross join autores;
-```
-
-- Raramente usado em produção
-
 ---
 
 ### 5. **Views - Visualizações**
 
 #### 5.1 Conceito
 
-- **View**: consulta armazenada (tabela virtual)
-- Não armazena dados fisicamente
+- **View**: uma consulta salva (tabela virtual) que exibe dados de uma ou mais tabelas com colunas e filtros definidos
+- Não armazena dados fisicamente — não pode alterar os dados
 - Simplifica consultas complexas
-- Controle de acesso (segurança)
-- Abstração de complexidade
+
+**Quando criar uma view**:
+
+1. Reutilizar consultas complexas
+2. Facilitar relatórios e análises
+3. Simular uma tabela personalizada
 
 #### 5.2 Criar View
 
@@ -498,34 +411,29 @@ select * from livros_ingles;
 drop view nome_view;
 ```
 
-**Vantagens das Views**:
-
-- Simplificação de consultas repetidas
-- Segurança (ocultar colunas sensíveis)
-- Independência lógica (mudanças na estrutura não afetam aplicações)
-- Facilita análise de dados
-
 ---
 
 ### 6. **Stored Procedures - Procedimentos Armazenados**
 
 #### 6.1 Conceito
 
-- **Procedure**: conjunto de comandos SQL armazenados no banco
-- Executados como uma unidade
-- Podem receber parâmetros
-- Permitem lógica (IF, WHILE, etc.)
-- Reduzem tráfego de rede
-- Centralizam lógica de negócio
+- Uma **procedure** (ou stored procedure) funciona como uma função pré-programada, usada para automatizar tarefas repetitivas, como relatórios, cálculos, inserções, atualizações ou retificações.
+
+**Vantagens** (vs. Views):
+
+1. Segurança e controle
+2. Organização do banco
+3. Reutilização de código
+
+View não pode alterar os dados; Procedure pode alterar os dados e aceitar parâmetros de entrada e saída.
 
 #### 6.2 Sintaxe Básica
 
 ```sql
 delimiter //
 
-create procedure nome_procedure(
-    in parametro_entrada tipo,
-    out parametro_saida tipo
+create procedure nome_da_procedure(
+    [parametros de entrada e/ou saida]
 )
 begin
     -- comandos SQL
@@ -537,9 +445,9 @@ delimiter ;
 
 **Delimiter**:
 
-- Muda delimitador temporariamente (de `;` para `//`)
+- Muda o delimitador temporariamente (de `;` para `//`)
 - Permite usar `;` dentro do procedure
-- Restaura delimiter depois
+- Restaura o delimiter depois
 
 #### 6.3 Procedure para UPDATE
 
@@ -593,59 +501,15 @@ call inserir_comentario_livro(42, 'julio', 'alcantara',
 select * from comentarios order by id desc;
 ```
 
-#### 6.5 Procedure com Lógica
-
-```sql
-delimiter //
-
-create procedure calcular_desconto(
-    in p_livro_id int,
-    in p_percentual decimal(5,2)
-)
-begin
-    declare preco_atual decimal(10,2);
-    declare novo_preco decimal(10,2);
-
-    -- Buscar preço atual
-    select vendas into preco_atual
-    from livros
-    where id = p_livro_id;
-
-    -- Calcular novo preço
-    set novo_preco = preco_atual * (1 - p_percentual/100);
-
-    -- Atualizar
-    update livros
-    set vendas = novo_preco
-    where id = p_livro_id;
-
-    -- Mensagem
-    select concat('Desconto aplicado! Novo preço: R$ ', novo_preco) as resultado;
-end;
-//
-
-delimiter ;
-
-call calcular_desconto(42, 10);  -- 10% de desconto
-```
-
-#### 6.6 Remover Procedure
+#### 6.5 Remover Procedure
 
 ```sql
 drop procedure nome_procedure;
 ```
 
-**Vantagens dos Procedures**:
-
-- Performance (pré-compilados)
-- Segurança (controle de acesso)
-- Manutenibilidade (lógica centralizada)
-- Redução de código repetitivo
-- Transações complexas
-
 ---
 
-### 7. **Otimização de Consultas**
+### 7. **Otimização de Consultas** (SQL Avançado)
 
 #### 7.1 Índices
 
@@ -655,24 +519,22 @@ drop procedure nome_procedure;
 -- Índice simples
 create index idx_idioma on livros(idioma);
 
--- Índice composto
-create index idx_idioma_ano on livros(idioma, ano_publicacao);
+-- Índice composto (ordem importa!)
+create index idx_idioma_ano_vendas on livros(idioma, ano_publicacao, vendas);
 
 -- Índice único
 create unique index idx_email on cliente(email);
 ```
 
-**Remover Índice**:
+**Índice de cobertura (Covering Index)**: quando todas as colunas necessárias estão no índice, o MySQL não precisa acessar a tabela principal.
 
 ```sql
-drop index idx_idioma on livros;
+create index idx_cobertura on livros(idioma, nome, vendas);
+
+select nome, vendas
+from livros
+where idioma = 'Spanish';   -- lê apenas o índice
 ```
-
-**Quando usar**:
-
-- Colunas frequentemente usadas em WHERE, JOIN, ORDER BY
-- Colunas com alta cardinalidade (muitos valores distintos)
-- Trade-off: acelera leitura, desacelera escrita
 
 #### 7.2 EXPLAIN
 
@@ -680,50 +542,62 @@ drop index idx_idioma on livros;
 -- Analisar plano de execução
 explain select * from livros
 where idioma = 'English' and ano_publicacao > 1950;
+
+-- Formato JSON (MySQL 8+)
+explain format=json
+select * from livros where idioma = 'English' and vendas > 40;
 ```
 
-- Mostra como MySQL executará a query
-- Identifica full table scans
-- Verifica uso de índices
+- Mostra como o MySQL executará a query
 
-#### 7.3 Boas Práticas
+#### 7.3 Reescrever IN com JOIN
 
-- **Evitar SELECT \***: selecione apenas colunas necessárias
-- **Usar WHERE**: filtre antes de processar
-- **Limitar resultados**: use LIMIT quando apropriado
-- **Índices apropriados**: colunas de filtro e join
-- **Evitar funções em WHERE**: impede uso de índice
+```sql
+-- Versão lenta para grandes subqueries
+select * from livros
+where autor_id in (select id from autores where pais = 'Brasil');
 
-  ```sql
-  -- Ruim
-  where year(data) = 2023
+-- Versão otimizada com JOIN
+select l.*
+from livros l
+join autores a on l.autor_id = a.id
+where a.pais = 'Brasil';
+```
 
-  -- Bom
-  where data >= '2023-01-01' and data < '2024-01-01'
-  ```
+#### 7.4 Estatísticas de Tabela e Índices
 
-- **Prefer EXISTS a IN**: para subqueries grandes
+```sql
+-- Tamanho e linhas estimadas de cada tabela
+select
+    table_name,
+    table_rows,
+    round((data_length + index_length) / 1024 / 1024, 2) as tamanho_mb
+from information_schema.tables
+where table_schema = 'livraria'
+order by tamanho_mb desc;
+```
+
+#### 7.5 UPSERT
+
+```sql
+insert into livros (id, nome, idioma, vendas)
+values (999, 'Livro Teste', 'Portuguese', 39.90)
+on duplicate key update
+    nome   = values(nome),
+    vendas = values(vendas);
+```
 
 ---
 
-### 8. **Transações e ACID**
-
-#### 8.1 Conceito de Transação
-
-- **Transação**: sequência de operações tratadas como unidade
-- Tudo sucede ou tudo falha (atomicidade)
-
-#### 8.2 Comandos
+### 8. **Transações**
 
 ```sql
 -- Iniciar transação
 start transaction;
--- ou
-begin;
 
 -- Executar operações
-update contas set saldo = saldo - 100 where id = 1;
-update contas set saldo = saldo + 100 where id = 2;
+insert into livros (nome, idioma, autor_id, genero_id, vendas)
+values ('Novo Livro', 'Portuguese', 1, 1, 45.00);
 
 -- Confirmar (gravar permanentemente)
 commit;
@@ -732,89 +606,17 @@ commit;
 rollback;
 ```
 
-#### 8.3 Propriedades ACID
-
-**Atomicity (Atomicidade)**:
-
-- Tudo ou nada
-- Não há "meio termo"
-
-**Consistency (Consistência)**:
-
-- Banco vai de um estado válido para outro estado válido
-- Restrições são respeitadas
-
-**Isolation (Isolamento)**:
-
-- Transações concorrentes não interferem entre si
-- Diferentes níveis: READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE
-
-**Durability (Durabilidade)**:
-
-- Após COMMIT, dados persistem mesmo com falhas
-
----
-
-### 9. **Backup e Restauração**
-
-#### 9.1 Exportar Banco (mysqldump)
-
-```bash
-# Terminal/Prompt
-mysqldump -u usuario -p nome_banco > backup.sql
-
-# Exportar estrutura e dados
-mysqldump -u root -p livraria > livraria_backup.sql
-
-# Apenas estrutura
-mysqldump -u root -p --no-data livraria > estrutura.sql
-
-# Apenas dados
-mysqldump -u root -p --no-create-info livraria > dados.sql
-```
-
-#### 9.2 Importar Banco
-
-```bash
-# Terminal/Prompt
-mysql -u usuario -p nome_banco < backup.sql
-
-# Exemplo
-mysql -u root -p livraria < livraria_backup.sql
-```
-
-#### 9.3 Dentro do MySQL
-
-```sql
--- Importar arquivo SQL
-source /caminho/para/arquivo.sql;
-```
-
 ---
 
 ## 🛠️ Ferramentas
 
 ### MySQL Workbench
 
-- Interface gráfica oficial para MySQL
-- Modelagem visual de bancos (diagrama ER)
-- Editor de SQL com syntax highlighting
-- Administração de usuários e permissões
-- Monitoramento de performance
-
-### Ferramentas Alternativas
-
-- **phpMyAdmin**: interface web
-- **DBeaver**: multi-plataforma, suporta vários SGBDs
-- **HeidiSQL**: Windows, leve e rápido
-- **TablePlus**: macOS, interface moderna
-- **DataGrip** (JetBrains): IDE completa (pago)
+- Interface gráfica oficial para MySQL (cliente que se conecta ao MySQL Community Server)
 
 ### Google Colab
 
-- Jupyter Notebook na nuvem
-- Pode conectar a bancos de dados remotos
-- Gratuito com Python pré-instalado
+- Usado nas atividades práticas para tratar dados de arquivos CSV e de uma API (JSON), com pandas, gerando os scripts de `INSERT` em SQL utilizados para popular o banco `livraria`
 
 ---
 
@@ -831,9 +633,9 @@ source /caminho/para/arquivo.sql;
 
 **Relacionamentos**:
 
-- livros.autor_id → autores.id (N:1)
-- livros.genero_id → generos.id (N:1)
-- comentarios.livro_id → livros.id (N:1)
+- livros.autor_id → autores.id
+- livros.genero_id → generos.id
+- comentarios.livro_id → livros.id
 
 ### Banco "loja"
 
@@ -843,94 +645,23 @@ source /caminho/para/arquivo.sql;
 
 ---
 
-## 📊 Aplicações Práticas em Data Science
-
-### 1. Armazenamento de Dados
-
-- **Data Warehouses**: armazéns de dados para análise
-- **Data Lakes**: repositórios de dados brutos
-- **ETL Pipelines**: Extract, Transform, Load
-
-### 2. Análise de Dados
-
-- **Consultas analíticas**: agregações, joins complexos
-- **Geração de relatórios**: dashboards e BI
-- **Machine Learning**: preparação de dados para modelos
-
-### 3. Aplicações Web
-
-- **Backend**: APIs que acessam banco de dados
-- **CRUD**: Create, Read, Update, Delete
-- **Autenticação/Autorização**: gerenciamento de usuários
-
-### 4. Big Data
-
-- **Bases relacionais**: ainda fundamentais para dados estruturados
-- **Integração**: SQL em Spark, Hive, Presto
-- **Hybrid architectures**: SQL + NoSQL
-
----
-
-## 💡 Conceitos-Chave para Data Engineers
-
-### Normalização vs Denormalização
-
-- Normalização: reduz redundância, múltiplas tabelas, mais joins
-- Denormalização: otimiza leitura, dados duplicados, menos joins
-- Data Warehouse: tipicamente denormalizado (star schema, snowflake schema)
-
-### OLTP vs OLAP
-
-- **OLTP** (Online Transaction Processing): operações diárias, muitas escritas, normalizado
-- **OLAP** (Online Analytical Processing): análises, muitas leituras, denormalizado
-
-### Chaves Compostas
-
-```sql
-create table pedido_item(
-    pedido_id int,
-    produto_id int,
-    quantidade int,
-    primary key (pedido_id, produto_id)
-);
-```
-
-### NULL é Especial
-
-- NULL não é zero,não é string vazia
-- NULL = NULL resulta em NULL (não TRUE)
-- Use `IS NULL` ou `IS NOT NULL`
-
-### Integridade Referencial
-
-- Foreign keys garantem consistência
-- `ON DELETE CASCADE`: deleta registros relacionados
-- `ON DELETE SET NULL`: define FK como NULL
-- `ON UPDATE CASCADE`: atualiza FKs automaticamente
-
-### Performance é Crítica
-
-- Índices são fundamentais
-- Evite queries N+1 (loop de queries)
-- Use EXPLAIN para otimizar
-- Cache quando possível
-
----
-
 ## 📚 Materiais de Apoio
 
 ### Arquivos da Disciplina
 
-- **PDF**: Engenharia de Dados 24062025pdf Portugues.pdf
-- **PDF**: Engenharia de Dados II 01072025_SLpdf Portugues.pdf
-- **PDF**: Engenharia de Dados III 15072025_SLpdf Portugues.pdf
+- **PDF**: Engenharia de Dados 24062025pdf Portugues.pdf (Aula I)
+- **PDF**: Engenharia de Dados II 01072025_SLpdf Portugues.pdf (Aula II)
+- **PDF**: Engenharia de Dados III 15072025_SLpdf Portugues.pdf (Aula III)
 - **Tutorial**: Tutorial Instalacao MySQL Windows/MacOS/Linux.pdf
 - **Tutorial**: Tutorial Acesso Google Colab.pdf
 
 ### Scripts SQL
 
-- **aula-3sql Portugues.sql**: views e procedures
-- **usp-loja.sql**: criação de banco loja
+- **aula-3sql Portugues.sql**: views e procedures sobre o banco livraria
+- **sql_avancado.sql**: índices, EXPLAIN, IN vs JOIN, estatísticas de tabela, UPSERT
+- **usp-loja.sql**: criação do banco loja (tabela cliente)
+- **aula2-eng_dadoszip / aula3-engDzip**: notebooks Colab (pandas) + scripts SQL gerados (autores.sql, generos.sql, livros.sql, comentarios.sql) e dataset livros.csv
+- **banco-1-sqlzip**: script de criação do banco livraria (autores, generos, livros, comentarios) e consultas de exemplo
 
 ---
 
@@ -938,58 +669,24 @@ create table pedido_item(
 
 1. **Sempre use WHERE antes de DELETE/UPDATE**
    - DELETE sem WHERE apaga TUDO
-   - Faça SELECT primeiro para testar filtro
 
-2. **Primary Key é obrigatória**
-   - Identifica unicamente cada registro
+2. **Primary Key identifica unicamente cada registro**
    - Geralmente INT AUTO_INCREMENT
 
-3. **Normalize para transacional, denormalize para analítico**
-   - Bancos OLTP: normalizado
-   - Data Warehouses: denormalizado
-
-4. **LEFT JOIN ≠ INNER JOIN**
+3. **LEFT JOIN ≠ INNER JOIN**
    - INNER: apenas com correspondência
    - LEFT: todos da esquerda, NULL à direita sem correspondência
 
-5. **Views não armazenam dados**
-   - São queries salvas
-   - Sempre buscam dados das tabelas base
+4. **Views não armazenam dados**
+   - São consultas salvas (tabelas virtuais)
+   - Não podem alterar os dados
 
-6. **Procedures centralizam lógica**
-   - Facilita manutenção
-   - Melhor performance (pré-compilado)
+5. **Procedures podem alterar dados e centralizam lógica**
+   - Aceitam parâmetros de entrada e saída
+   - Vantagens: segurança e controle, organização do banco, reutilização de código
 
-7. **Índices aceleram leitura, desaceleram escrita**
-   - Use em colunas de filtro/join
-   - Não crie índices desnecessários
-
-8. **Backup é essencial**
-   - Automatize backups regulares
-   - Teste restauração periodicamente
-
----
-
-## 📖 Referências Recomendadas
-
-### Livros
-
-- Elmasri, R. & Navathe, S. (2015). Fundamentals of Database Systems, 7th Edition.
-- Date, C. J. (2003). An Introduction to Database Systems, 8th Edition.
-- Beaulieu, A. (2020). Learning SQL, 3rd Edition. O'Reilly.
-
-### Documentação Oficial
-
-- MySQL Documentation: https://dev.mysql.com/doc/
-- PostgreSQL Documentation: https://www.postgresql.org/docs/
-- SQL ISO Standard: https://www.iso.org/standard/63555.html
-
-### Online
-
-- W3Schools SQL: https://www.w3schools.com/sql/
-- SQLZoo: https://sqlzoo.net/ (tutoriais interativos)
-- Mode Analytics SQL Tutorial: https://mode.com/sql-tutorial/
-- LeetCode Database Problems: https://leetcode.com/problem-list/database/
+6. **Índices aceleram a leitura**
+   - Use `EXPLAIN` para analisar o plano de execução da consulta
 
 ---
 
@@ -1002,17 +699,14 @@ create table pedido_item(
 - [ ] Realizar consultas com SELECT, WHERE, ORDER BY
 - [ ] Usar funções de agregação (COUNT, SUM, AVG, MIN, MAX)
 - [ ] Agrupar dados com GROUP BY e HAVING
-- [ ] Realizar joins (INNER, LEFT, RIGHT)
+- [ ] Realizar joins (INNER, LEFT)
 - [ ] Criar e utilizar views
 - [ ] Criar e chamar stored procedures
 - [ ] Criar índices e usar EXPLAIN para otimização
-- [ ] Implementar transações com BEGIN, COMMIT, ROLLBACK
-- [ ] Realizar backup com mysqldump
-- [ ] Restaurar banco de dados
+- [ ] Implementar transações com START TRANSACTION, COMMIT, ROLLBACK
 - [ ] Modelar banco completo para um projeto próprio
 
 ---
 
-**Última atualização**: Março 2026  
-**Curso**: MBA em Data Science e Analytics - USP/ESALQ  
+**Curso**: MBA em Data Science e Analytics - USP/ESALQ
 **Módulo**: 4 - Engenharia de Dados
