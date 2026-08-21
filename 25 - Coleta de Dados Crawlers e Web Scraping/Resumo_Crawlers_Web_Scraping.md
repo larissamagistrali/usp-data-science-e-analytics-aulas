@@ -52,70 +52,24 @@ CÓDIGO  →  SITE  →  HTML  →  Extrai os dados
 
 ### 2. ARQUITETURA DA WEB — O QUE É PRECISO SABER
 
-#### 2.1 A Internet não tem uma autoridade central
+#### 2.1 Componentes Essenciais para Scraping
 
-- Curiosamente, **não há uma autoridade central com poder legal** que controle e organize toda a internet
-- A internet foi construída por **diversas organizações que surgiram de maneira espontânea e colaborativa**, responsáveis por administrar diferentes aspectos da rede:
-  - **IETF** (Internet Engineering Task Force)
-  - **W3C** (World Wide Web Consortium)
-  - **ICANN**
-  - **ISOC** (Internet Society)
-  - **ARIN**
-- **Ignorar os padrões** definidos por essas organizações pode resultar em problemas — sites e aplicações podem simplesmente **não funcionar corretamente** na internet
-- Referência histórica: **Tim Berners-Lee**, criador da World Wide Web
-
-#### 2.2 Componentes da Web (o que é realmente necessário para Scraping)
-
-A aula apresenta 6 componentes fundamentais da Web, mas destaca que para fazer scraping **não é necessário dominar todos**:
-
-| Componente | Descrição | Necessário para Scraping? |
-|---|---|---|
-| **Rede** | Fundamentos da conectividade | ❌ Não essencial |
-| **HTML** | A arquitetura das páginas web | ✅ **Essencial** |
-| **CSS** | Estilizando a experiência visual | ❌ Não essencial |
-| **JavaScript** | Tornando a web dinâmica | ❌ Não essencial (para scraping estático) |
-| **Cliente** | O ponto de acesso do usuário | ✅ **Essencial** |
-| **Servidor** | O fornecedor de conteúdo | ✅ **Essencial** |
-
-> 💡 O foco prático do scraping recai sobre **HTML + Cliente + Servidor**, pois é aí que a informação é solicitada, entregue e estruturada.
-
-#### 2.3 HTML
-
-- **Definição**: Linguagem usada para **estruturar e organizar** o conteúdo de páginas na web
-- É o formato de resposta que o script de scraping precisa interpretar
-
-#### 2.4 Protocolo HTTP e o Modelo Cliente-Servidor
-
-- **HTTP**: Um protocolo que define as regras para **troca de informações** dentro do modelo cliente-servidor na web
-- **Cliente-servidor**: Um modelo de comunicação entre **dois lados**
+Para fazer web scraping, são essenciais:
+- **HTML**: Linguagem que estrutura o conteúdo de páginas web
+- **Protocolo HTTP**: Define as regras de comunicação cliente-servidor
+- **Modelo Cliente-Servidor**: Fluxo de requisição (cliente) e resposta (servidor)
 
 ```
-Resumindo:
-HTTP            → Como as partes se comunicam
-Cliente-servidor → Como as partes se organizam
+Client ---(requisição)--> Server ---(resposta)--> Client
 ```
 
-**Diagrama do fluxo:**
+#### 2.2 DevTools — Ferramentas de Desenvolvedor
 
-```
-   Client  ---(requisição)--->  Server
-   Client  <---(resposta)----   Server
-```
-
-- Múltiplos **Clients** (laptop, celular, desktop) se conectam através da **Internet** a um **Server** central que fornece o conteúdo.
-
-#### 2.5 DevTools — Ferramentas de Desenvolvedor
-
-- **Definição**: Conjunto de recursos **embutidos nos navegadores modernos** que permitem inspecionar, editar e depurar páginas da web em tempo real
-- **Uso essencial no scraping**: a aba **Network** permite observar as requisições feitas pelo navegador, revelando:
-
-| Campo | O que mostra |
-|---|---|
-| **Request URL** | A URL para a qual a solicitação foi enviada |
-| **Request Method** | O método HTTP usado (ex: GET) |
-| **Status Code** | O status da resposta (ex: 200 OK) |
-
-> As DevTools são o ponto de partida para entender **como um site realmente se comunica com o servidor** antes de escrever o código do scraper.
+- **Definição**: Recursos embutidos nos navegadores para inspecionar e depurar páginas web
+- **Uso no scraping**: a aba **Network** permite observar requisições:
+  - **Request URL**: endereço de destino
+  - **Request Method**: verbo HTTP (GET, POST)
+  - **Status Code**: resultado da resposta (200 OK, 403, 404, etc.)
 
 ---
 

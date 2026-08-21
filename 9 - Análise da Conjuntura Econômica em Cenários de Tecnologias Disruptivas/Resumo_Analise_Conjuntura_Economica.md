@@ -97,7 +97,7 @@ Economicamente, os países objetivam: **crescimento do produto**, **estabilidade
 #### 4.2 Política Monetária
 
 - **Objetivo:** conciliar crescimento econômico com estabilidade de preços, por meio da administração da taxa de juros básica (Selic) e da gestão da meta de inflação (controle da oferta monetária).
-- **Selic:** definida pelo **Copom** (Comitê de Política Monetária do Banco Central), em reuniões periódicas, considerando a conjuntura nacional (crescimento, inflação, mercado financeiro doméstico) e o panorama externo (risco-país, juros internacionais). Selic em 15% (set./2025).
+- **Selic:** definida pelo **Copom** (Comitê de Política Monetária do Banco Central), em reuniões periódicas, considerando a conjuntura nacional (crescimento, inflação, mercado financeiro doméstico) e o panorama externo (risco-país, juros internacionais). Selic em 12,25% (fim de 2024).
 - **Instrumentos clássicos de política monetária:** Open Market (compra/venda de títulos públicos já em circulação no mercado secundário), Taxa de Recolhimento Compulsório e Taxa de Redesconto.
 - **Série Selic Brasil (2015-2024, final do ano):** 14,25% / 13,75% / 7,00% / 6,50% / 4,50% / 2,00% / 9,25% / 13,75% / 11,75% / 12,25%.
 

@@ -1,0 +1,397 @@
+:root {
+  --paper: #F1F3F4;
+  --surface: #FFFFFF;
+  --surface-2: #F9FAFA;
+  --ink: #1B2430;
+  --ink-soft: #5B6472;
+  --ink-faint: #8B94A0;
+  --line: #D7DCE0;
+  --line-soft: #E6E9EB;
+
+  --b1: #3E5C9A; /* Fundamentos Quantitativos */
+  --b2: #1B8073; /* Programação & Engenharia de Dados */
+  --b3: #6B4FA0; /* ML Não-Supervisionado */
+  --b4: #A83D5E; /* ML Supervisionado */
+  --b5: #B8863C; /* Dados Não-Estruturados & Redes */
+  --b6: #2E7D91; /* Infraestrutura & Escala */
+  --b7: #5F7A3D; /* Negócios, Gestão & Contexto */
+
+  --accent: var(--b1);
+  --shadow: 0 1px 2px rgba(27,36,48,0.06), 0 4px 14px rgba(27,36,48,0.05);
+  --font-display: "Fraunces", "Source Serif 4", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11151B;
+    --surface: #171C23;
+    --surface-2: #1D232B;
+    --ink: #E8EAED;
+    --ink-soft: #A9B1BC;
+    --ink-faint: #707986;
+    --line: #2A313B;
+    --line-soft: #232A32;
+
+    --b1: #8AA0DE;
+    --b2: #56C4B2;
+    --b3: #AC93DE;
+    --b4: #DE87A2;
+    --b5: #DEB367;
+    --b6: #78C6D7;
+    --b7: #9BBB72;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #11151B;
+  --surface: #171C23;
+  --surface-2: #1D232B;
+  --ink: #E8EAED;
+  --ink-soft: #A9B1BC;
+  --ink-faint: #707986;
+  --line: #2A313B;
+  --line-soft: #232A32;
+
+  --b1: #8AA0DE;
+  --b2: #56C4B2;
+  --b3: #AC93DE;
+  --b4: #DE87A2;
+  --b5: #DEB367;
+  --b6: #78C6D7;
+  --b7: #9BBB72;
+
+  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 24px 96px;
+}
+
+/* ---------- Header ---------- */
+
+header.masthead {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+h1.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.08;
+  margin: 4px 0 0;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  max-width: 62ch;
+  color: var(--ink-soft);
+  font-size: 16px;
+  margin: 0;
+}
+
+.stats-row {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.stat-group {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat .num {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat .label {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Global expand/collapse controls ---------- */
+
+.expand-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.expand-controls button {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+
+.expand-controls button:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+/* ---------- Nav legend ---------- */
+
+nav.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+nav.legend a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px 7px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: border-color .15s ease, color .15s ease, transform .1s ease;
+}
+
+nav.legend a:hover {
+  color: var(--ink);
+  border-color: var(--dot);
+  transform: translateY(-1px);
+}
+
+nav.legend .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot);
+  flex: none;
+}
+
+/* ---------- Section blocks ---------- */
+
+section.block {
+  margin-top: 56px;
+  scroll-margin-top: 20px;
+}
+
+.block-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.block-index {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+  padding-top: 3px;
+}
+
+h2.block-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 3vw, 28px);
+  margin: 0;
+  color: var(--ink);
+  border-bottom: 3px solid var(--dot);
+  padding-bottom: 8px;
+  text-wrap: balance;
+}
+
+.block-desc {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  max-width: 68ch;
+  margin: 10px 0 22px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+/* ---------- Module card ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--dot);
+  border-radius: 10px;
+  padding: 18px 18px 8px;
+  box-shadow: var(--shadow);
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--dot);
+  line-height: 1;
+  flex: none;
+  min-width: 34px;
+}
+
+.card-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  margin: 2px 0 0;
+  color: var(--ink);
+}
+
+/* ---------- Concept accordion ---------- */
+
+.concept-list {
+  border-top: 1px solid var(--line-soft);
+}
+
+details.concept {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+details.concept > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 2px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+details.concept > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.concept > summary::before {
+  content: "+";
+  flex: none;
+  width: 14px;
+  color: var(--dot);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+details.concept[open] > summary::before {
+  content: "–";
+}
+
+details.concept[open] > summary {
+  color: var(--ink);
+}
+
+details.concept:hover > summary {
+  color: var(--ink);
+}
+
+details.concept .explain {
+  margin: 0 0 12px 22px;
+  padding-right: 4px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  margin-top: 72px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+footer .mono { font-family: var(--font-mono); }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@media (max-width: 560px) {
+  .wrap { padding: 28px 16px 72px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stats-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+}

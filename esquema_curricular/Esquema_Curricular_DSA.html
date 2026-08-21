@@ -1,0 +1,541 @@
+<title>Esquema Curricular DSA</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">MBA em Data Science &amp; Analytics — USP/ESALQ</div>
+    <h1 class="title">Esquema Curricular DSA</h1>
+    <p class="subtitle">Os conceitos centrais dos 27 módulos do curso, extraídos diretamente dos resumos revisados de cada aula e organizados em 7 blocos temáticos. Clique em qualquer conceito para ver a explicação.</p>
+    <div class="stats-row">
+      <div class="stat-group">
+        <div class="stat"><span class="num">27</span><span class="label">Módulos</span></div>
+        <div class="stat"><span class="num">7</span><span class="label">Blocos temáticos</span></div>
+        <div class="stat"><span class="num">167</span><span class="label">Conceitos-chave</span></div>
+      </div>
+      <div class="expand-controls">
+        <button type="button" data-action="expand">Expandir tudo</button>
+        <button type="button" data-action="collapse">Recolher tudo</button>
+      </div>
+    </div>
+    <nav class="legend" aria-label="Blocos temáticos">
+      <a href="#bloco-1" style="--dot: var(--b1)"><span class="dot"></span>Fundamentos Quantitativos</a>
+      <a href="#bloco-2" style="--dot: var(--b2)"><span class="dot"></span>Programação &amp; Eng. de Dados</a>
+      <a href="#bloco-3" style="--dot: var(--b3)"><span class="dot"></span>ML Não-Supervisionado</a>
+      <a href="#bloco-4" style="--dot: var(--b4)"><span class="dot"></span>ML Supervisionado</a>
+      <a href="#bloco-5" style="--dot: var(--b5)"><span class="dot"></span>Dados Não-Estruturados</a>
+      <a href="#bloco-6" style="--dot: var(--b6)"><span class="dot"></span>Infraestrutura &amp; Escala</a>
+      <a href="#bloco-7" style="--dot: var(--b7)"><span class="dot"></span>Negócios &amp; Gestão</a>
+    </nav>
+  </header>
+
+  <!-- ============ BLOCO 1 ============ -->
+  <section class="block" id="bloco-1" style="--dot: var(--b1)">
+    <div class="block-head">
+      <span class="block-index">Bloco 1</span>
+      <h2 class="block-title">Fundamentos Quantitativos</h2>
+    </div>
+    <p class="block-desc">A base matemática e estatística que sustenta os módulos seguintes: inferência, otimização e estruturação formal de problemas.</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">01</span>
+          <h3 class="card-title">Fundamentos de Estatística</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Variáveis qualitativas vs quantitativas</summary><p class="explain">Qualitativas atribuem categorias (ex.: estado civil) e só permitem tabelas/gráficos; quantitativas são medidas ou contadas (ex.: idade, renda) e podem ser discretas ou contínuas.</p></details>
+          <details class="concept"><summary>Medidas de posição (média, mediana, moda)</summary><p class="explain">Média é a soma dividida pelo número de observações; mediana é o valor central da distribuição ordenada; moda é o valor mais frequente.</p></details>
+          <details class="concept"><summary>AIQ e outliers (Q1−1,5·AIQ)</summary><p class="explain">A Amplitude Interquartil é Q3−Q1 e é usada no boxplot para identificar outliers: valores abaixo de Q1−1,5·AIQ ou acima de Q3+1,5·AIQ.</p></details>
+          <details class="concept"><summary>Distribuições Binomial, Poisson, Bernoulli</summary><p class="explain">Bernoulli tem só dois resultados (sucesso/fracasso); Binomial repete n vezes um Bernoulli com probabilidade p constante; Poisson conta sucessos numa exposição contínua de tempo ou área.</p></details>
+          <details class="concept"><summary>Z-score e regra 68-95-99,7%</summary><p class="explain">O Z-score padroniza a normal (Z = (X−μ)/σ, média 0 e desvio 1); na normal, 68,26% dos dados ficam entre μ±1σ, 95,44% entre μ±2σ e 99,74% entre μ±3σ.</p></details>
+          <details class="concept"><summary>Testes Z, t, F e qui-quadrado</summary><p class="explain">Teste Z compara a média quando o desvio padrão populacional é conhecido; teste t quando é desconhecido; teste F compara variâncias; qui-quadrado testa associação entre categóricas.</p></details>
+          <details class="concept"><summary>Correlação de Pearson</summary><p class="explain">Mede a relação linear entre duas variáveis métricas a partir da covariância dividida pelo produto dos desvios padrão, variando de −1 a 1.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">13</span>
+          <h3 class="card-title">Modelagem Matemática &amp; AHP</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Método AHP (Saaty, 1977)</summary><p class="explain">Método multicritério que estrutura a decisão em objetivo, critérios e alternativas, usando comparações par a par para gerar pesos e um ranking transparente.</p></details>
+          <details class="concept"><summary>Escala Fundamental de Saaty (1–9)</summary><p class="explain">Escala psicométrica usada nas comparações par a par, de 1 (igualdade) até 9 (extremamente mais importante), com valores pares como graus intermediários.</p></details>
+          <details class="concept"><summary>Matriz de comparação par a par</summary><p class="explain">Matriz onde cada critério ou alternativa é comparado dois a dois usando a Escala de Saaty; normalizando e tirando a média das linhas obtém-se o vetor de pesos.</p></details>
+          <details class="concept"><summary>Razão de Consistência CR = CI/RI (&lt;10%)</summary><p class="explain">Mede se os julgamentos par a par respeitam a transitividade (se A&gt;B e B&gt;C, então A&gt;C); CR abaixo de 10% indica atribuições consistentes.</p></details>
+          <details class="concept"><summary>AHP-Gaussiano (Santos, 2021)</summary><p class="explain">Variante do AHP que calcula os pesos dos critérios automaticamente a partir da dispersão dos dados da matriz de decisão, dispensando comparações par a par.</p></details>
+          <details class="concept"><summary>Fator Gaussiano = CV (DP/Média)</summary><p class="explain">É o Coeficiente de Variação de cada critério; critérios com maior dispersão relativa recebem peso maior por discriminarem melhor as alternativas.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">27</span>
+          <h3 class="card-title">Pesquisa Operacional &amp; Otimização</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>"Ciência da tomada de decisão" (Dantzig)</summary><p class="explain">Definição de Pesquisa Operacional dada por George Dantzig: o conjunto de formas de abstrair um problema real e colocá-lo em forma matemática para apoiar decisões.</p></details>
+          <details class="concept"><summary>Variáveis, função objetivo, restrições</summary><p class="explain">Os três componentes de todo modelo de otimização: as variáveis definem o que se decide, a função objetivo é a meta a maximizar/minimizar, e as restrições limitam as variáveis.</p></details>
+          <details class="concept"><summary>Classificação PL, PLI, PLIM, PNL</summary><p class="explain">PL tem variáveis contínuas, PLI tem variáveis inteiras, PLIM mistura contínuas e inteiras, e PNL tem equações não lineares.</p></details>
+          <details class="concept"><summary>Domínio contínuo, discreto, binário</summary><p class="explain">Variáveis contínuas assumem valores reais (ex.: toneladas), discretas assumem inteiros (ex.: caixas), e binárias assumem apenas 0 ou 1 (ex.: se um armazém é implantado).</p></details>
+          <details class="concept"><summary>7 etapas de modelagem matemática</summary><p class="explain">Sequência usada nos exemplos: entender o problema, identificar as respostas buscadas, identificar variáveis de decisão, e descrever/equacionar objetivo e restrições.</p></details>
+          <details class="concept"><summary>Método Simplex (Dantzig)</summary><p class="explain">Método criado por George Dantzig para resolver os modelos de Programação Linear formulados, obtendo a solução ótima; mencionado como tema da aula seguinte.</p></details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 2 ============ -->
+  <section class="block" id="bloco-2" style="--dot: var(--b2)">
+    <div class="block-head">
+      <span class="block-index">Bloco 2</span>
+      <h2 class="block-title">Programação &amp; Engenharia de Dados</h2>
+    </div>
+    <p class="block-desc">As ferramentas de manipulação, extração e preparação de dados usadas como insumo em todo o restante do curso.</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">02</span>
+          <h3 class="card-title">Introdução à Programação com Python</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Spyder e células (#%%)</summary><p class="explain">Spyder é a IDE usada no curso (script, console, ambiente, ajuda); células (#%%) organizam o script em blocos executados com Shift+Enter ou F9.</p></details>
+          <details class="concept"><summary>Listas, Series, DataFrames</summary><p class="explain">Listas são sequências básicas do Python; Series são estruturas do pandas (numéricas, texto, lógicas, categóricas); DataFrames organizam dados em tabelas.</p></details>
+          <details class="concept"><summary>Índices: iloc vs loc</summary><p class="explain">iloc seleciona por posição numérica, como `pisa.iloc[46,2]`; loc é usado para atribuir valores com base em condição, como criar uma coluna a partir de um filtro.</p></details>
+          <details class="concept"><summary>read_csv / read_excel / to_csv</summary><p class="explain">pd.read_csv e pd.read_excel importam dados de arquivos ou links (API); to_csv/to_excel exportam DataFrames de volta para arquivos.</p></details>
+          <details class="concept"><summary>Funções, loops for/while</summary><p class="explain">Funções seguem 3 etapas (nome, argumentos, código/retorno) e reduzem duplicidade; for itera sobre uma sequência e while repete enquanto uma condição é verdadeira.</p></details>
+          <details class="concept"><summary>groupby, sort_values, dropna</summary><p class="explain">groupby agrupa dados por critério para calcular estatísticas; sort_values ordena por coluna; dropna remove linhas com valores ausentes (NA).</p></details>
+          <details class="concept"><summary>Matplotlib, Seaborn, Plotly</summary><p class="explain">Matplotlib e Seaborn criam gráficos estáticos (barras, pizza, histograma, dispersão, linhas); Plotly gera gráficos interativos exportáveis em HTML.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">04</span>
+          <h3 class="card-title">Engenharia de Dados</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Chave primária e estrangeira (MySQL)</summary><p class="explain">Chave primária identifica unicamente cada registro de uma tabela; chave estrangeira relaciona tabelas referenciando a chave primária de outra.</p></details>
+          <details class="concept"><summary>JOIN, GROUP BY, agregações</summary><p class="explain">JOIN combina dados de tabelas relacionadas (ex: INNER JOIN retorna só correspondências); GROUP BY agrupa registros para calcular agregações como count e avg.</p></details>
+          <details class="concept"><summary>Views vs Stored Procedures</summary><p class="explain">Views são consultas salvas, apenas para leitura; Stored Procedures automatizam tarefas e aceitam parâmetros para executar ações como update e insert.</p></details>
+          <details class="concept"><summary>Triggers (AFTER UPDATE/INSERT/DELETE)</summary><p class="explain">Triggers executam automaticamente em resposta a INSERT, UPDATE ou DELETE, como registrar um log quando um valor é alterado.</p></details>
+          <details class="concept"><summary>CTEs e CTE recursiva (WITH)</summary><p class="explain">CTEs (WITH) são blocos nomeados que tornam queries complexas mais legíveis; a CTE recursiva permite construir sequências ou hierarquias.</p></details>
+          <details class="concept"><summary>Window functions (ROW_NUMBER, LAG/LEAD)</summary><p class="explain">Calculam sobre um conjunto de linhas vizinhas sem reduzir o resultado, como ranking por grupo (ROW_NUMBER) ou comparação com a linha anterior/seguinte (LAG/LEAD).</p></details>
+          <details class="concept"><summary>Índices, EXPLAIN, UPSERT</summary><p class="explain">Índices otimizam buscas em colunas; EXPLAIN mostra como a consulta será executada; UPSERT insere ou atualiza em uma única operação.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">24</span>
+          <h3 class="card-title">Data Wrangling</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Data Wrangling dentro do CRISP-DM</summary><p class="explain">Ocorre nas fases de Data Understanding e Data Preparation do CRISP-DM, antes da modelagem (Modeling).</p></details>
+          <details class="concept"><summary>Coleta, junção, transformação</summary><p class="explain">As 3 atividades comuns do tratamento de dados: coleta/importação de múltiplas fontes, junção de tabelas por chaves e transformação (limpeza, criação de variáveis, agregação).</p></details>
+          <details class="concept"><summary>6 etapas HBS (Discovery → Publishing)</summary><p class="explain">Discovery, Structuring, Cleaning, Enriching, Verifying e Publishing são as 6 etapas do Data Wrangling segundo a Harvard Business School.</p></details>
+          <details class="concept"><summary>pandas como ferramenta principal</summary><p class="explain">pandas é a biblioteca Python indicada no curso como ferramenta principal para coleta, junção e transformação de dados.</p></details>
+          <details class="concept"><summary>Git vs GitHub</summary><p class="explain">Git é o software local que rastreia e armazena alterações (controle de versão); GitHub é a plataforma web que hospeda repositórios e permite colaboração.</p></details>
+          <details class="concept"><summary>add, commit, push, pull, merge</summary><p class="explain">git add adiciona arquivos ao staging, commit registra uma versão, push envia ao repositório remoto, pull traz atualizações e merge integra branches.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">25</span>
+          <h3 class="card-title">Crawlers &amp; Web Scraping</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Web Scraping vs Hacking</summary><p class="explain">Scraping é legal quando ético e público, extraindo dados acessíveis; Hacking é sempre não autorizado, envolvendo quebra de segurança e invasão de sistemas.</p></details>
+          <details class="concept"><summary>Arquitetura cliente-servidor, HTTP</summary><p class="explain">O cliente faz uma requisição e o servidor responde; o protocolo HTTP define as regras dessa comunicação, essencial para o scraping.</p></details>
+          <details class="concept"><summary>DevTools (aba Network)</summary><p class="explain">Ferramenta do navegador que permite inspecionar requisições reais, mostrando Request URL, Request Method e Status Code antes de programar um scraper.</p></details>
+          <details class="concept"><summary>BeautifulSoup (bs4) + requests</summary><p class="explain">requests faz a requisição HTTP ao site; BeautifulSoup transforma o HTML retornado em objeto Python navegável para buscar tags, classes e conteúdos.</p></details>
+          <details class="concept"><summary>LGPD art. 7º §3º</summary><p class="explain">Dados pessoais de acesso público devem ter o tratamento avaliado quanto à finalidade, boa-fé e interesse público que justificaram sua disponibilização.</p></details>
+          <details class="concept"><summary>Caso Pete Warden x Facebook (2010)</summary><p class="explain">Pete Warden coletou dados de cerca de 200 milhões de perfis públicos do Facebook; o caso mostra que dados públicos coletados em massa podem gerar consequências legais e éticas.</p></details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 3 ============ -->
+  <section class="block" id="bloco-3" style="--dot: var(--b3)">
+    <div class="block-head">
+      <span class="block-index">Bloco 3</span>
+      <h2 class="block-title">Machine Learning Não-Supervisionado</h2>
+    </div>
+    <p class="block-desc">Técnicas que encontram estrutura nos dados sem variável-resposta definida — agrupamento, redução de dimensionalidade e associação.</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">14</span>
+          <h3 class="card-title">Clustering</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Hierárquico Aglomerativo</summary><p class="explain">Método em que a quantidade de clusters é definida ao longo da análise, unindo passo a passo as observações mais próximas até restar um único cluster, visualizado no dendrograma.</p></details>
+          <details class="concept"><summary>Não Hierárquico K-means</summary><p class="explain">Método em que o número K de clusters é definido a priori; centroides são realocados iterativamente até minimizar o WCSS.</p></details>
+          <details class="concept"><summary>Padronização Z-Score</summary><p class="explain">Transforma variáveis em escalas distintas para média 0 e desvio padrão 1, permitindo comparação justa antes de calcular as distâncias entre observações.</p></details>
+          <details class="concept"><summary>Distâncias (Euclidiana, Manhattan…)</summary><p class="explain">Medidas de dissimilaridade entre observações (euclidiana, euclidiana quadrática, Manhattan, Chebychev, Canberra) usadas para formar os clusters.</p></details>
+          <details class="concept"><summary>Single, Complete, Average Linkage</summary><p class="explain">Métodos de encadeamento que definem a distância entre clusters já formados: mínimo (single), máximo (complete) ou média (average) entre os pares.</p></details>
+          <details class="concept"><summary>Dendrograma</summary><p class="explain">Gráfico que representa o esquema de aglomeração hierárquica, mostrando a ordem e a distância das uniões entre observações e clusters.</p></details>
+          <details class="concept"><summary>WCSS, Elbow, Silhueta</summary><p class="explain">WCSS mede a soma de quadrados dentro dos clusters no K-means; o Elbow busca o "cotovelo" no gráfico de WCSS por K, e a Silhueta (entre -1 e 1) avalia a separação.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">15</span>
+          <h3 class="card-title">Análise Fatorial &amp; PCA</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Matriz de correlações de Pearson</summary><p class="explain">Base da PCA: correlações próximas de -1/+1 favorecem a extração de um único fator; correlações próximas de zero geram fatores distintos.</p></details>
+          <details class="concept"><summary>Teste de Esfericidade de Bartlett</summary><p class="explain">Testa se a matriz de correlações é estatisticamente diferente da matriz identidade; rejeitar H0 indica que a análise fatorial é viável.</p></details>
+          <details class="concept"><summary>Autovalores e autovetores</summary><p class="explain">Autovalores indicam o percentual de variância explicada por cada fator; autovetores contêm as combinações de variáveis que formam esses padrões.</p></details>
+          <details class="concept"><summary>Critério de Kaiser (autovalor &gt; 1)</summary><p class="explain">Seleciona apenas fatores com autovalor maior que 1, pois estes explicam mais variância do que uma variável original isolada.</p></details>
+          <details class="concept"><summary>Cargas fatoriais, comunalidades</summary><p class="explain">Cargas fatoriais mostram a correlação entre fator e variáveis originais; comunalidades mostram quanto da variância é retida nos fatores selecionados.</p></details>
+          <details class="concept"><summary>Rotação Varimax</summary><p class="explain">Rotação ortogonal que redistribui as cargas fatoriais entre os fatores, aumentando em um e diminuindo em outro, para melhorar a interpretação.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">16</span>
+          <h3 class="card-title">ANACOR &amp; MCA</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Teste qui-quadrado de associação</summary><p class="explain">Compara frequências observadas e esperadas na tabela de contingência para verificar se há associação estatisticamente significativa entre variáveis categóricas.</p></details>
+          <details class="concept"><summary>Resíduos padronizados &gt; 1,96</summary><p class="explain">Célula com resíduo padronizado ajustado acima de 1,96 (em módulo) indica associação estatisticamente significativa entre aquelas categorias, a 5%.</p></details>
+          <details class="concept"><summary>Mapa perceptual</summary><p class="explain">Representação gráfica das coordenadas das categorias, obtidas de autovalores e autovetores, que permite visualizar proximidade e associação entre elas.</p></details>
+          <details class="concept"><summary>Autovalores, inércia, massas</summary><p class="explain">Autovalores indicam a inércia (variância) de cada dimensão; a inércia principal total mede a força da associação (χ²/N); massas indicam a influência de cada categoria.</p></details>
+          <details class="concept"><summary>Matriz binária Z / Matriz de Burt</summary><p class="explain">Duas formas de obter a MCA: a matriz binária Z gera coordenadas-padrão; a matriz de Burt (Z'Z), tratada como tabela de contingência, gera coordenadas principais.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">17</span>
+          <h3 class="card-title">Exercícios Aplicados</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Uso conjunto de técnicas</summary><p class="explain">Técnicas não supervisionadas podem ser combinadas, desde que respeitadas as características de cada tipo de variável (quantitativa ou qualitativa).</p></details>
+          <details class="concept"><summary>Output de uma técnica como input de outra</summary><p class="explain">Resultados de uma análise, como cluster, fatores ou coordenadas de mapa perceptual, podem ser usados como variáveis de entrada em outra técnica não supervisionada.</p></details>
+          <details class="concept"><summary>MCA + PCA combinadas</summary><p class="explain">Coordenadas das observações obtidas em uma ACM (variáveis qualitativas) são concatenadas às variáveis quantitativas e entram como input adicional em uma PCA.</p></details>
+          <details class="concept"><summary>Cluster K-means como categoria na MCA</summary><p class="explain">O cluster resultante do K-means é tratado como variável categórica e incluído, junto com outras qualitativas, em uma MCA.</p></details>
+          <details class="concept"><summary>Inércia média por dimensão</summary><p class="explain">Critério usado para decidir quais dimensões da MCA reter/plotar: mantêm-se as dimensões com autovalor acima da inércia média.</p></details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 4 ============ -->
+  <section class="block" id="bloco-4" style="--dot: var(--b4)">
+    <div class="block-head">
+      <span class="block-index">Bloco 4</span>
+      <h2 class="block-title">Machine Learning Supervisionado</h2>
+    </div>
+    <p class="block-desc">Modelagem preditiva com variável-resposta conhecida — da regressão linear clássica a estruturas hierárquicas de dados.</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">18</span>
+          <h3 class="card-title">Regressão Linear Simples &amp; Múltipla</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>OLS — Mínimos Quadrados Ordinários</summary><p class="explain">Método de estimação que minimiza a soma dos quadrados dos resíduos para encontrar os coeficientes β₀, β₁, ... do modelo.</p></details>
+          <details class="concept"><summary>R² e R² Ajustado</summary><p class="explain">R² mede a proporção da variância de Y explicada pelo modelo (0 a 1); R² Ajustado penaliza a inclusão de variáveis irrelevantes.</p></details>
+          <details class="concept"><summary>Transformação de Box-Cox</summary><p class="explain">Transforma Y (Y* = (Y^λ−1)/λ) buscando o λ ótimo que normaliza os resíduos quando a relação entre X e Y não é linear.</p></details>
+          <details class="concept"><summary>Dummies (regra n-1)</summary><p class="explain">Variáveis binárias que representam categorias; para k categorias criam-se k-1 dummies, ficando uma como referência para evitar multicolinearidade perfeita.</p></details>
+          <details class="concept"><summary>VIF &gt; 10 = multicolinearidade severa</summary><p class="explain">O VIF mede o quanto a variância de um coeficiente é inflada pela correlação entre preditores; VIF ≥ 10 indica multicolinearidade severa.</p></details>
+          <details class="concept"><summary>Breusch-Pagan (heterocedasticidade)</summary><p class="explain">Teste cuja H₀ é homocedasticidade; p-value &lt; 0,05 indica heterocedasticidade, invalidando os testes de hipótese.</p></details>
+          <details class="concept"><summary>Shapiro-Francia (normalidade)</summary><p class="explain">Teste de normalidade dos resíduos para n ≥ 30; H₀ é aderência à normalidade, rejeitada quando p &lt; 0,05.</p></details>
+          <details class="concept"><summary>Stepwise (forward/backward)</summary><p class="explain">Seleção automática de variáveis: forward adiciona a mais significante, backward remove a menos significante, mantendo apenas p &lt; 0,05.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">19</span>
+          <h3 class="card-title">Modelos Logísticos</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Função Sigmoide e Logito</summary><p class="explain">A sigmoide transforma o logito z (combinação linear dos preditores) em probabilidade P(Y=1)=1/(1+e^-z), entre 0 e 1.</p></details>
+          <details class="concept"><summary>Máxima Verossimilhança (MLE)</summary><p class="explain">Método usado para estimar os coeficientes do modelo logístico, já que Y é binária e o OLS não se aplica.</p></details>
+          <details class="concept"><summary>Odds Ratio = e^β</summary><p class="explain">Exponencial do coeficiente indica o multiplicador da chance de Y=1; ex.: OR=1,21 aumenta a chance em 21%.</p></details>
+          <details class="concept"><summary>Matriz de Confusão</summary><p class="explain">Tabela que cruza valores reais e previstos (TP, TN, FP, FN), base para calcular sensitividade, especificidade e acurácia.</p></details>
+          <details class="concept"><summary>Curva ROC e AUC</summary><p class="explain">A curva ROC relaciona sensitividade e (1-especificidade) em diferentes cutoffs; a AUC mede a discriminação do modelo (0,5=aleatório; &gt;0,8=excelente).</p></details>
+          <details class="concept"><summary>GINI = 2×AUC−1</summary><p class="explain">Normaliza a AUC em uma escala de -1 a 1, sendo outra medida de capacidade discriminatória do modelo.</p></details>
+          <details class="concept"><summary>Regressão Multinomial (MNLogit)</summary><p class="explain">Usada quando Y tem 3+ categorias; estima k-1 equações logísticas, cada uma comparando uma categoria com a categoria de referência.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">20</span>
+          <h3 class="card-title">Modelos para Dados de Contagem</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Distribuição Poisson (E(Y)=Var(Y))</summary><p class="explain">Modela variáveis de contagem assumindo equidispersão, isto é, média e variância iguais a λ.</p></details>
+          <details class="concept"><summary>Teste de superdispersão (Cameron-Trivedi)</summary><p class="explain">Usa um modelo auxiliar para verificar se a variância excede a média; p ≤ 0,05 indica superdispersão e favorece a Binomial Negativa.</p></details>
+          <details class="concept"><summary>Binomial Negativa (NB2)</summary><p class="explain">Modelo Poisson-Gama cuja variância cresce com o quadrado da média (parâmetro α), adequado quando há superdispersão.</p></details>
+          <details class="concept"><summary>Modelos ZIP e ZINB</summary><p class="explain">Combinam uma distribuição binária (zeros estruturais) com Poisson (ZIP) ou Binomial Negativa (ZINB) para tratar excesso de zeros na contagem.</p></details>
+          <details class="concept"><summary>Teste de Vuong (1989)</summary><p class="explain">Compara um modelo de contagem "puro" com sua versão inflacionada de zeros; p ≤ 0,05 indica inflação de zeros.</p></details>
+          <details class="concept"><summary>Teste de Razão de Verossimilhança</summary><p class="explain">Compara os log-likelihoods de dois modelos encaixados (ex.: Poisson vs. Binomial Negativa) via -2×(LL₁-LL₂), comparado a uma qui-quadrado.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">21</span>
+          <h3 class="card-title">Modelagem Multinível</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>HLM2 (2 níveis) e HLM3 (3 níveis)</summary><p class="explain">HLM2 modela indivíduos aninhados em grupos (ex.: alunos em escolas); HLM3 acrescenta um terceiro nível, como medidas repetidas no tempo.</p></details>
+          <details class="concept"><summary>Efeitos fixos vs aleatórios</summary><p class="explain">Efeitos fixos (γ) estimam o efeito médio válido para toda a população de grupos; efeitos aleatórios (ν) capturam o desvio específico de cada grupo.</p></details>
+          <details class="concept"><summary>Interação cross-level</summary><p class="explain">Termo que representa a interação entre uma variável de nível superior (grupo) e uma variável de nível inferior (indivíduo), como γ11.Wj.X_ij.</p></details>
+          <details class="concept"><summary>Correlação Intraclasse (ICC)</summary><p class="explain">Calculada a partir do modelo nulo como Var(ν0j)/[Var(ν0j)+Var(ε_ij)]; próxima de 1 indica que a modelagem multinível é essencial.</p></details>
+          <details class="concept"><summary>MixedLM (statsmodels)</summary><p class="explain">Função `smf.mixedlm()` usada para estimar modelos multinível em Python, com os argumentos `groups` e `re_formula` definindo os efeitos aleatórios.</p></details>
+          <details class="concept"><summary>Caso Rajan &amp; Zingales (1995)</summary><p class="explain">Estudo de estrutura de capital com 4.557 empresas em 7 países: o modelo multinível superou o OLS único, mostrando que os efeitos variam entre países.</p></details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 5 ============ -->
+  <section class="block" id="bloco-5" style="--dot: var(--b5)">
+    <div class="block-head">
+      <span class="block-index">Bloco 5</span>
+      <h2 class="block-title">Dados Não-Estruturados &amp; Redes</h2>
+    </div>
+    <p class="block-desc">Formas de dado que não cabem em tabelas: grafos de relacionamento, texto e sequências temporais.</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">08</span>
+          <h3 class="card-title">Social Network Analysis</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Grafo, nós, arestas, peso</summary><p class="explain">Grafo é a estrutura matemática para modelar relações; nós são as entidades, arestas as conexões entre elas, e peso indica a intensidade da conexão.</p></details>
+          <details class="concept"><summary>Densidade, diâmetro, caminho médio</summary><p class="explain">Densidade mede a proporção de arestas existentes sobre o máximo possível (0 a 1); diâmetro é o maior caminho curto entre dois nós; caminho médio indica eficiência.</p></details>
+          <details class="concept"><summary>Grau, closeness, betweenness</summary><p class="explain">Grau conta as conexões de um nó (popularidade); closeness mede quão rápido a informação chega a ele; betweenness mede quantos caminhos curtos passam por ele.</p></details>
+          <details class="concept"><summary>Modularidade (&gt;0,3 significativa)</summary><p class="explain">Mede a qualidade da divisão da rede em comunidades, variando de -0,5 a 1,0; valores acima de 0,3 indicam estrutura de comunidade significativa.</p></details>
+          <details class="concept"><summary>Louvain, Fast Greedy, Walktrap</summary><p class="explain">Algoritmos de detecção de comunidades: Louvain otimiza modularidade em múltiplos níveis, Fast Greedy é guloso hierárquico rápido, e Walktrap usa random walks.</p></details>
+          <details class="concept"><summary>Karate Club (Zachary, 1977)</summary><p class="explain">Dataset clássico com 34 membros de um clube de karatê que se dividiu em 2 grupos após um conflito; benchmark para algoritmos de detecção de comunidades.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">23</span>
+          <h3 class="card-title">Séries Temporais</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Decomposição aditiva vs multiplicativa</summary><p class="explain">Aditiva (Y=T+C+S+E) é usada quando a variação sazonal é constante; multiplicativa (Y=T*C*S*E), quando o efeito sazonal cresce junto com o nível da série.</p></details>
+          <details class="concept"><summary>SES, Holt, Holt-Winters (ETS)</summary><p class="explain">SES serve para séries sem tendência nem sazonalidade, Holt adiciona tendência, e Holt-Winters trata tendência e sazonalidade juntas.</p></details>
+          <details class="concept"><summary>Estacionariedade (ADF, KPSS)</summary><p class="explain">Série estacionária tem média, variância e covariância constantes no tempo. ADF testa H0 de não estacionariedade; KPSS testa H0 de estacionariedade.</p></details>
+          <details class="concept"><summary>ACF x PACF</summary><p class="explain">ACF mostra as autocorrelações da série (usada para identificar q); PACF mede a correlação com o lag k removendo o efeito dos lags intermediários (identifica p).</p></details>
+          <details class="concept"><summary>ARIMA(p,d,q) / SARIMA</summary><p class="explain">ARIMA combina componente autorregressivo (p), diferenciação para estacionariedade (d) e média móvel (q); SARIMA adiciona os termos sazonais (P,D,Q)s.</p></details>
+          <details class="concept"><summary>Metodologia Box-Jenkins</summary><p class="explain">Processo em três etapas: Identificação (definir p,q via ACF/PACF), Estimação (ajustar os parâmetros) e Checagem (verificar se os resíduos são ruído branco).</p></details>
+          <details class="concept"><summary>MAE, RMSE, MAPE, AIC/BIC</summary><p class="explain">MAE, RMSE e MAPE medem o erro entre previsto e realizado (menor é melhor); AIC e BIC avaliam o ajuste relativo do modelo.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">26</span>
+          <h3 class="card-title">Text Mining &amp; NLP</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Tokenização, stopwords</summary><p class="explain">Tokenização divide o texto em unidades menores (tokens), geralmente palavras; stopwords são palavras comuns removidas por não agregarem muito significado.</p></details>
+          <details class="concept"><summary>Stemming (RSLP) vs Lematização (spaCy)</summary><p class="explain">Stemming corta a palavra até a raiz por regras, podendo gerar radicais inválidos; lematização (spaCy) retorna a forma canônica correta da palavra.</p></details>
+          <details class="concept"><summary>Pipeline: coleta → modelagem → insights</summary><p class="explain">O pipeline segue: coleta de dados textuais → pré-processamento → modelagem e análise → avaliação dos resultados → insights e conhecimento.</p></details>
+          <details class="concept"><summary>Aspect-Based Sentiment Analysis</summary><p class="explain">ABSA identifica diferentes aspectos em um texto e atribui uma polaridade de sentimento a cada um separadamente, em vez de um rótulo geral único.</p></details>
+          <details class="concept"><summary>Espectro de polaridade (-2 a +2)</summary><p class="explain">Escala de classificação do sentimento: muito positivo (+2), positivo (+1), neutro (0), negativo (-1) e muito negativo (-2).</p></details>
+          <details class="concept"><summary>TF-IDF / Word Embeddings</summary><p class="explain">Técnicas de extração que transformam o texto pré-processado em vetores numéricos, etapa necessária antes da aplicação do modelo de classificação.</p></details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 6 ============ -->
+  <section class="block" id="bloco-6" style="--dot: var(--b6)">
+    <div class="block-head">
+      <span class="block-index">Bloco 6</span>
+      <h2 class="block-title">Infraestrutura &amp; Escala</h2>
+    </div>
+    <p class="block-desc">Como rodar dados e modelos além do notebook: computação distribuída, nuvem e algoritmos inspirados em processos naturais.</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">06</span>
+          <h3 class="card-title">Computação Evolucionária</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>População, cromossomo, fitness, geração</summary><p class="explain">População é o conjunto de soluções candidatas; cromossomo é uma solução única; fitness mede a qualidade da solução; geração é cada iteração do algoritmo.</p></details>
+          <details class="concept"><summary>Seleção (roleta, torneio)</summary><p class="explain">Roleta seleciona pais com probabilidade proporcional ao fitness; torneio escolhe k indivíduos aleatórios e mantém o melhor, sendo mais robusto que a roleta.</p></details>
+          <details class="concept"><summary>Crossover (one-point, uniform, PMX)</summary><p class="explain">One-point troca segmentos dos pais a partir de um ponto de corte; uniform escolhe cada gene de um dos pais; PMX mantém a ordem relativa em permutações.</p></details>
+          <details class="concept"><summary>Mutação e elitismo</summary><p class="explain">Mutação introduz variação aleatória para evitar convergência prematura; elitismo garante que os melhores indivíduos passem intactos à próxima geração.</p></details>
+          <details class="concept"><summary>Problema da Mochila e Caixeiro Viajante</summary><p class="explain">Mochila 0/1 usa cromossomo binário (item dentro/fora, respeitando a capacidade); Caixeiro Viajante (TSP) usa cromossomo de permutação, minimizando distância total.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">07</span>
+          <h3 class="card-title">Cloud Computing</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>IaaS, PaaS, SaaS</summary><p class="explain">IaaS aluga infraestrutura e você gerencia o resto; PaaS oferece plataforma para desenvolver sem cuidar da infraestrutura; SaaS entrega o software pronto para uso.</p></details>
+          <details class="concept"><summary>Pública, privada, híbrida</summary><p class="explain">Pública é compartilhada entre clientes (menor custo); privada é exclusiva de uma organização (mais controle); híbrida combina infraestrutura local com nuvem pública.</p></details>
+          <details class="concept"><summary>Serverless (cold starts)</summary><p class="explain">Executa código sob demanda sem gerenciar servidores, cobrando só pelo tempo de execução; cold start é a latência extra na primeira execução de uma função ociosa.</p></details>
+          <details class="concept"><summary>SQL vs NoSQL (ACID vs BASE)</summary><p class="explain">SQL tem schema fixo e garantias ACID, ideal para transações; NoSQL tem schema flexível e segue o modelo BASE, priorizando disponibilidade e velocidade.</p></details>
+          <details class="concept"><summary>Responsabilidade compartilhada, IAM</summary><p class="explain">O provedor cuida da segurança "da" nuvem; o cliente cuida da segurança "na" nuvem. IAM garante o acesso certo às identidades certas.</p></details>
+          <details class="concept"><summary>Kafka, Hadoop, Apache Spark</summary><p class="explain">Kafka é uma plataforma de streaming distribuída; Hadoop usa HDFS e MapReduce para armazenamento/processamento distribuído; Spark processa em memória, mais rápido.</p></details>
+          <details class="concept"><summary>Parquet e Apache Iceberg</summary><p class="explain">Parquet é um formato de arquivo colunar, com boa compressão e leitura rápida; Iceberg é um formato de tabela sobre Parquet/ORC, com transações ACID e versionamento.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">22</span>
+          <h3 class="card-title">Big Data &amp; Deployment de Modelos</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>5V's do Big Data</summary><p class="explain">Volume (quantidade massiva), Velocidade (rapidez de geração/processamento), Variedade (tipos de dados), Veracidade (confiabilidade) e Valor (insights).</p></details>
+          <details class="concept"><summary>Hadoop MapReduce vs Spark</summary><p class="explain">Hadoop processa em disco entre as etapas (mais lento) via MapReduce; Spark processa em memória (mais rápido), organizado em um DAG de operações.</p></details>
+          <details class="concept"><summary>RDD e DAG</summary><p class="explain">RDD é a estrutura de dados do Spark: distribuída, imutável e resiliente a falhas. DAG é o grafo direcionado e acíclico que representa e otimiza as operações.</p></details>
+          <details class="concept"><summary>Data Lakehouse, Arquitetura Medalhão</summary><p class="explain">Lakehouse unifica Data Lake e Data Warehouse com camada de governança. A Arquitetura Medalhão organiza dados em camadas Bronze, Silver e Gold.</p></details>
+          <details class="concept"><summary>MLOps e ciclo de vida de modelos</summary><p class="explain">MLOps combina DevOps com ML para automatizar treinamento, deploy e monitoramento. O ciclo de vida vai da coleta de dados até o re-treinamento e aposentadoria do modelo.</p></details>
+          <details class="concept"><summary>MLflow (Tracking, Registry)</summary><p class="explain">MLflow Tracking registra parâmetros, métricas e artefatos de cada execução. MLflow Registry controla as versões entre os estágios Staging, Produção e Arquivado.</p></details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 7 ============ -->
+  <section class="block" id="bloco-7" style="--dot: var(--b7)">
+    <div class="block-head">
+      <span class="block-index">Bloco 7</span>
+      <h2 class="block-title">Negócios, Gestão &amp; Contexto</h2>
+    </div>
+    <p class="block-desc">O entorno onde a análise de dados acontece: comunicação, gestão de projetos, risco, economia, pessoas e regulação.</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">03</span>
+          <h3 class="card-title">Business Intelligence &amp; Data Viz</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Pipeline ETL → Modelagem → Viz</summary><p class="explain">Fases do processo de BI: ETL (extração, transformação e carga), seguido de modelagem de dados, visualização e publicação dos resultados.</p></details>
+          <details class="concept"><summary>Self Service Analytics</summary><p class="explain">Dá autonomia a usuários não técnicos para criar análises e dashboards, apoiada em pilares técnicos (tecnologia, DW, data mining) e humanos.</p></details>
+          <details class="concept"><summary>Processo de #DataViz (7 etapas)</summary><p class="explain">Sequência para transformar dados em visualizações: definir objetivo, adquirir dados, formatar, filtrar, analisar, representar e refinar/interagir com o público.</p></details>
+          <details class="concept"><summary>Power BI (Desktop, Services, Mobile)</summary><p class="explain">Ferramenta líder de BI (Gartner), criada em 2015: Desktop desenvolve os reports, Services é onde os usuários os consomem, e Mobile é o app de acesso móvel.</p></details>
+          <details class="concept"><summary>Governança de dados, Shadow IT</summary><p class="explain">Governança se apoia em Pessoas, Processos e Tecnologia; Shadow IT é o uso de sistemas sem aprovação da TI, gerando riscos de conformidade e segurança.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">05</span>
+          <h3 class="card-title">Metodologias Ágeis</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Conhecidos vs Conhecíveis vs Incognoscíveis</summary><p class="explain">Classificação de problemas por incerteza: Conhecidos usam abordagem preditiva, Conhecíveis pedem ágil iterativo, e Incognoscíveis exigem ágil com experimentação.</p></details>
+          <details class="concept"><summary>Manifesto Ágil (4 valores)</summary><p class="explain">Valoriza indivíduos e interações, software funcionando, colaboração com o cliente e resposta a mudanças, cada um priorizado sobre sua contraparte tradicional.</p></details>
+          <details class="concept"><summary>Scrum (papéis, eventos, artefatos)</summary><p class="explain">Framework com papéis (Product Owner, Scrum Master, Time de Desenvolvimento auto-organizado) e eventos (Sprint Planning, Daily, Review, Retrospective).</p></details>
+          <details class="concept"><summary>Problem Map (Consistência/Relevância)</summary><p class="explain">Estrutura o problema em dois blocos: Consistência (contexto, causas, pessoas impactadas, consequências) e Relevância (importância, realidade x ideal).</p></details>
+          <details class="concept"><summary>Framework DICE (score 5–28)</summary><p class="explain">Estima a chance de sucesso por 5 dimensões — Duração, Integridade, Comprometimento (sênior e local) e Esforço; 7-14 é bom, 18-28 é alto risco.</p></details>
+          <details class="concept"><summary>Cynefin, Lean, Kanban</summary><p class="explain">Cynefin classifica contextos organizacionais para escolher a abordagem certa. Lean elimina desperdícios; Kanban visualiza o fluxo contínuo com limites de WIP.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">09</span>
+          <h3 class="card-title">Conjuntura Econômica</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Framework PESTEL</summary><p class="explain">Mapeia o macroambiente em 6 dimensões: Político, Econômico, Social, Tecnológico, Ecológico e Legal.</p></details>
+          <details class="concept"><summary>PIB = C + I + G + (Ex − Im)</summary><p class="explain">Ótica do dispêndio do PIB: soma de Consumo, Investimento, Gastos do Governo e Exportações menos Importações.</p></details>
+          <details class="concept"><summary>Inflação (demanda, oferta, inercial)</summary><p class="explain">Inflação de demanda vem de salários e crédito; de oferta, de choques e custos de produção; inercial, da memória inflacionária e indexação de contratos.</p></details>
+          <details class="concept"><summary>Desemprego e NAIRU</summary><p class="explain">Taxa de desemprego = desempregados/PEA, com tipos friccional, estrutural e conjuntural; NAIRU é o nível que mantém a inflação estável.</p></details>
+          <details class="concept"><summary>Selic (Copom)</summary><p class="explain">Taxa básica de juros definida pelo Copom, considerando a conjuntura nacional e o cenário externo, para conciliar crescimento com estabilidade de preços.</p></details>
+          <details class="concept"><summary>Tripé Macroeconômico</summary><p class="explain">Três pilares da política econômica brasileira: responsabilidade fiscal, metas de inflação e câmbio flutuante.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">10</span>
+          <h3 class="card-title">Analytics e Gestão de Riscos</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Markowitz (1952), fronteira eficiente</summary><p class="explain">Harry Markowitz mostrou como a diversificação reduz risco; a fronteira eficiente reúne as carteiras com melhor retorno para cada nível de risco.</p></details>
+          <details class="concept"><summary>Índice de Sharpe</summary><p class="explain">Mede o retorno em excesso sobre a taxa livre de risco por unidade de risco, (μp − rf)/σp; usado para achar a carteira de máximo Sharpe.</p></details>
+          <details class="concept"><summary>PD, EAD, LGD</summary><p class="explain">PD é a probabilidade de default, EAD/EC é a exposição no momento do default, e LGD é a perda dado o default; juntos calculam a Perda de Crédito.</p></details>
+          <details class="concept"><summary>Acordos de Basileia (I, II, III)</summary><p class="explain">Basileia 1 exigiu capital para risco de crédito, depois mercado e Basileia 2 para risco operacional; o Índice de Basileia exige Capital/Risco ≥ 8%.</p></details>
+          <details class="concept"><summary>VaR Operacional</summary><p class="explain">Calculado como Pior Perda menos Perda Esperada Média, a partir da distribuição de frequência e severidade das perdas operacionais.</p></details>
+          <details class="concept"><summary>Simulação de Monte Carlo</summary><p class="explain">Simula variáveis de entrada milhares de vezes para gerar a distribuição do VPL, permitindo calcular percentis e a probabilidade de VPL positivo.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">11</span>
+          <h3 class="card-title">Liderança em Data Science</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Crise como aumento de incertezas (Morin)</summary><p class="explain">Para Edgar Morin, crise é o momento em que as incertezas aumentam — uma transformação radical em que as certezas antigas deixam de valer.</p></details>
+          <details class="concept"><summary>Tirania do "OU" vs Genialidade do "E"</summary><p class="explain">O "OU" vê ideias contraditórias como excludentes; o "E" as encara como complementares, pensamento adequado para liderar em contextos complexos.</p></details>
+          <details class="concept"><summary>Inteligência Emocional (Goleman)</summary><p class="explain">Domínios de Goleman: Autoconsciência e Autogestão (mentalidade de conhecer) e Consciência Social e Administração Relacional (mentalidade de sentir).</p></details>
+          <details class="concept"><summary>Problemas simples vs complexos</summary><p class="explain">Simples têm resposta certa e ficam a cargo de operacionais; complexos são interdependentes, sem solução definitiva, e devem ser gerenciados com experimentação.</p></details>
+          <details class="concept"><summary>Debate vs Diálogo (Bohm)</summary><p class="explain">Para David Bohm, debate deriva de "derrotar", enquanto diálogo sugere "fluxo de significado" — não exige concordância, mas construção de sentido compartilhado.</p></details>
+          <details class="concept"><summary>Auto-organização de equipes</summary><p class="explain">Soluções emergem das interações da equipe (inteligência de enxame), sem o líder ter todas as respostas; ele integra, empodera e fomenta a inteligência distribuída.</p></details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-num">12</span>
+          <h3 class="card-title">Legislação Digital (LGPD)</h3>
+        </div>
+        <div class="concept-list">
+          <details class="concept"><summary>Marco Civil da Internet (12.965/2014)</summary><p class="explain">Chamada de "Constituição da Internet" no Brasil, estabelece princípios como neutralidade de rede, privacidade e guarda de registros de conexão e acesso.</p></details>
+          <details class="concept"><summary>GDPR e CCPA</summary><p class="explain">GDPR (UE, 2018) impõe regras estritas de alcance global sobre dados pessoais; CCPA (Califórnia, 2020) dá aos residentes direito de saber e excluir seus dados.</p></details>
+          <details class="concept"><summary>LGPD — Lei nº 13.709/2018</summary><p class="explain">Regula o tratamento de dados pessoais no Brasil, protegendo os direitos fundamentais de liberdade, privacidade e livre desenvolvimento da personalidade.</p></details>
+          <details class="concept"><summary>Princípios do Art. 6º</summary><p class="explain">10 princípios estruturam a LGPD — finalidade, adequação, necessidade, transparência, segurança, prevenção, qualidade e responsabilização, entre outros.</p></details>
+          <details class="concept"><summary>Titular, Controlador, Operador, DPO, ANPD</summary><p class="explain">Titular é a pessoa a quem os dados pertencem; Controlador decide sobre o tratamento; Operador o executa; o DPO é o canal com a ANPD, que fiscaliza a lei.</p></details>
+          <details class="concept"><summary>Marco Legal das Criptomoedas</summary><p class="explain">Lei 14.478/2022 define e regula criptoativos (representações digitais de valor negociáveis), excluindo moeda real e programas de pontos/fidelidade.</p></details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>MBA em Data Science &amp; Analytics — USP/ESALQ</span>
+    <span class="mono">conceitos extraídos dos resumos revisados por aula</span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.expand-controls button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var open = btn.dataset.action === 'expand';
+      document.querySelectorAll('details.concept').forEach(function (d) { d.open = open; });
+    });
+  });
+</script>

@@ -6,7 +6,7 @@
 
 ## 🎯 Objetivo do Módulo
 
-Compreender a **Modelagem Multinível (Modelos Lineares Hierárquicos - HLM / Generalized Linear Mixed Models - GLMM)** como técnica de Machine Learning Supervisionado voltada para dados com estrutura hierárquica ou aninhada (indivíduos dentro de grupos, grupos dentro de países, medidas repetidas no tempo dentro de indivíduos), reconhecendo a inadequação da regressão OLS tradicional (e de dummies de grupo) nesses contextos, e dominando a construção de modelos HLM2 (2 níveis) e HLM3 (3 níveis, com medidas repetidas), com efeitos fixos e efeitos aleatórios (interceptos e inclinações), e sua estimação em Python.
+Dominar a construção de modelos **HLM2 (2 níveis)** e **HLM3 (3 níveis, com medidas repetidas)**, com efeitos fixos e aleatórios (interceptos e inclinações), reconhecendo as limitações de OLS e dummies em dados hierárquicos, implementados em Python.
 
 ---
 
@@ -14,31 +14,21 @@ Compreender a **Modelagem Multinível (Modelos Lineares Hierárquicos - HLM / Ge
 
 ### 1. CONTEXTO E FUNDAMENTAÇÃO TEÓRICA
 
-#### 1.1 Posicionamento dentro do Machine Learning
-
-- **Machine Learning** se divide em:
-  - **Unsupervised**: Análise de Conglomerados, Componentes Principais, Análise de Correspondência
-  - **Supervised**: Modelos Lineares Generalizados (GLM) e **Modelos Lineares Generalizados Multinível (GLMM)**
-- A Modelagem Multinível é a extensão natural do GLM quando os dados apresentam **estrutura hierárquica**.
-
-#### 1.2 O que são Modelos Multinível?
+#### 1.1 O que são Modelos Multinível?
 
 > "São modelos que reconhecem a existência de estrutura multinível ou hierárquica nos dados."
 > — Raudenbush, S.W.; Bryk, A.S. *Hierarchical linear models: applications and data analysis methods*. 2. ed. Sage, 2002.
 
 - Reconhecem que observações de **Nível 1** (ex.: indivíduos) estão agrupadas (aninhadas) em unidades de **Nível 2** (ex.: escolas, firmas, países), que por sua vez podem estar agrupadas em unidades de **Nível 3** (ex.: setores, regiões).
 
-#### 1.3 Estrutura Multinível
+#### 1.2 Estrutura Multinível
 
-- Exemplo clássico de aninhamento:
-  - **Nível 1**: alunos (indivíduos)
-  - **Nível 2**: escolas (grupos)
-  - **Nível 3**: redes/municípios (grupos de grupos)
-- Cada aluno pertence a **uma única escola**; cada escola contribui com **vários alunos** → dados **não são independentes** entre si dentro do mesmo grupo, violando a premissa de independência dos resíduos do OLS clássico.
+- Exemplo: Nível 1 (alunos) → Nível 2 (escolas) → Nível 3 (redes/municípios)
+- Dados não são independentes entre si dentro do mesmo grupo, violando premissa de independência do OLS clássico.
 
-#### 1.4 Por que a Regressão OLS Tradicional Falha
+#### 1.3 Por que a Regressão OLS Tradicional Falha
 
-- Uma regressão única (OLS) ajustada a todos os dados ignora que **cada grupo (escola) tem seu próprio intercepto e sua própria inclinação**:
+- Regressão única (OLS) ignora que cada grupo tem seu próprio intercepto e sua própria inclinação:
 
 ```
 Escola 1: Y_i1 = β01 + β11.X_i1 + ε_i1
@@ -47,26 +37,16 @@ Escola 3: Y_i3 = β03 + β13.X_i3 + ε_i3
 Escola 4: Y_i4 = β04 + β14.X_i4 + ε_i4
 ```
 
-- Ao empilhar todos os grupos em uma única reta OLS, o modelo **mistura efeitos individuais com efeitos de grupo**, gerando estimativas viesadas e resíduos correlacionados dentro de cada grupo (heterocedasticidade / dependência intragrupo).
-- A visualização de "Reflexão" mostrada no início do módulo evidencia como diferentes especificações (Modelo 1, Modelo 2, Modelo 3) geram *fitted values* muito distintos dos valores reais quando a hierarquia não é tratada corretamente.
+- Ao empilhar grupos em reta única, **mistura efeitos individuais com efeitos de grupo**, gerando estimativas viesadas e resíduos correlacionados.
+- A visualização de "Reflexão" do módulo mostra como diferentes especificações (Modelo 1, Modelo 2, Modelo 3) geram *fitted values* muito distintos quando a hierarquia não é tratada corretamente.
 
-#### 1.5 Dummies Não Resolvem o Problema
+#### 1.4 Dummies Não Resolvem o Problema
 
-> "Apenas a inserção de *dummies* de grupo não capturaria os efeitos contextuais, visto que não permitiria que se separassem os efeitos observáveis dos não observáveis sobre a variável dependente."
-> — Rabe-Hesketh, S.; Skrondal, A. *Multilevel and longitudinal modeling using Stata*. 3. ed. Stata Press, 2012.
-
-- Incluir dummies de grupo (efeitos fixos de grupo) apenas ajusta o **intercepto** por grupo, mas:
+- Incluir dummies de grupo apenas ajusta **intercepto** por grupo, mas:
   - Não modela variação nas **inclinações** entre grupos;
-  - Não separa a **variância intragrupo** da **variância entre grupos**;
-  - Consome muitos graus de liberdade quando há muitos grupos;
-  - Não permite estimar o efeito de variáveis de **nível superior** (ex.: características da escola) de forma parcimoniosa.
-
-#### 1.6 Por que Utilizar Modelos Multinível?
-
-> "Dentro de uma estrutura de modelo com equação única, parece não haver uma conexão entre indivíduos e a sociedade em que vivem. [...] Somente o reconhecimento destas recíprocas influências permite a análise correta dos fenômenos."
-> — Courgeau, D. *Methodology and epistemology of multilevel analysis*. Kluwer, 2003.
-
-- Permitem o desenvolvimento de **constructos mais elaborados** para predição e tomada de decisão, "pulando" de uma escala de análise a outra (ex.: alunos → escolas, firmas → países).
+  - Não separa **variância intragrupo** da **variância entre grupos**;
+  - Consome muitos graus de liberdade;
+  - Não permite estimar efeito de variáveis de **nível superior** de forma parcimoniosa.
 
 ---
 
@@ -473,18 +453,7 @@ print(modelo_final_hlm3.summary())
 
 ---
 
-## 💡 Conceitos-Chave para Memorizar
-
-### 🔑 Diferenças Fundamentais: OLS x OLS com Dummies x Multinível
-
-| **Aspecto** | **OLS Único** | **OLS com Dummies de Grupo** | **Modelo Multinível (HLM)** |
-|---|---|---|---|
-| **Intercepto** | Único para toda a amostra | Varia por grupo (efeito fixo) | Varia por grupo (efeito aleatório, `ν0j`) |
-| **Inclinação** | Única para toda a amostra | Única para toda a amostra | Pode variar por grupo (`ν1j`) |
-| **Efeitos contextuais (Nível 2+)** | Não captura | Não captura | Captura (`γ01.Wj`, interações cross-level) |
-| **Variância entre/dentro de grupos** | Não decompõe | Não decompõe | Decompõe (componentes de variância) |
-| **Graus de liberdade** | Poucos parâmetros | Muitos (1 dummy por grupo) | Parcimonioso (poucos parâmetros de variância) |
-| **Dependência intragrupo** | Ignorada (viola premissa OLS) | Parcialmente tratada (só intercepto) | Tratada corretamente |
+## 💡 Conceitos-Chave do Módulo
 
 ### 🎯 Fórmulas Essenciais
 
@@ -542,15 +511,12 @@ print(modelo_final_hlm3.summary())
 
 ## ⚠️ Erros Comuns a Evitar
 
-1. **Ignorar a estrutura hierárquica dos dados**: aplicar OLS único quando existem grupos aninhados gera resíduos correlacionados e viola a premissa de independência.
-2. **Confundir dummies de grupo com modelagem multinível**: dummies ajustam apenas o intercepto (efeito fixo), não capturam efeitos contextuais nem interações cross-level, nem decompõem variância.
-3. **Não testar a significância das variâncias dos efeitos aleatórios** (`ν0j`, `ν1j`) antes de concluir que o modelo multinível é necessário.
-4. **Especificar inclinações aleatórias sem necessidade**: se a inclinação não varia significativamente entre grupos, um modelo apenas com intercepto aleatório é mais parcimonioso.
-5. **Esquecer as interações cross-level**: variáveis de Nível 2/3 frequentemente interagem com variáveis de Nível 1 (ex.: `γ11.Wj.X_ij`), e ignorá-las subestima a complexidade do fenômeno.
-6. **Comparar diretamente os coeficientes de um HLM com os de um OLS** sem entender que os efeitos fixos do HLM já "controlam" para a estrutura de grupo.
-7. **Negligenciar a capacidade computacional exigida** por modelos com muitas interações profundas e muitos níveis (conforme alerta de Andrew Gelman).
-8. **Aplicar HLM3 sem entender a hierarquia correta**: é fundamental identificar corretamente qual variável define Nível 1 (tempo/medida repetida), Nível 2 (indivíduo) e Nível 3 (grupo).
-9. **Assumir que mais níveis é sempre melhor**: a estrutura deve refletir o desenho real dos dados, não apenas ser adicionada por conveniência.
+1. **Ignorar estrutura hierárquica dos dados**: OLS único gera resíduos correlacionados e viola premissa de independência.
+2. **Confundir dummies com modelagem multinível**: dummies ajustam apenas intercepto, não capturam efeitos contextuais nem decompõem variância.
+3. **Não testar significância das variâncias dos efeitos aleatórios** (`ν0j`, `ν1j`).
+4. **Especificar inclinações aleatórias sem necessidade**: se não variam entre grupos, usar modelo apenas com intercepto aleatório.
+5. **Esquecer interações cross-level**: variáveis de Nível 2/3 frequentemente interagem com Nível 1.
+6. **Aplicar HLM3 sem identificar hierarquia correta**: definir bem Nível 1 (tempo), Nível 2 (indivíduo) e Nível 3 (grupo).
 
 ---
 
@@ -570,101 +536,11 @@ print(modelo_final_hlm3.summary())
 
 ---
 
-## 📖 Referências Recomendadas
+## 📖 Referências Principais
 
-### Livros
+**Artigo Central:**
 
-1. **Bickel, R.** 2007. *Multilevel analysis for applied research: it's just regression!* New York: The Guilford Press.
-2. **Courgeau, D.** 2003. *Methodology and epistemology of multilevel analysis.* London: Kluwer Academic Publishers.
-3. **Fávero, L.P.; Belfiore, P.** 2019. *Data science for business and decision making.* Cambridge: Academic Press.
-4. **Fávero, L.P.; Belfiore, P.** 2024. *Manual de análise de dados: estatística e machine learning com Excel®, SPSS®, Stata®, R® e Python®.* Rio de Janeiro: GEN.
-5. **Goldstein, H.** 2011. *Multilevel statistical models.* 4. ed. Chichester: John Wiley & Sons.
-6. **Rabe-Hesketh, S.; Skrondal, A.** 2012. *Multilevel and longitudinal modeling: continuous responses* (Vol. I). 3. ed. College Station: Stata Press.
-7. **Raudenbush, S.W.; Bryk, A.S.** 2002. *Hierarchical linear models: applications and data analysis methods.* 2. ed. Thousand Oaks: Sage Publications.
-8. **Tabachnick, B.G.; Fidell, L.S.** 2013. *Using multivariate statistics.* 6. ed. Boston: Pearson.
-9. **West, B.T.; Welch, K.B.; Galecki, A.** 2016. *Linear mixed models: a practical guide using statistical software.* 2. ed. Boca Raton: Chapman & Hall/CRC Press.
-10. **Lazega, E.; Snijders, T.** 2016. *Multilevel network analysis for the social sciences: theory, methods and applications.* New York: Springer.
-
-### Artigos
-
-- **Fávero, L.P.** 2010. *The Sao Paulo Stock Exchange: a multilevel analysis of firm and industry effects on profitability evolution and hedge strategies.* International Journal of Financial Markets and Derivatives, v. 1, p. 307-325.
-- **Fávero, L.P.** 2017. *The zero-inflated negative binomial multilevel model: demonstrated by a Brazilian dataset.* International Journal of Mathematics in Operational Research, v. 11, p. 90-106.
-- **Fávero, L.P.** 2008. *Time, firm and country effects on performance: an analysis under the perspective of hierarchical modeling with repeated measures.* BBR (Brazilian Business Review), v. 5, p. 163-180.
-- **Fávero, L.P.; Almeida, J.E.F.** 2011. *O comportamento dos índices de ações em países emergentes: uma análise com dados em painel e modelos hierárquicos.* Revista Brasileira de Estatística, v. 72, p. 97-137.
-- **Fávero, L.P.; Confortini, D.** 2010. *Modelos multinível de coeficientes aleatórios e os efeitos firma, setor e tempo no mercado acionário Brasileiro.* Pesquisa Operacional, v. 30, p. 703-727.
-- **Fávero, L.P.; Santos, M.A.; Serra, R.G.** 2018. *Cross-border branching in the Latin American banking sector.* International Journal of Bank Marketing, v. 36, p. 496-528.
-- **Fávero, L.P.; Serra, R.G.; Santos, M.A.; Brunaldi, E.** 2018. *Cross-classified multilevel determinants of firm's sales growth in Latin America.* International Journal of Emerging Markets, v. 13, p. 902-924.
-- **Hair Jr., J.F.; Fávero, L.P.** 2019. *Multilevel modeling for longitudinal data: concepts and applications.* RAUSP Management Journal, v. 54, p. 459-489.
 - **Rajan, R.G.; Zingales, L.** 1995. *What do we know about capital structure? Some evidence from international data.* Journal of Finance, v. 50-5, p. 1421-1460.
-- **Santos, M.A.; Fávero, L.P.; Disatadio, L.F.** 2016. *Adoption of the International Financial Reporting Standards (IFRS) on companies' financing structure in emerging economies.* Finance Research Letters, v. 16, p. 179-189.
-- **Yale, C.P.; Yoshizaki, H.T.Y.; Fávero, L.P.** 2022. *A new zero-inflated negative binomial multilevel model for forecasting the demand of disaster relief supplies in the State of Sao Paulo, Brazil.* Mathematics, v. 10, n. 22, p. 1-11.
-
-### Recursos Online
-
-- **Steele, F.** 2017. *Multilevel models for longitudinal data.* Centre of Multilevel Modelling, University of Bristol.
-- **Statsmodels**: documentação de `MixedLM` para modelos lineares mistos.
-- **Andrew Gelman**: apresentação na *Multilevel Conference*, 31 out. 2015, Columbia University, NYC — sobre desafios de estimação em modelagem multinível.
-
----
-
-## ✅ Checklist de Estudo
-
-### Conceitos Teóricos
-
-- [ ] Entender a diferença entre estrutura de dados independente e estrutura hierárquica/aninhada
-- [ ] Compreender por que o OLS tradicional é inadequado para dados multinível
-- [ ] Compreender por que dummies de grupo não substituem a modelagem multinível
-- [ ] Diferenciar efeitos fixos de efeitos aleatórios
-- [ ] Entender o conceito de interação cross-level
-
-### Estrutura do Modelo
-
-- [ ] Escrever a equação de Nível 1 (dentro do grupo)
-- [ ] Escrever as equações de Nível 2 (entre grupos) para intercepto e inclinação
-- [ ] Obter o modelo combinado substituindo Nível 2 em Nível 1
-- [ ] Identificar os componentes de Efeitos Fixos e Efeitos Aleatórios na equação combinada
-- [ ] Interpretar os componentes de variância (entre grupos vs. dentro dos grupos)
-- [ ] Calcular e interpretar o Coeficiente de Correlação Intraclasse (ICC)
-
-### HLM2 (2 Níveis)
-
-- [ ] Especificar e estimar o Modelo Nulo
-- [ ] Especificar e estimar o Modelo com Interceptos e Inclinações Aleatórios
-- [ ] Especificar e estimar o Modelo Final (com variável de Nível 2 e interação cross-level)
-- [ ] Comparar fitted values de OLS, OLS com Dummies e HLM2
-
-### HLM3 (3 Níveis - Medidas Repetidas)
-
-- [ ] Identificar corretamente Nível 1 (tempo), Nível 2 (indivíduo) e Nível 3 (grupo)
-- [ ] Especificar e estimar o Modelo Nulo HLM3
-- [ ] Especificar e estimar o Growth Model (tendência linear)
-- [ ] Especificar e estimar o Modelo Final HLM3 (com variáveis de Nível 2 e Nível 3)
-- [ ] Comparar fitted values de HLM3 com OLS com Dummies
-
-### Implementação Python
-
-- [ ] Estimar modelo nulo com `smf.mixedlm()` e `groups`
-- [ ] Estimar modelo com inclinação aleatória usando `re_formula`
-- [ ] Estimar modelo com interação cross-level na fórmula
-- [ ] Estimar componentes de variância de 3 níveis com `vc_formula`
-- [ ] Extrair e interpretar `cov_re` (variância entre grupos) e `scale` (variância residual)
-- [ ] Plotar comparação de fitted values entre OLS, OLS com Dummies e HLM
-
-### Casos Práticos
-
-- [ ] Reproduzir o exemplo HLM2 (desempenho ~ horas, aninhado em escola/grupo)
-- [ ] Reproduzir o exemplo HLM3 (desempenho ~ mes, medidas repetidas por indivíduo e grupo)
-- [ ] Reproduzir o estudo de caso Rajan & Zingales (Leverage ~ Tangible Assets + Market to Book + Log Sales + ROA, aninhado por país)
-- [ ] Aplicar a modelagem multinível em um dataset próprio com estrutura hierárquica real
-
-### Projeto Final
-
-- [ ] Identificar a estrutura hierárquica do dataset (níveis e variáveis por nível)
-- [ ] Estimar o Modelo Nulo e calcular o ICC para justificar a abordagem multinível
-- [ ] Testar interceptos e inclinações aleatórios
-- [ ] Incluir variáveis de nível superior e interações cross-level relevantes
-- [ ] Comparar o modelo multinível final com OLS e OLS com dummies
-- [ ] Apresentar resultados com visualizações de fitted values e componentes de variância
 
 ---
 

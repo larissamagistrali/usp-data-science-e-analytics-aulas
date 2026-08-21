@@ -1,932 +1,348 @@
-# 👥 Resumo: Liderança em Data Science
+# Liderança em Data Science
 
 **MBA Data Science e Analytics - USP/ESALQ**
 
----
-
-## 🎯 Objetivo do Módulo
-
-Desenvolver competências de **liderança e gestão** específicas para times de Data Science e Analytics. Compreender os desafios únicos de liderar equipes técnicas multidisciplinares, comunicar resultados de dados para stakeholders não-técnicos, construir cultura data-driven, gerenciar projetos de analytics com incerteza inerente e desenvolver soft skills essenciais para cientistas de dados em posições de liderança.
+_Professora: Fátima Jinnyat_
 
 ---
 
-## 📚 Conteúdo Principal
+## Objetivo do Módulo
 
-### 1. **Perfil do Líder em Data Science**
-
-#### 1.1 Habilidades Técnicas vs. Soft Skills
-
-**Habilidades Técnicas (Technical Skills):**
-
-- Fundamentos de ML, estatística, programação
-- **Não precisa ser o melhor técnico do time**
-- Conhecimento suficiente para:
-  - Avaliar qualidade técnica de propostas
-  - Entender trade-offs (accuracy vs. interpretability)
-  - Fazer code review em alto nível
-  - Questionar suposições de modelos
-
-**Soft Skills (Essenciais para Liderança):**
-
-- **Comunicação:** traduzir técnico para negócio
-- **Visão estratégica:** alinhar analytics com objetivos de negócio
-- **Gestão de pessoas:** motivar, desenvolver, dar feedback
-- **Influência:** convencer stakeholders sem autoridade formal
-- **Inteligência emocional:** empatia, autoconhecimento, gestão de conflitos
-- **Tomada de decisão:** sob incerteza, com dados incompletos
-
-#### 1.2 Tipos de Papéis de Liderança
-
-- **Tech Lead:** liderança técnica (arquitetura, standards de código, mentoria técnica)
-- **People Manager:** gestão de pessoas (carreira, performance, bem-estar)
-- **Product Manager (Analytics):** define roadmap, prioriza projetos, interface com negócio
-- **Chief Data Officer (CDO):** executivo responsável por estratégia de dados na empresa
-- **Líder de CoE (Center of Excellence):** centraliza expertise, dissemina práticas
-
-#### 1.3 Evolução de Carreira
-
-```
-Data Analyst → Data Scientist →
-  ├─> Senior Data Scientist → Staff/Principal Data Scientist (IC - Individual Contributor)
-  └─> Lead Data Scientist → Manager → Director → VP/CDO (Management)
-```
-
-**IC Track (Individual Contributor):**
-
-- Foco em profundidade técnica
-- Liderança por expertise (não gestão de pessoas)
-
-**Management Track:**
-
-- Foco em estratégia e pessoas
-- Menos hands-on em código
+Compreender os desafios de liderança em contextos de incerteza crescente. Desenvolver mentalidade humanizada que articula razão e emoção, e capacidade para liderar equipes em ambientes de complexidade, mudança contínua e ambiguidade.
 
 ---
 
-### 2. **Construção e Gestão de Times de DS**
+## Conteúdo Principal
 
-#### 2.1 Estrutura de Times
+### 1. O Contexto: Desafios do Líder Contemporâneo
 
-**Perfis em Time de DS:**
+#### 1.1 O que é Uma Crise
 
-- **Data Engineers:** pipelines de dados, infraestrutura (Spark, Airflow, cloud)
-- **Data Scientists:** modelagem, experimentação, análise
-- **ML Engineers:** deploy de modelos, MLOps, produtização
-- **Data Analysts:** BI, dashboards, análises exploratórias
-- **Analytics Translator:** ponte entre negócio e técnico (Product Owner de analytics)
+**Definição (Edgar Morin, filósofo da complexidade):**
+- "É um momento em que as incertezas aumentam."
 
-**Ratio sugerido:** 1 Data Engineer : 2-3 Data Scientists : 0.5 ML Engineer
+A crise não é apenas um evento negativo; é um período de **transformação radical onde as antigas certezas deixam de valer**.
 
-**Modelos de Organização:**
+#### 1.2 Incerteza e Conhecimento
 
-1. **Centralizado:** time único de DS atende toda empresa
-   - **Pros:** expertise concentrada, padronização
-   - **Cons:** fila longa, distância do negócio
-2. **Descentralizado (Embedded):** cada área de negócio tem seus data scientists
-   - **Pros:** proximidade, agilidade
-   - **Cons:** duplicação, falta de padrões
-3. **Híbrido (Centro de Excelência + Squads):**
-   - CoE: standards, ferramentas, infraestrutura, capacitação
-   - Squads: DS embarcados em áreas de negócio, seguem padrões do CoE
+**Immanuel Kant:**
+- A inteligência e conhecimento de um homem são medidos pela quantidade de incertezas que ele é capaz de suportar.
 
-#### 2.2 Contratação de Talentos
+#### 1.3 O Contexto Atual
 
-**O que avaliar:**
+**27º CEO Survey (PwC, 16/01/2024):**
+- 4.700 líderes empresariais em todo mundo
+- 41% no Brasil, 45% no mundo: preocupados com continuidade de seus negócios
+- Precisam ser mais ousados, mesmo com alto risco
 
-- **Technical Assessment:** coding (Python/R/SQL), modelagem (case), estatística
-- **Portfolio:** projetos anteriores (GitHub, Kaggle)
-- **Problem-solving:** raciocínio lógico, estruturação de problemas
-- **Communication:** consegue explicar conceitos complexos?
-- **Cultural fit:** alinhamento com valores da empresa
+**Dois megatendências:**
+1. Mudanças climáticas
+2. Disrupção tecnológica (IA Generativa)
 
-**Desafios:**
+#### 1.4 Manual de Liderança para Era Digital (2020)
 
-- **Escassez de talentos:** demanda > oferta (especialmente especialistas)
-- **Salários competitivos:** Big Tech paga muito (Google, Meta, Amazon)
-- **Expectativas irreais:** "queremos cientista de dados full-stack unicórnio"
-
-**Estratégias:**
-
-- **Contratar potencial:** juniors com vontade de aprender (mais barato, lealdade)
-- **Treinamento interno:** upskilling de analysts para DS
-- **Remote work:** ampliar pool de candidatos
-- **Employer branding:** projetos interessantes atraem talento
-
-#### 2.3 Onboarding
-
-**Primeiros 30-60-90 dias:**
-
-- **30 dias:** setup de ambiente, entender negócio, projetos iniciais simples
-- **60 dias:** contribuir em projetos existentes, conhecer stakeholders
-- **90 dias:** liderar projeto pequeno, estar produtivo
-
-**Práticas:**
-
-- **Buddy system:** veterano mentora novo
-- **Documentação:** confluence, wiki interna
-- **Shadow sessions:** acompanhar reuniões com negócio
-- **Learning path:** cursos, papers, código legado para estudar
-
-#### 2.4 Desenvolvimento e Retenção
-
-**Plano de Desenvolvimento Individual (PDI):**
-
-- **Metas de curto prazo (3-6 meses):** skill técnico (ex: aprender deep learning)
-- **Metas de longo prazo (1-2 anos):** carreira (ex: tornar-se senior)
-- **Recursos:** cursos, conferências, mentoria
-- **Revisão trimestral:** acompanhar progresso
-
-**Retenção:**
-
-- **Desafios técnicos:** projetos interessantes (não só análise ad-hoc)
-- **Autonomia:** confiança para tomar decisões
-- **Crescimento:** clareza de carreira
-- **Reconhecimento:** feedback positivo, promoções justas
-- **Propósito:** impacto visível do trabalho
-
-**Principais causas de turnover:**
-
-- Falta de crescimento (estagnação)
-- Trabalho repetitivo, sem desafio
-- Gestão ruim (micromanagement, falta de feedback)
-- Compensação desalinhada com mercado
-- Falta de ferramentas/infraestrutura adequadas
+**Desafios que os líderes precisam enfrentar:**
+1. **Adaptação às mudanças:** mudar cultura organizacional e fluxos de trabalho. Desenvolver capacidade adaptativa.
+2. **Lacunas de habilidades:** líderes devem identificar lacunas e promover treinamento/desenvolvimento de novas habilidades.
+3. **Gestão da mudança:** comunicação clara envolvendo as pessoas em todo o processo.
+4. **Gestão da informação:** desenvolver estratégias para coletar, armazenar, analisar e interpretar grandes quantidades de dados de forma significativa e acionável.
 
 ---
 
-### 3. **Comunicação de Resultados de Dados**
+### 2. Os Líderes e as Pessoas
 
-#### 3.1 Storytelling com Dados
+#### 2.1 Líder de Si Mesmo: Construindo a Própria Identidade
 
-- **Estrutura narrativa:**
-  1. **Contexto:** qual problema de negócio?
-  2. **Insight:** o que os dados revelam?
-  3. **Ação:** o que fazer com essa informação?
-- **Exemplo:**
-  - ❌ "O modelo XGBoost teve AUC de 0.87"
-  - ✅ "Identificamos que 15% dos clientes têm 80% de chance de cancelar nos próximos 3 meses. Se agirmos agora com campanha de retenção, podemos salvar R$5M em receita."
+A jornada de liderança começa com autoconhecimento. Antes de liderar outros, o líder deve compreender seus próprios valores, limitações e motivações.
 
-#### 3.2 Adaptação de Audiência
+#### 2.2 Estilos de Ser e Pensar: Perceber a Realidade e Tomar Decisões
 
-**Para Executivos (C-level):**
+**Tipologia psicológica (Willian James, pragmatismo/livro Pragmatism):**
 
-- **Foco:** impacto no negócio (receita, custo, risco)
-- **Formato:** executive summary (1 slide), métricas de alto nível
-- **Linguagem:** sem jargões técnicos
-- **Tempo:** 5-10 minutos
+| **PESSOAS OBSTINADAS** | **PESSOAS SENSÍVEIS** |
+| --- | --- |
+| (tough minded) | (tender minded) |
+| **Objetivas, Racionais, Fatalistas, Céticas** | **Dogmáticas, Subjetivistas, Favoráveis ao Livre Arbítrio** |
 
-**Para Gestores de Área:**
+**Reflexão:** Hoje é moda desvalorizar a cultura de humanidades e cultivar a fascinação pela tecnologia. Se nossas sociedades escolherem esta visão, nossas vidas serão comandadas por algoritmos. Não mais seremos guiados por sentimentos e significados, dos quais emergem os valores humanos.
 
-- **Foco:** insights acionáveis para suas áreas
-- **Formato:** apresentação com visualizações, recomendações claras
-- **Linguagem:** mínimo de técnico
-- **Tempo:** 15-30 minutos
+**A Tiranía do "OU" vs. A Genialidade do "E"**
 
-**Para Time Técnico:**
+O "OU" acredita que não se pode viver com duas ideias contraditórias ao mesmo tempo. As coisas devem ser A ou B, nunca ambos.
 
-- **Foco:** metodologia, arquitetura, reprodutibilidade
-- **Formato:** documentação técnica, notebooks, repositório
-- **Linguagem:** técnica (métricas, algoritmos)
-- **Tempo:** workshop, code review
+O "E" é mais flexível e sabe lidar com dois opostos ao mesmo tempo, encarando-os como complementares. Este é o pensamento adequado para lidar com a liderança em contextos complexos.
 
-#### 3.3 Visualização de Dados
+#### 2.3 A Importância da Emoção e da Razão: Vínculo Emocional
 
-**Princípios:**
+**Conexões só são possíveis através das emoções. Vínculos.**
 
-- **Simplicidade:** menos é mais (evitar chartjunk)
-- **Destaque:** guiar olho para insight principal (cores, anotações)
-- **Contexto:** sempre incluir baseline, benchmark
-- **Honestidade:** não distorcer escala para manipular percepção
+- Relacionamentos humanizados: construir conexões mais autênticas.
+- Como impacta nos resultados do negócio?
+- Qual é a relação com os aumentos graduais dos níveis de ansiedade, estresse e desmotivação nas empresas?
+- **Qual é o papel do líder?**
 
-**Tipos de Gráficos:**
+Dialogar sobre o que significa uma liderança humanizada inclui entender como as pessoas reagem a contextos em transformação, reduzindo a ansiedade e o estresse, sem eliminar a necessidade de gerenciar tarefas, resultados, processos, competências e outras formas de padronização dominantes.
 
-- **Comparação:** barras horizontais
-- **Evolução temporal:** linhas
-- **Distribuição:** histogramas, box plots
-- **Correlação:** scatter plots
-- **Composição:** pie charts (evitar se >5 categorias), stacked bars
+#### 2.4 Estilos de Ser e Pensar: Afinidade vs. Força
 
-**Ferramentas:**
+**Força:** objetividade, competência racional, eficiência
+**Afinidade:** empatia, capacidade de conexão emocional
 
-- **Exploração:** Matplotlib, Seaborn, Plotly (Python)
-- **Apresentação:** Power BI, Tableau, Looker
-- **Interativas:** Streamlit, Dash, Shiny
+- **Pessoas com alta força + baixa afinidade:** despertam temor, afastamento, cautela. Sensações de inveja, mescla de respeito e ressentimento.
+- **Pessoas com alta afinidade + baixa força:** compaixão, piedade. Vistas como fracas, vulneráveis, pouco competentes.
+- **Equilíbrio:** a meta é encontrar o equilíbrio entre força (competência) e afinidade (conexão emocional).
 
-#### 3.4 Documentação e Reprodutibilidade
+**A Confiança, decorrente da AFINIDADE, aumenta a abertura, a cooperação, a fluidez da comunicação, a partilha de informações, a cooperação.**
 
-- **README.md:** objetivo do projeto, como rodar, dependências
-- **Notebooks:** código limpo e comentado, células organizadas
-- **Model Card:** documenta modelo (treino, métricas, limitações, viés)
-- **Versionamento:** Git para código, DVC para dados/modelos
-- **Environment:** requirements.txt, Docker (garantir reprodutibilidade)
+**A CONFIANÇA facilita a troca e a aceitação de ideias, abrindo a "mente e os ouvidos" do interlocutor.**
 
----
+### 2.5 Reconhecimento dos Medos
 
-### 4. **Cultura Data-Driven**
+**Possíveis questionamentos (explícitos ou velados):**
+- Será que eu vou dar conta?
+- Tenho que negar tudo o que aprendi e começar do zero?
+- Onde isso vai dar?
+- Onde busco pontos de apoio?
 
-#### 4.1 O que é Cultura Data-Driven
+### 2.6 Cuidando da Dimensão Emocional em Situações de Mudança ou Crise
 
-- **Decisões baseadas em dados:** não em intuição ou HiPPO (Highest Paid Person's Opinion)
-- **Experimentação:** testar hipóteses com A/B tests
-- **Transparência:** dados acessíveis, democratização
-- **Curiosidade:** questionar suposições, explorar
-
-#### 4.2 Construindo Cultura Data-Driven
-
-**Estratégias:**
-
-1. **Exemplo vindo de cima:** líderes seniores usam dados em decisões
-2. **Acesso a dados:** self-service BI (dashboards, SQL access)
-3. **Letramento de dados (Data Literacy):** treinar organização
-   - O que é uma média? Mediana? Correlação?
-   - Como interpretar p-value?
-4. **Celebrar casos de sucesso:** storytelling de projetos que geraram valor
-5. **Infraestrutura:** data warehouse, ferramentas de BI, pipelines confiáveis
-6. **Governança:** dados corretos, qualidade, documentação
-
-**Barreiras:**
-
-- **Resistência cultural:** "sempre fizemos assim"
-- **Falta de confiança nos dados:** dados ruins ou contraditórios
-- **Siloing:** dados fragmentados em sistemas isolados
-- **Medo:** decisão errada baseada em dados = culpa
-
-#### 4.3 Métricas de Sucesso (OKRs para DS)
-
-**OKR = Objectives and Key Results**
-
-**Exemplo:**
-
-- **Objective:** Reduzir churn de clientes
-- **Key Results:**
-  1. Aumentar retenção de 80% para 85% em Q3
-  2. Identificar 70% dos churners com 60 dias de antecedência
-  3. Implementar modelo de propensão ao churn em produção
-
-**Boas práticas:**
-
-- **Métricas de negócio > métricas técnicas** (receita > AUC)
-- **Métricas leading** (antecedentes) **vs. lagging** (resultado final)
-- **Dashboards de acompanhamento:** monitorar KPIs em tempo real
+**Práticas essenciais:**
+- Não gostamos de mudanças alheias à nossa iniciativa e vontade.
+- O desequilíbrio, a aparente falta de controle em relação ao futuro, a incerteza são vistas como ameaças. Emergem os medos individuais e coletivos.
+- **Importante:** identificar a natureza dos bloqueios emocionais e resistências.
+- **Comunicação e esclarecimento:** em todos os níveis e continuamente.
+- Investir em treinamento, coaching e mentoria (peer-to-peer coaching, rodas de conversa).
+- Validar os esforços e comemorar os pequenos e grandes avanços.
 
 ---
 
-### 5. **Gestão de Projetos de Data Science**
+### 3. O Futuro: Mentalidade e Liderança em Complexidade
 
-#### 5.1 Desafios Únicos
+#### 3.1 Os Domínios da Inteligência Emocional (IE) e Suas Competências
 
-- **Incerteza:** não sabemos se modelo vai funcionar até experimentar
-- **Exploração vs. Entrega:** balancear pesquisa e produtização
-- **Dependências de dados:** qualidade ruim, falta de dados
-- **Iterativo:** raramente acertamos na primeira tentativa
-- **Expectations management:** stakeholders esperam "resolver tudo com AI"
+**MENTALIDADE: Conhecer (pensar)**
 
-#### 5.2 Metodologia CRISP-DM
+**Autoconsciência:**
+- Autoconsciência emocional
+- Autoavaliação precisa
+- Autoconfiança
 
-**Cross-Industry Standard Process for Data Mining:**
+**Autogestão:**
+- Autocontrole emocional
+- Transparência
+- Adaptabilidade
+- Superação
+- Iniciativa
+- Otimismo
 
-1. **Business Understanding:**
-   - Qual problema de negócio?
-   - Critérios de sucesso (KPIs)
-   - Restrições (tempo, budget, dados disponíveis)
-2. **Data Understanding:**
-   - Explorar dados disponíveis
-   - Verificar qualidade (missing, outliers)
-   - Estatísticas descritivas, visualizações
-3. **Data Preparation:**
-   - Limpeza (tratar missing, duplicatas)
-   - Feature engineering
-   - Transformações (scaling, encoding)
-4. **Modeling:**
-   - Selecionar algoritmos
-   - Treinar modelos
-   - Hyperparameter tuning
-5. **Evaluation:**
-   - Avaliar métricas (accuracy, precision, recall, AUC)
-   - Validar com stakeholders
-   - Revisitar business understanding (atendeu?)
-6. **Deployment:**
-   - Colocar modelo em produção
-   - Monitorar performance
-   - Manutenção e retreinamento
+**MENTALIDADE: Sentir (relacionamento)**
 
-**Ciclo iterativo:** voltar para etapas anteriores conforme aprende
+**Consciência Social:**
+- Empatia
+- Consciência organizacional
+- Consciência de Serviço
 
-#### 5.3 Gestão de Expectativas
+**Admin. Relacional:**
+- Liderança inspiradora
+- Influência
+- Desenvolvimento dos demais
+- Catalisação de mudanças
+- Gerenciamento de conflitos
+- Trabalho em equipe/Colaboração
 
-**Problema:** stakeholders esperam modelo perfeito rapidamente
+**Referência:** Daniel Goleman, Richard Boyatzis, Annie McKee - "O Poder da Inteligência Emocional: Primal Leadership"
 
-**Estratégias:**
+#### 3.2 Mentalidade (Agir): Reaprender a Aprender
 
-- **Prova de conceito (PoC):** versão simplificada primeiro (2-4 semanas)
-- **MVP (Minimum Viable Product):** modelo básico em produção rápido, iterar depois
-- **Comunicação de riscos:** "pode não funcionar", "precisamos de X dados"
-- **Trade-offs:** explicar accuracy vs. interpretability vs. latency
-- **Transparência:** compartilhar progresso, bloqueios, learnings
+**Para lidar com cenários transformadores precisaremos de atualização, novas capacidades técnicas e sobretudo sociais.**
 
-**Exemplo de cronograma:**
+**Três pilares:**
 
-- **Semana 1-2:** EDA, entender problema
-- **Semana 3-4:** baseline model, avaliar viabilidade
-- **Semana 5-8:** iterar para melhorar model
-- **Semana 9-10:** preparar deployment, documentação
-- **Semana 11-12:** deploy, monitorar
+1. **Reaprender a aprender (lifelong learning)**
+   - Para lidar com cenários transformadores precisaremos de atualização, novas capacidades técnicas e sobretudo sociais.
 
-#### 5.4 Priorização de Projetos
+2. **Ambidestria:**
+   - Abraçar a alternância e aceitar ambiguidade.
+   - "O passado traz nossa história, o presente a nova realidade e o futuro será construído por nós."
 
-**Framework: Impacto vs. Esforço**
+3. **Autodesenvolvimento:**
+   - Olhar para dentro e fora.
+   - Vulnerabilidades
+   - Buscar o autoconhecimento
+   - Estar aberto ao diverso
 
-|                   | Baixo Esforço                    | Alto Esforço                  |
-| ----------------- | -------------------------------- | ----------------------------- |
-| **Alto Impacto**  | **Quick Wins** (fazer primeiro!) | **Major Projects** (planejar) |
-| **Baixo Impacto** | **Fill-ins** (se sobrar tempo)   | **Avoid** (não fazer)         |
+#### 3.3 O Poder das Crenças
 
-**Critérios de Impacto:**
+Confiamos muito, quase exclusivamente, no pensamento analítico, que apenas refina o conhecimento atual, produzindo melhorias no status quo, sendo que os resultados muitas vezes são decepcionantes.
 
-- Receita gerada (ou custo economizado)
-- Alinhamento estratégico
-- Número de usuários impactados
+#### 3.4 Natureza do Problema: Simples vs. Complexo
 
-**Critérios de Esforço:**
+**SIMPLES:**
+- Independentes, previsíveis
+- Resolvidos, tendem a desaparecer
+- Contexto conhecido, há histórico
+- São facilmente isolados
+- Instruções devem ser seguidas e garantem o sucesso
+- A solução não contempla alternativas
 
-- Tempo de desenvolvimento
-- Disponibilidade de dados
-- Complexidade técnica
-- Dependências externas
+_Eles têm uma resposta certa que fornece a solução. Ficam a cargo de pessoas operacionais._
 
-**Método ICE Score:**
+**COMPLEXO:**
+- Contexto desconhecido
+- Têm características interdependentes
+- Ao longo do tempo, as variáveis tendem a oscilar
+- Os planos raramente funcionam de acordo com as expectativas
+- Os métodos para a solução de problemas não são suficientes. Experimentação.
+- Não há um ponto final
+- Problemas complexos não são solucionáveis e por isso, devem ser gerenciados
 
-- **I (Impact):** 1-10
-- **C (Confidence):** 0-1 (quão confiante que dará certo)
-- **E (Ease):** 1-10
-- **Score = I × C / E**
+_Práticas emergentes e adaptativas. Ficam a cargo dos líderes._
 
----
+#### 3.5 Gaps do Líder na Solução de Problemas Complexos
 
-### 6. **Gestão de Conflitos e Feedback**
+- Dificuldade em lidar com decisões e respostas diversas
+- Entender que não há uma fórmula universal para todas as situações
+- Aceitar as próprias limitações, entendendo que não tem todas as respostas
+- Tendência a supersimplificar, buscando a previsibilidade e ordem
+- Dificuldade em aceitar que as circunstâncias mudam
+- Ansiedade para encontrar a solução
 
-#### 6.1 Tipos de Conflitos
+#### 3.6 Experimentação vs. Controle da Incerteza
 
-- **Técnico:** qual algoritmo usar, arquitetura de sistema
-- **Alocação de recursos:** priorização de projetos, orçamento
-- **Interpessoal:** personalidades, estilos de trabalho
-- **Organizacional:** DS quer experimentar, negócio quer resultados rápidos
+**Experimentação, criatividade, risco são naturais na tomada de decisão em contextos desconhecidos.**
 
-#### 6.2 Resolução de Conflitos
+Mas a falta de planejamento pode levar ao erro, quando não é seguro falhar.
 
-**Abordagens:**
+**Procurar controlar a incerteza, hipervalorizando a linearidade pode engessar o processo de decisão, desconsiderando o que é novo, subliminar, imprevisível.**
 
-1. **Colaboração:** buscar solução win-win (ideal)
-2. **Compromisso:** ambos cedem um pouco
-3. **Competição:** impor solução (usar raramente, apenas se urgente)
-4. **Acomodação:** ceder (se não for crítico)
-5. **Evitação:** postponer (se for se resolver sozinho)
+O que pode levar ao caos e à desordem.
 
-**Processo:**
+#### 3.7 Complexity Leadership (Humberto Mariotti)
 
-- **Ouvir ativamente:** entender perspectiva do outro
-- **Empatia:** validar sentimentos
-- **Foco no problema, não na pessoa:** "processo errado" vs. "você errou"
-- **Buscar interesses comuns:** ambos querem projeto de sucesso
-- **Propor soluções criativas:** brainstorming colaborativo
+**Conceito:** Burocracia em excesso limita a criatividade, criatividade em excesso limita a eficiência.
 
-#### 6.3 Cultura de Feedback
+| **Lado Administrativo** | **Lado Adaptativo** |
+| --- | --- |
+| Formal, convencional, oficial | Informal, criativo, não convencional |
+| Sua função é produzir eficiência | Sua função é produzir inovação |
+| Executa as funções administrativas | Pensa e executa as funções adaptativas |
+| Envolve as estruturas burocráticas e as pessoas operacionais | Abriga as pessoas criativas |
+| Comunicação: discurso oficial, formal, explícito | Comunicação: discurso informal e tácito da organização |
+| Narrativas lineares e centralizadoras (como as coisas devem ser feitas) | **Antenarrativas** (projeções e apostas sobre o futuro) e **Histórias Organizacionais** (informais, não estruturadas, permeadas de incerteza, como as coisas são realmente feitas) |
 
-**Feedback Eficaz:**
+**A clareza organizacional emerge dessas interações.**
 
-- **SBI Model (Situation-Behavior-Impact):**
-  ```
-  "Na reunião de ontem (situation), quando você cortou a fala do João (behavior),
-  ele ficou desmotivado e não contribuiu mais (impact)."
-  ```
-- **Feedback positivo:** tão importante quanto crítico
-  - **Específico:** não "bom trabalho", mas "sua análise de churn identificou X, que salvou Y receita"
-- **Feedback construtivo:**
-  - **Privado:** nunca criticar em público
-  - **Oportuno:** logo após comportamento (não esperar 6 meses)
-  - **Acionável:** "fazer X da próxima vez" vs. "seja melhor"
+**Mais clareza significa menos estresse organizacional e portanto mais produtividade.**
 
-**1-1s (One-on-ones):**
+#### 3.8 Atitudes e Capacidades Necessárias
 
-- **Frequência:** semanal ou quinzenal (30-60 min)
-- **Pauta:** carreira, desafios, feedback mútuo (não status de projeto)
-- **Responsabilidade:** do liderado (não do líder)
-- **Confidencialidade:** espaço seguro
+- Ser realista, o que implica em aceitar e adaptar-se à complexidade/incerteza.
+- Usar múltiplas abordagens. Entender que todas as opiniões merecem análise.
+- Promover conversas abertas, ambientes de confiança.
+- Entender que muitas vezes opostos antagônicos, podem ser complementares.
+- Usar a intuição, mas entender que às vezes ela pode levar à indecisão.
+- Entender que a incerteza e a diversidade de perspectivas são inerentes à natureza humana.
+- Estar atento e consciente e ao mesmo tempo ser rigoroso, criativo e compreensivo.
+- Lidar com os dilemas de que não se pode ter tudo (trade-off).
 
-#### 6.4 Gestão de Performance
+#### 3.9 Pontos de Atenção
 
-**Avaliação de Performance:**
-
-- **Frequência:** anual ou semestral
-- **Critérios:**
-  - **Entrega técnica:** qualidade de código, modelos, análises
-  - **Colaboração:** trabalho em equipe, conhecimento compartilhado
-  - **Impacto no negócio:** projetos geraram valor?
-  - **Crescimento:** aprendizado, novas skills
-
-**Rating:**
-
-- **Exceeds expectations:** promovido, bônus alto
-- **Meets expectations:** maioria (60-70%)
-- **Needs improvement:** plano de ação, acompanhamento próximo
-- **Does not meet:** PIP (Performance Improvement Plan) ou desligamento
-
-**Armadilha:** "Brilliant Jerk" (tecnicamente excelente mas tóxico)
-
-- **Decisão:** não tolerar (destrói cultura do time)
+- Identificar as resistências/modo sobrevivência que leva à polarização.
+- Evitar a lógica binária, que deriva da insegurança e da necessidade das certezas.
+- Evitar consensos rasos e insuficientes para formar as bases de colaboração e mudança. Daí podem resultar mal-entendidos, falta de ação e mais decisões.
+- Levar em conta os fatores emocionais resultantes do desconforto, da dissonância e da vulnerabilidade que a incerteza provoca.
 
 ---
 
-### 7. **Liderança Remota e Híbrida**
+### 4. Liderança Humanizada: Debate vs. Diálogo
 
-#### 7.1 Desafios
+#### 4.1 Definições (David Bohm, físico pesquisador da física quântica e filosofia da mente)
 
-- **Comunicação assíncrona:** menos interações casuais (watercooler moments)
-- **Onboarding:** mais difícil integrar novos remotamente
-- **Alinhamento:** garantir que todos entendem prioridades
-- **Engajamento:** evitar sensação de isolamento
-- **Produtividade:** balancear autonomia e accountability
+**DEBATE:**
+- Palavra que significa "derrotar", ou mesmo como "discussão", que possui a mesma raiz de "percussão" e "concussão" - "quebrar coisas."
 
-#### 7.2 Práticas para Times Remotos
+**DIÁLOGO:**
+- Deriva de duas raízes gregas: "dia" e "logos", sugerindo "fluxo de significado."
 
-**Comunicação:**
+#### 4.2 Reflexão Crítica
 
-- **Documentação escrita:** decisões, arquitetura, processos
-- **Ferramentas assíncronas:** Slack, Notion, Confluence
-- **Daily standups assíncronos:** cada um posta update (não reunião)
-- **All-hands semanais/mensais:** sincronizar time inteiro
+Parece que ainda não aprendemos a pensar juntos. Defendemos nossas ideias de modo emocional, quando o diálogo não requer que as pessoas concordem umas com as outras. Em vez disso, encoraja as pessoas a participarem de um conjunto de significados compartilhados que conduz a uma ação alinhada.
 
-**Rituais:**
+#### 4.3 Aprendizagem
 
-- **Coffee chats virtuais:** 15 min para conversar de vida (não trabalho)
-- **Pair programming remoto:** screen share, colaboração
-- **Show & tell:** apresentar projetos para time
-
-**Ferramentas:**
-
-- **Comunicação:** Slack, Microsoft Teams
-- **Vídeo:** Zoom, Google Meet
-- **Colaboração:** Miro, Mural (whiteboards virtuais)
-- **Código:** GitHub, GitLab (code review, issues)
-- **Gestão:** Jira, Trello, Asana
-
-**Expectativas:**
-
-- **Core hours:** horário mínimo de overlap (ex: 10am-2pm)
-- **Response time:** não espera resposta imediata (assíncrono)
-- **Disponibilidade:** marcar em calendário quando indisponível
-
-#### 7.3 Modelo Híbrido
-
-- **Dias no escritório:** para colaboração intensa, workshops, 1-1s
-- **Dias remotos:** para deep work (modelagem, código)
-- **Evitar:** parte do time presencial, parte remota na mesma reunião (ruim para remotos)
-- **All-remote ou all-in-person:** quando possível
+"Aprender a ouvir até o fim, sem concordar nem discordar de imediato, é antes de mais nada, uma posição de respeito ao outro."
 
 ---
 
-### 8. **Ética e Responsabilidade em Data Science**
+### 5. Armadilhas do Reducionismo
 
-#### 8.1 Viés e Fairness
+**Reducionismo:**
+- Reduzimos o que percebemos à nossa capacidade de entendimento, ou seja, a forma como é estruturada a nossa mente.
+- Reduzir algo ao nosso conhecimento é o mesmo que reduzi-lo à nossa ignorância, ou às dimensões de nosso ego.
 
-**Viés em Modelos:**
-
-- **Viés histórico:** dados refletem discriminação passada (ex: menos mulheres em cargos seniores → modelo prevê homens para promoção)
-- **Viés de amostragem:** dados não representam população real
-- **Viés de confirmação:** buscar dados que confirmam hipótese prévia
-
-**Fairness:**
-
-- **Demographic parity:** taxa de aprovação igual entre grupos (gênero, raça)
-- **Equalized odds:** taxa de erro igual entre grupos
-- **Trade-off:** fairness vs. accuracy (nem sempre compatíveis)
-
-**Práticas:**
-
-- **Audit de modelos:** testar em subgrupos (gênero, idade, raça)
-- **Diverse teams:** perspectivas variadas identificam vieses
-- **Transparência:** explicar como modelo decide
-
-#### 8.2 Privacidade e LGPD
-
-- **Minimização de dados:** coletar só o necessário
-- **Anonimização:** remover identificadores (PII - Personally Identifiable Information)
-- **Consentimento:** usuário precisa autorizar uso de dados
-- **Direito ao esquecimento:** poder deletar dados sob solicitação
-
-#### 8.3 Explicabilidade
-
-- **Black-box models (deep learning):** difícil explicar
-- **Necessidade de explicação:** saúde (diagnósticos), finanças (crédito), jurídico
-- **Técnicas:**
-  - **SHAP, LIME:** explicabilidade post-hoc
-  - **Feature importance:** quais variáveis mais influenciam
-  - **Modelos interpretáveis:** árvores de decisão, regressões lineares
-
-#### 8.4 Responsabilidade do Líder
-
-- **Questions to ask:**
-  - Este modelo pode causar dano?
-  - Alguém será injustiçado?
-  - Estamos transparentes sobre limitações?
-  - Quem é responsável se algo der errado?
-- **Estabelecer guidelines:** política de ética de dados na empresa
-- **Comitê de ética:** revisar projetos sensíveis
+**Reamplificação:**
+- Consiste em conferir o que foi compreendido, envolvendo também a compreensão dos outros, por meio do diálogo, de outras formas de interação e convivência.
 
 ---
 
-### 9. **Influência sem Autoridade Formal**
+### 6. Muda o Paradigma da Formação das Equipes
 
-#### 9.1 Desafio
+**(O líder não tem todas as respostas)**
 
-- **Data Scientists muitas vezes não têm:**
-  - Autoridade hierárquica sobre stakeholders
-  - Orçamento próprio
-  - Poder de decisão final
-- **Mas precisam influenciar:**
-  - Adoção de recomendações
-  - Priorização de projetos
-  - Mudanças em processos
+- Inteligência de enxame (auto-organização)
+- Soluções emergem das interações humanas
+- Interações estimulam a adaptabilidade, aprendizagem e inovação
+- Líder e liderados se alternam na construção do conhecimento
+- O líder integra e empodera
+- Capacita as pessoas a melhorar suas ações coletivas
+- Fomenta a inteligência distribuída e co-criada
+- As equipes são interdisciplinares
 
-#### 9.2 Estratégias de Influência
+#### 6.1 Auto-organização dos Grupos: Swarm Intelligence
 
-1. **Construir relacionamento:**
-   - **Networking interno:** conhecer stakeholders, entender dores
-   - **Trust:** cumprir prazos, entregar qualidade
-2. **Falar a língua do negócio:**
-   - Traduzir insights técnicos para impacto (receita, custo, risco)
-   - Exemplo: "modelo reduzirá churn em 5%, salvando R$2M/ano"
-3. **Data storytelling:**
-   - Narrativa convincente com dados
-   - Visualizações impactantes
-4. **Quick wins:**
-   - Entregar valor rápido (análise simples que gera insight)
-   - Constrói credibilidade para projetos maiores
-5. **Alinhamento estratégico:**
-   - Conectar projetos de DS com OKRs da empresa
-   - "Este projeto ajuda a atingir meta de crescimento de 20%"
-6. **Coalizões:**
-   - Encontrar aliados (outros líderes que se beneficiam)
-   - Apoio de múltiplas áreas aumenta influência
+**Exemplo: Formigas-de-Fogo (Harvey, tempestade no Texas)**
 
-#### 9.3 Lidar com Resistência
+Enchenetes - tempestade Harvey pelo Texas, mostrou os comportamentos de grupo das formigas-de-fogo, que encontraram na união de esforços uma forma de evitar o afogamento.
 
-**Tipos de resistência:**
+Usando seus próprios corpos, os insetos se empilham para criar uma espécie de balsa e flutuam pelas áreas inundadas.
 
-- **Racional:** "não temos orçamento", "não temos dados"
-- **Emocional:** medo de mudança, perda de controle
-- **Política:** ameaça a poder estabelecido
+Entomologistas dizem que se trata de um comportamento comum da espécie.
 
-**Táticas:**
+Segundo Jim Hardie, especialista da Royal Entomological Society, explica à BBC que as balsas podem ser formadas por até 100 mil formigas. Com a gordura de seus corpos, elas criam uma rede resistente à água que protege a rainha do grupo. É, assim, viajam em busca de um novo local para cavar seus formigueiros.
 
-- **Ouvir objeções:** entender raiz da resistência
-- **Empatia:** validar preocupações
-- **Pilotos:** testar em pequena escala ("se funcionar, expandimos")
-- **Co-criação:** envolver stakeholder na solução (ownership)
+#### 6.2 O Case de RH na CSN (Caso Prático)
+
+Narrativa de liderança humanizada em ação:
+
+"Um dia dei a ideia de fazermos um concurso de moda para escolher o novo uniforme. O conselho me chamou de louca, mas eu havia constatado que os funcionários tinham baixa autoestima justamente pelo uniforme: eram velhos, horrendos, doados de funcionário para outro. E oriundos da época da CSN estatal. Foi quando contratei a Glória Kalil, que chefiou um grupo de estilistas. Confeccionamos, teve votação online e até desfile dentro da usina. Virou case de RH e, dois meses depois, o clima era outro. As pessoas iam trabalhar arrumadas, mais felizes."
+
+**MARIA SILVIA BASTOS MARQUES**
+_ÉPOCA NEGÓCIOS, 11/08/2026_
 
 ---
 
-### 10. **Desenvolvimento de Liderança**
+### 7. Necessidades dos Colaboradores
 
-#### 10.1 Autoconhecimento
+**(O que as pessoas querem?)**
 
-- **Estilos de liderança:**
-  - **Autocrático:** decide sozinho (rápido, mas low morale)
-  - **Democrático:** decide com time (engajamento alto, mais lento)
-  - **Delegativo (Laissez-faire):** time decide (autonomia, pode gerar desalinhamento)
-- **Qual seu estilo natural?** Adaptar conforme contexto (situational leadership)
+| **COMUNIDADE** | **AUTENTICIDADE** | **SIGNIFICADO** | **ENTUSIASMO** |
+| --- | --- | --- | --- |
+| Os seguidores anseiam por pertencer. Sentir-se parte de algo maior. Os líderes devem ajudá-los a conectar-se com os outros (não somente com eles), bem como, com o propósito geral da organização. | Os seguidores querem ser liderados por seres humanos, não por títulos ou credenciais. Os líderes devem ser capazes de identificar/separar as diferenças pessoais, as debilidades e as fortalezas para inspirar a equipe a aportadora energia e talentos. | Os seguidores querem crer que seu esforço é reconhecido. Os líderes devem valorizar as contribuições de uma maneira significativa, com retroalimentação altamente personalizada. | Os seguidores necessitam de um estímulo para ativar um desempenho excepcional. Os líderes que expressam sua própria paixão, valores e visão proporcionam a energia e entusiasmo que os colaboradores anseiam. |
 
-**Ferramentas:**
-
-- **Myers-Briggs (MBTI):** identificar tipo de personalidade
-- **StrengthsFinder:** focar em strengths vs. corrigir weaknesses
-- **360° feedback:** feedback de pares, subordinados, superiores
-
-#### 10.2 Inteligência Emocional (EQ)
-
-**5 Componentes (Daniel Goleman):**
-
-1. **Autoconhecimento:** reconhecer próprias emoções
-2. **Autorregulação:** controlar impulsos
-3. **Motivação intrínseca:** drive interno (não só $$$)
-4. **Empatia:** entender emoções dos outros
-5. **Habilidades sociais:** influência, networking, gestão de conflitos
-
-**Por que importa:**
-
-- **EQ > IQ para liderança:** Harvard Business Review
-- **Preditor de sucesso:** líderes com alto EQ têm times mais performáticos
-
-#### 10.3 Continuous Learning
-
-- **Leitura:** livros de liderança, management, psicologia
-- **Cursos:** MBAs, executivos, workshops
-- **Mentoria:** buscar mentor sênior
-- **Reverse mentoring:** aprender com júniores (novas tecnologias)
-- **Conferências:** networking, tendências
-- **Experimentação:** testar novas práticas com time
-
-#### 10.4 Work-Life Balance e Burnout
-
-**Sinais de burnout:**
-
-- Exaustão crônica
-- Cinismo, distanciamento emocional
-- Queda de produtividade
-
-**Prevenção:**
-
-- **Boundaries:** separar trabalho e vida pessoal (não responder email à noite)
-- **Férias:** tirar férias completas (desconectar)
-- **Delegação:** não fazer tudo sozinho
-- **Exercício, sono, alimentação:** fundação de saúde mental
-- **Terapia/coaching:** suporte profissional
-
-**Responsabilidade do líder:**
-
-- Modelar comportamento saudável (não glorificar overwork)
-- Respeitar boundaries do time
-- Encorajar férias
+**Fonte:** Goffee, Rob and Jones, Gareth. "Why Should Anyone Be Led by You?"
 
 ---
 
-## 💡 Conceitos-Chave para Memorizar
+## Síntese: Os 3 Pilares da Liderança Humanizada
 
-1. **Líder de DS = Soft Skills > Technical Skills**
-   - Não precisa ser o melhor técnico, mas precisa comunicar, influenciar, desenvolver pessoas
+1. **Autoconsciência:** Conhecer-se para liderar-se. Entender os próprios estilos de ser, limitações e motivações.
 
-2. **Estrutura de Times:**
-   - **Híbrida (CoE + Squads):** melhor dos dois mundos (padrões + proximidade de negócio)
-   - **Ratio:** 1 Engineer : 2-3 Scientists : 0.5 ML Engineer
+2. **Inteligência Emocional:** Reconhecer que emoção e razão não são opostas. Força (competência) + Afinidade (conexão emocional) = Influência.
 
-3. **Comunicação:**
-   - **Storytelling:** Contexto → Insight → Ação
-   - **Adaptar audiência:** C-level (impacto), gestores (acionável), técnico (metodologia)
-
-4. **Cultura Data-Driven:**
-   - **Decisões baseadas em dados** (não HiPPO)
-   - **Construir:** exemplo de cima, acesso a dados, letramento, celebrar sucessos
-
-5. **CRISP-DM:** Business Understanding → Data Understanding → Data Preparation → Modeling → Evaluation → Deployment (ciclo iterativo)
-
-6. **Gestão de Expectativas:**
-   - **PoC → MVP → Iteração** (não prometer milagres)
-   - **Comunicar riscos e trade-offs**
-
-7. **Priorização:**
-   - **Impacto vs. Esforço:** focar em Quick Wins primeiro
-   - **ICE Score:** Impact × Confidence / Ease
-
-8. **Feedback:**
-   - **SBI Model:** Situation-Behavior-Impact
-   - **1-1s:** semanal/quinzenal, pauta do liderado, confidencial
-
-9. **Ética:**
-   - **Viés em modelos:** auditar subgrupos, diverse teams
-   - **Fairness vs. Accuracy:** trade-off inevitável
-   - **Explicabilidade:** SHAP, LIME para black-box models
-
-10. **Influência sem Autoridade:**
-    - **Construir relacionamento + Falar linguagem de negócio + Quick wins + Alinhamento estratégico**
-
----
-
-## ⚠️ Erros Comuns a Evitar
-
-1. **❌ Micromanagement (controlar cada detalhe do trabalho do time)**
-   - Resultado: desmotivação, falta de autonomia, turnover
-   - ✅ Delegar com clareza de objetivos, confiar no time
-
-2. **❌ Não adaptar comunicação para audiência**
-   - Problema: falar de AUC e overfitting para CEO
-   - ✅ Traduzir para impacto no negócio (receita, custo, risco)
-
-3. **❌ Priorizar apenas projetos tecnicamente interessantes**
-   - Problema: impacto zero no negócio
-   - ✅ Balancear: impacto no negócio > curiosidade técnica
-
-4. **❌ Não gerenciar expectativas (prometer mais do que pode entregar)**
-   - Resultado: descrédito, frustração de stakeholders
-   - ✅ Comunicar riscos, incertezas, trade-offs desde o início
-
-5. **❌ Evitar conflitos (deixar problemas interpessoais sem resolver)**
-   - Resultado: conflito escala, ambiente tóxico
-   - ✅ Endereçar cedo, com empatia, foco no problema
-
-6. **❌ Não dar feedback (assumir que pessoa sabe que está errando)**
-   - Resultado: comportamento ruim persiste
-   - ✅ Feedback oportuno, específico, acionável
-
-7. **❌ Contratar "unicórnios" (perfil impossível: expert em tudo)**
-   - Resultado: não achar ninguém ou pagar demais
-   - ✅ Contratar potencial, desenvolver internamente, time complementar
-
-8. **❌ Não documentar decisões e processos**
-   - Problema: conhecimento na cabeça de uma pessoa (bus factor)
-   - ✅ Documentação em wiki, README, design docs
-
-9. **❌ Tolerar "Brilliant Jerk" (tecnicamente ótimo mas tóxico)**
-   - Resultado: time desmotivado, turnover
-   - ✅ Valores > Skills: desligar se não mudar comportamento
-
-10. **❌ Não investir em cultura (focar só em entregas)**
-    - Resultado: burnout, desengajamento, silos
-    - ✅ Rituais de time (retrospectivas, celebrações), psicological safety
-
----
-
-## 📚 Materiais de Apoio e Referências
-
-### Livros de Liderança
-
-📖 **"The Manager's Path" - Camille Fournier**
-
-- Carreira em tech: de IC a CTO
-
-📖 **"Radical Candor" - Kim Scott**
-
-- Como dar feedback eficaz (cuidar pessoalmente + desafiar diretamente)
-
-📖 **"Crucial Conversations" - Patterson et al.**
-
-- Como ter conversas difíceis
-
-📖 **"Turn the Ship Around!" - L. David Marquet**
-
-- Liderança distribuída (leader-leader vs. leader-follower)
-
-📖 **"High Output Management" - Andy Grove (Intel)**
-
-- Gestão de times de alta performance
-
-### Livros de Data Science Leadership
-
-📖 **"Building Data Science Teams" - DJ Patil**
-
-- Como estruturar e liderar times de DS
-
-📖 **"The Data Warehouse Toolkit" - Ralph Kimball**
-
-- Infraestrutura de dados (contexto para líderes)
-
-📖 **"Storytelling with Data" - Cole Nussbaumer Knaflic**
-
-- Visualização e comunicação de dados
-
-### Livros de Cultura e Organização
-
-📖 **"Measure What Matters" - John Doerr**
-
-- OKRs (Google, Intel)
-
-📖 **"The Phoenix Project" - Gene Kim**
-
-- DevOps e transformação organizacional (roman-chave)
-
-📖 **"Team Topologies" - Skelton & Pais**
-
-- Como estruturar times de tecnologia
-
-### Artigos e Papers
-
-📄 **"Data Science for Business" - Provost & Fawcett**
-
-- Pensar analytics com lente de negócio
-
-📄 **Harvard Business Review - "Data Scientist: The Sexiest Job of the 21st Century"**
-
-- Perfil e desafios da profissão
-
-📄 **"Building the AI-Powered Organization" (HBR)**
-
-- Transformação organizacional com IA
-
-### Cursos e Comunidades
-
-🎓 **Coursera:** "Leading People and Teams" (University of Michigan)
-🎓 **LinkedIn Learning:** cursos de management
-🎓 **Reboot.io:** coaching para líderes de tech
-🎓 **Rands Leadership Slack:** comunidade de engineering managers
-
-### Podcasts
-
-🎙️ **"Manager Tools":** práticas de gestão
-🎙️ **"Radical Candor":** feedback e cultura
-🎙️ **"DataFramed" (DataCamp):** liderança em DS
-🎙️ **"The Data Chief":** CDOs e estratégia de dados
-
----
-
-## ✅ Checklist de Estudo
-
-### Fundamentos de Liderança
-
-- [ ] Listar diferença entre technical lead vs. people manager
-- [ ] Conhecer evolução de carreira: IC track vs. management track
-- [ ] Entender quando soft skills > technical skills
-
-### Gestão de Times
-
-- [ ] Descrever perfis em time DS: Engineer, Scientist, ML Engineer, Analyst
-- [ ] Conhecer modelos de organização: centralizado, descentralizado, híbrido (CoE)
-- [ ] Saber ratio sugerido: 1:2-3:0.5 (Engineer:Scientist:ML Engineer)
-- [ ] Listar 3 estratégias de retenção de talentos
-- [ ] Saber principais causas de turnover
-
-### Comunicação
-
-- [ ] Aplicar estrutura de storytelling: Contexto → Insight → Ação
-- [ ] Adaptar apresentação para 3 audiências: C-level, gestores, técnico
-- [ ] Listar 3 princípios de visualização de dados (simplicidade, destaque, contexto)
-- [ ] Escolher gráfico adequado: barras (comparação), linhas (tempo), scatter (correlação)
-
-### Cultura Data-Driven
-
-- [ ] Definir cultura data-driven (decisões baseadas em dados, não HiPPO)
-- [ ] Listar 5 estratégias para construir: exemplo de cima, acesso, letramento, celebrar, infraestrutura
-- [ ] Criar OKR para projeto de DS (Objective + 3 Key Results mensuráveis)
-
-### Gestão de Projetos
-
-- [ ] Desenhar ciclo CRISP-DM (6 etapas)
-- [ ] Aplicar framework Impacto vs. Esforço para priorizar projetos
-- [ ] Calcular ICE Score: Impact × Confidence / Ease
-- [ ] Criar cronograma típico de projeto DS (12 semanas)
-- [ ] Listar 3 estratégias de gestão de expectativas (PoC, MVP, comunicar riscos)
-
-### Feedback e Performance
-
-- [ ] Aplicar SBI Model: Situation-Behavior-Impact
-- [ ] Estruturar 1-1 eficaz (frequência, pauta, responsabilidade)
-- [ ] Criar PDI (Plano de Desenvolvimento Individual) com metas 3-6 meses e 1-2 anos
-- [ ] Listar critérios de avaliação de performance (entrega, colaboração, impacto, crescimento)
-
-### Conflitos
-
-- [ ] Identificar 4 tipos de conflitos (técnico, recursos, interpessoal, organizacional)
-- [ ] Aplicar 5 abordagens de resolução (colaboração, compromisso, competição, acomodação, evitação)
-- [ ] Saber quando usar cada abordagem
-
-### Liderança Remota
-
-- [ ] Listar 5 desafios de times remotos
-- [ ] Conhecer 5 práticas: documentação, assíncrono, rituais, ferramentas, expectativas
-- [ ] Definir core hours e response time para time remoto
-- [ ] Comparar modelo híbrido: quando presencial, quando remoto
-
-### Ética
-
-- [ ] Definir 3 tipos de viés: histórico, amostragem, confirmação
-- [ ] Explicar trade-off fairness vs. accuracy
-- [ ] Listar técnicas de explicabilidade: SHAP, LIME, feature importance
-- [ ] Fazer checklist de ética: dano possível? injustiça? transparência? responsabilidade?
-
-### Influência
-
-- [ ] Listar 6 estratégias de influência sem autoridade (relacionamento, linguagem de negócio, storytelling, quick wins, alinhamento, coalizões)
-- [ ] Saber lidar com 3 tipos de resistência: racional, emocional, política
-
-### Desenvolvimento Pessoal
-
-- [ ] Identificar 3 estilos de liderança: autocrático, democrático, delegativo
-- [ ] Conhecer 5 componentes de EQ (Goleman): autoconhecimento, autorregulação, motivação, empatia, habilidades sociais
-- [ ] Listar 5 práticas de continuous learning (leitura, cursos, mentoria, conferências, experimentação)
-- [ ] Reconhecer 3 sinais de burnout (exaustão, cinismo, queda produtividade)
-- [ ] Aplicar 5 práticas de prevenção (boundaries, férias, delegação, saúde, terapia)
-
-### Projeto Prático: Plano de Liderança
-
-- [ ] **Cenário:** você é novo lead de time de DS (5 pessoas: 2 scientists, 1 engineer, 1 analyst, 1 junior)
-- [ ] **Tarefa 1 - Primeiros 90 dias:**
-  - Conhecer cada pessoa: 1-1s individuais, entender motivações/desafios
-  - Avaliar projetos em andamento: priorizar, cancelar low-impact
-  - Alinhar com stakeholders: expectativas, OKRs
-  - Estabelecer rituais: daily standup, weekly 1-1s, retros quinzenais
-- [ ] **Tarefa 2 - Priorização:**
-  - Receber 5 solicitações de projetos
-  - Aplicar ICE Score para ranquear
-  - Apresentar recomendação para stakeholders
-- [ ] **Tarefa 3 - Comunicação:**
-  - Resultado de projeto: modelo de churn com 75% recall
-  - Criar 3 versões de apresentação: para CEO, para head de marketing, para time técnico
-- [ ] **Tarefa 4 - Feedback:**
-  - Um cientista entregou análise com código desorganizado e sem documentação
-  - Preparar feedback usando SBI Model
-- [ ] **Tarefa 5 - Conflito:**
-  - Engineer quer refatorar pipeline (1 mês), Scientists querem features novas
-  - Mediar conflito, buscar compromisso
-- [ ] **Tarefa 6 - PDI:**
-  - Criar PDI para junior scientist: metas técnicas e soft skills para 6 meses
-
----
-
-**🎯 Meta de Aprendizado:**  
-Desenvolver plano completo de liderança para time de Data Science, incluindo: estrutura organizacional, rituais de comunicação, estratégia de priorização (ICE Score), cultura de feedback (1-1s, SBI), gestão de projetos (CRISP-DM), comunicação com stakeholders (storytelling), e desenvolvimento de pessoas (PDIs). Demonstrar capacidade de balancear entrega técnica com desenvolvimento de equipe.
-
-**💪 Desafio Avançado:**  
-Liderar transformação data-driven em empresa tradicional (não-tech): (1) Diagnosticar maturidade de dados (infraestrutura, cultura, skills), (2) Desenhar roadmap de 12 meses (quick wins → projetos estruturantes), (3) Construir business case para investimento (ROI projetado), (4) Planejar change management (treinamentos, champions, comunicação), (5) Definir métricas de sucesso (OKRs organizacionais e de DS), (6) Apresentar para board (C-level pitch: problema, solução, investimento, retorno).
+3. **Pensamento Complexo:** Lidar com ambiguidade, conflitos, múltiplas perspectivas. Do "OU" para o "E". Experimentação sem perder rigor.
 
 ---
 
 _Documentado para MBA Data Science e Analytics - USP/ESALQ_  
-_Versão 1.0 - Liderança em Data Science e Analytics_
+_Módulo 11 - Liderança em Data Science_  
+_Professora: Fátima Jinnyat_

@@ -6,7 +6,7 @@
 
 ## 🎯 Objetivo do Módulo
 
-Compreender os **Modelos Lineares Generalizados (GLM)** aplicados a variáveis dependentes de **contagem** (quantitativas, discretas e não negativas), dominando a especificação e estimação por máxima verossimilhança dos modelos **Poisson** e **Binomial Negativo (Poisson-Gama)**, o diagnóstico do fenômeno de **superdispersão** (teste de Cameron e Trivedi, 1990), os **modelos inflacionados de zeros** (ZIP e ZINB) e o **teste de Vuong** para detecção de excesso de zeros, além da implementação completa desses modelos em Python.
+Dominar a especificação e estimação por máxima verossimilhança dos modelos **Poisson** e **Binomial Negativo (Poisson-Gama)** para variáveis dependentes de **contagem**, com diagnóstico de **superdispersão** (teste de Cameron e Trivedi, 1990), **modelos inflacionados de zeros** (ZIP e ZINB) e **teste de Vuong**, implementados em Python.
 
 ---
 
@@ -14,18 +14,12 @@ Compreender os **Modelos Lineares Generalizados (GLM)** aplicados a variáveis d
 
 ### 1. MODELOS LINEARES GENERALIZADOS (GLM) E DADOS DE CONTAGEM
 
-#### 1.1 Conceito de GLM
+#### 1.1 O que caracteriza "Dados de Contagem"
 
-- **GLM**: generalização do modelo de regressão linear clássico, permitindo que a variável dependente Y siga distribuições diferentes da normal, por meio de uma **função de ligação**.
-- Notação geral: `Y = f(X₁, X₂, X₃, ..., Xₖ)`
-
-#### 1.2 O que caracteriza "Dados de Contagem"
-
-- Os modelos de regressão **Poisson** e **binomial negativo** fazem parte do que é conhecido por **modelos de regressão para dados de contagem**.
-- Objetivo: analisar o comportamento, em função de variáveis preditoras, de uma variável dependente que se apresenta na forma **quantitativa, com valores discretos e não negativos**.
+- Variável dependente apresenta-se na forma **quantitativa, com valores discretos e não negativos**.
 - É necessário definir também a **exposição** (unidade temporal, espacial, social, etc.) à qual a contagem se refere.
 
-#### 1.3 Exemplos e Aplicações
+#### 1.2 Exemplos e Aplicações
 
 - Quantidade de vezes que um grupo de pacientes idosos vai ao médico por ano, em função da idade, sexo e características do plano de saúde.
 - Quantidade de ofertas públicas de ações (IPOs) realizadas em uma amostra de países emergentes em determinado ano, em função de inflação, taxa de juros, PIB e taxa de investimento estrangeiro.
@@ -34,7 +28,7 @@ Compreender os **Modelos Lineares Generalizados (GLM)** aplicados a variáveis d
 
 ---
 
-### 2. A DISTRIBUIÇÃO E O MODELO DE REGRESSÃO POISSON
+### 2. DISTRIBUIÇÃO POISSON E MODELO POISSON
 
 #### 2.1 Função de Probabilidade
 
@@ -729,17 +723,7 @@ df_corruption['fitted_zinb'] = modelo_zinb.predict(X1, exog_infl=X2)
 
 ---
 
-## 💡 Conceitos-Chave para Memorizar
-
-### 🔑 Quando Usar Cada Modelo
-
-| **Situação**                                            | **Modelo Indicado**                    |
-| -------------------------------------------------------- | --------------------------------------- |
-| Y de contagem, média ≈ variância (equidispersão)         | Regressão Poisson                       |
-| Y de contagem, variância > média (superdispersão)        | Regressão Binomial Negativa (NB2)       |
-| Y de contagem com excesso de zeros e equidispersão       | ZIP (Zero-Inflated Poisson)             |
-| Y de contagem com excesso de zeros e superdispersão      | ZINB (Zero-Inflated Negative Binomial)  |
-| Y de contagem, mas tratado como contínuo (ERRADO)        | OLS / Regressão Linear (NÃO usar)       |
+## 💡 Conceitos-Chave do Módulo
 
 ### 🎯 Fórmulas Essenciais
 
@@ -806,16 +790,13 @@ df_corruption['fitted_zinb'] = modelo_zinb.predict(X1, exog_infl=X2)
 
 ## ⚠️ Erros Comuns a Evitar
 
-1. **Usar regressão linear (OLS) para variável de contagem**: gera resíduos não normais e estimativas inconsistentes, mesmo com transformação de Box-Cox.
-2. **Assumir equidispersão sem testar**: sempre aplicar o teste de Cameron e Trivedi (ou a função `overdisp`) antes de decidir entre Poisson e Binomial Negativo.
-3. **Ignorar excesso de zeros na variável dependente**: sempre observar o histograma da variável dependente e aplicar o teste de Vuong quando houver suspeita de inflação de zeros.
-4. **Estimar ZIP/ZINB sem dummizar variáveis categóricas**: a estimação retorna erro se variáveis como `post` não forem transformadas em dummies antes de compor `X1`/`X2`.
-5. **Confundir o componente de contagem com o componente inflate (logit)**: o argumento `exog_infl` define as variáveis do componente logístico (probabilidade de zero estrutural), diferente das variáveis do componente Poisson/BNeg.
-6. **Comparar Poisson e Binomial Negativo sem testar significância (LR test)**: aplicar sempre o teste de razão de verossimilhança antes de escolher o modelo mais complexo.
-7. **Esquecer que `alpha`/`phi` no NB2 e no ZINB é o inverso do parâmetro de forma (θ)**: interpretação incorreta pode levar a conclusões equivocadas sobre a dispersão dos dados.
-8. **Comparar modelos não encaixados (ex.: Poisson vs. ZIP) usando apenas LR test**: nesse caso, o teste apropriado é o **teste de Vuong**, não o LR test tradicional.
-9. **Manter a ordem incorreta dos parâmetros na predição de ZIP/ZINB**: a ordem das colunas do `DataFrame` passado a `predict()` deve seguir a mesma ordem dos parâmetros do modelo.
-10. **Não verificar a exposição da variável de contagem**: dados de contagem sempre precisam estar associados a uma unidade de exposição (tempo, espaço, etc.) bem definida.
+1. **Usar regressão linear (OLS) para variável de contagem**: gera resíduos não normais e estimativas inconsistentes.
+2. **Assumir equidispersão sem testar**: sempre aplicar teste de Cameron e Trivedi (`overdisp`) antes de decidir entre Poisson e Binomial Negativo.
+3. **Ignorar excesso de zeros na variável dependente**: aplicar teste de Vuong quando houver suspeita de inflação de zeros.
+4. **Confundir componente de contagem com componente inflate (logit)**: argumento `exog_infl` define variáveis logísticas (probabilidade de zero estrutural).
+5. **Comparar Poisson e Binomial Negativo sem LR test**: sempre testar significância antes de escolher modelo mais complexo.
+6. **Usar LR test para modelos não encaixados**: para Poisson vs. ZIP, use **teste de Vuong**.
+7. **Manter ordem incorreta dos parâmetros na predição de ZIP/ZINB**: ordem das colunas do `DataFrame` deve seguir ordem dos parâmetros do modelo.
 
 ---
 
@@ -849,99 +830,20 @@ df_corruption['fitted_zinb'] = modelo_zinb.predict(X1, exog_infl=X2)
 
 ## 📖 Referências Recomendadas
 
-### Livros
+### Referências Principais
 
-1. **Cameron, A.C.; Trivedi, P.K.** (2013). *Regression Analysis of Count Data*. 2. ed. Cambridge University Press.
-2. **Fávero, L.P.; Belfiore, P.** (2019). *Data Science for Business and Decision Making*. Cambridge: Academic Press.
-3. **Fávero, L.P.; Belfiore, P.** (2024). *Manual de Análise de Dados: estatística e machine learning com Excel®, SPSS®, Stata®, R® e Python®*. Rio de Janeiro: GEN.
-4. **Tang, W.; He, H.; Tu, X.M.** (2012). *Applied Categorical and Count Data Analysis*. Boca Raton: Chapman & Hall/CRC Press.
-
-### Artigos
+**Artigos**
 
 - **Cameron, A.C.; Trivedi, P.K.** (1990). "Regression-based tests for overdispersion in the Poisson model". *Journal of Econometrics*, v. 46, n. 3, p. 347-364.
 - **Vuong, Q.H.** (1989). "Likelihood ratio tests for model selection and non-nested hypotheses". *Econometrica*, v. 57, n. 2, p. 307-333.
 - **Lambert, D.** (1992). "Zero-inflated Poisson regression, with an application to defects in manufacturing". *Technometrics*, v. 34, n. 1, p. 1-14.
 - **Famoye, F.; Singh, K.P.** (2006). "Zero-inflated generalized Poisson regression model with an application to domestic violence data". *Journal of Data Science*, v. 4, n. 1, p. 117-130.
 - **Gardner, W.; Mulvey, E.P.; Shaw, E.C.** (1995). "Regression analyses of counts and rates: Poisson, overdispersed Poisson, and negative binomial models". *Psychological Bulletin*, v. 118, n. 3, p. 392-404.
-- **Desmarais, B.A.; Harden, J.J.** (2013). "Testing for zero inflation in count models: bias correction for the Vuong test". v. 13, n. 4, p. 810-835.
-- **Gupta, P.L.; Gupta, R.C.; Tripathi, R.C.** (1996). "Analysis of zero-adjusted count data". *Computational Statistics & Data Analysis*, v. 23, n. 2, p. 207-218.
-- **Xie, F.C.; Wei, B.C.; Lin, J.G.** (2008). "Assessing influence for pharmaceutical data in zero-inflated generalized Poisson mixed models". *Statistics in Medicine*, v. 27, n. 18, p. 3656-3673.
-- **Yau, K.; Wang, K.; Lee, A.** (2003). "Zero-inflated negative binomial mixed regression modeling of over-dispersed count data with extra zeros". *Biometrical Journal*, v. 45, n. 4, p. 437-452.
-- **Fávero, L.P.; Belfiore, P.; Santos, M.A.** (2020). "Overdisp: a Stata (and Mata) package for direct detection of overdispersion in Poisson and negative binomial regression models". *Statistics, Optimization & Information Computing*, v. 8, p. 773-789.
 - **Fávero, L.P.; Duarte, A.; Santos, H.P.** (2024). "A new computational algorithm for assessing overdispersion and zero-inflation in machine learning count models with Python". *Computers*, v. 13(4), n. 88, p. 1-15.
-- **Fávero, L.P.** (2019). "Machine Learning e modelos supervisionados: o uso correto do GLM na tomada de decisão". It Forum.
 - **Fisman, R.; Miguel, E.** (2007). "Corruption, Norms, and Legal Enforcement: Evidence from Diplomatic Parking Tickets". *Journal of Political Economy*, v. 15, n. 6, p. 1020-1048.
-
-### Recursos Online
-
-- **Statsmodels**: documentação de `Poisson`, `NegativeBinomial`, `ZeroInflatedPoisson` e `ZeroInflatedNegativeBinomialP` (módulo `statsmodels.discrete`).
-- **statstests**: pacote com as funções `overdisp` e `shapiro_francia`.
 
 ---
 
-## ✅ Checklist de Estudo
-
-### Conceitos Teóricos
-
-- [ ] Entender o que caracteriza dados de contagem (quantitativos, discretos, não negativos, com exposição)
-- [ ] Compreender os GLM como generalização da regressão linear
-- [ ] Conhecer a função de probabilidade da distribuição Poisson e sua propriedade de equidispersão
-- [ ] Conhecer a função de probabilidade da distribuição Poisson-Gama (Binomial Negativa)
-- [ ] Entender o significado dos parâmetros θ (forma) e δ (taxa de decaimento)
-- [ ] Diferenciar zeros estruturais e zeros amostrais nos modelos inflacionados
-
-### Superdispersão
-
-- [ ] Reproduzir manualmente o teste de Cameron e Trivedi (1990) com modelo auxiliar OLS sem intercepto
-- [ ] Usar a função `overdisp()` do pacote `statstests`
-- [ ] Interpretar corretamente o p-value do parâmetro do modelo auxiliar
-- [ ] Compreender por que superdispersão favorece o modelo Binomial Negativo
-
-### Modelos Inflacionados de Zeros
-
-- [ ] Diferenciar ZIP (Bernoulli + Poisson) e ZINB (Bernoulli + Poisson-Gama)
-- [ ] Compreender o papel do argumento `exog_infl` na estimação
-- [ ] Aplicar e interpretar o teste de Vuong (1989)
-- [ ] Interpretar o parâmetro `alpha` no ZINB como indicador de superdispersão
-
-### Implementação Python
-
-- [ ] Estimar modelo Poisson com `sm.Poisson.from_formula`
-- [ ] Estimar modelo Binomial Negativo com `sm.NegativeBinomial.from_formula`
-- [ ] Estimar modelo ZIP com `sm.ZeroInflatedPoisson`
-- [ ] Estimar modelo ZINB com `sm.ZeroInflatedNegativeBinomialP`
-- [ ] Aplicar teste de razão de verossimilhança (`lrtest`) entre modelos encaixados
-- [ ] Aplicar teste de Vuong (`vuong_test`) entre modelos não encaixados
-- [ ] Comparar modelos com `summary_col`
-- [ ] Fazer predições pontuais e obter fitted values
-
-### Visualizações
-
-- [ ] Plotar a distribuição Poisson para diferentes valores de λ
-- [ ] Plotar a distribuição Binomial Negativa para diferentes valores de θ e δ
-- [ ] Plotar a distribuição ZIP e ZINB para comparação com Poisson/BNeg
-- [ ] Construir gráfico de barras horizontais comparando Log-Likelihoods
-- [ ] Construir gráfico de dispersão com fitted values de múltiplos modelos
-
-### Casos Práticos
-
-- [ ] Reproduzir a estimação completa com o dataset `corruption.csv`
-- [ ] Reproduzir o teste de superdispersão e concluir pela adequação do modelo Binomial Negativo
-- [ ] Reproduzir o teste de Vuong e concluir pela existência de inflação de zeros
-- [ ] Reproduzir o experimento com dataset restringido (`violations <= 3`) e observar o desaparecimento da superdispersão
-- [ ] Comparar o ajuste dos modelos de contagem com um modelo OLS (linear e com Box-Cox)
-
-### Projeto Final
-
-- [ ] Carregar dataset com variável dependente de contagem
-- [ ] Análise exploratória (histograma, média x variância)
-- [ ] Estimar modelo Poisson
-- [ ] Testar superdispersão (`overdisp`)
-- [ ] Estimar modelo Binomial Negativo, se necessário
-- [ ] Investigar excesso de zeros e testar com Vuong
-- [ ] Estimar ZIP ou ZINB, se necessário
-- [ ] Comparar todos os modelos por Log-Likelihood e LR test
-- [ ] Apresentar previsões e conclusões justificadas
 
 ---
 

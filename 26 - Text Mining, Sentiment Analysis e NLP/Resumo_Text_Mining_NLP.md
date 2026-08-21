@@ -205,54 +205,7 @@ print(tokens_lemma)
 
 #### 3.7 Pipeline Completo de Pré-processamento
 
-```python
-import string
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import RSLPStemmer
-
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('rslp')
-
-def pre_processar_texto(texto):
-    # 1. Lowercasing
-    texto = texto.lower()
-
-    # 2. Remoção de pontuação
-    texto = texto.translate(str.maketrans('', '', string.punctuation))
-
-    # 3. Tokenização
-    tokens = word_tokenize(texto, language='portuguese')
-
-    # 4. Remoção de stopwords
-    stop_words = set(stopwords.words('portuguese'))
-    tokens = [t for t in tokens if t not in stop_words]
-
-    # 5. Stemming
-    stemmer = RSLPStemmer()
-    tokens_stem = [stemmer.stem(t) for t in tokens]
-
-    return {
-        'tokens_limpos': tokens,
-        'tokens_stem': tokens_stem
-    }
-
-textos_brutos = [
-    "Eu estou aprendendo processamento de linguagem natural!",
-    "Os algoritmos de machine learning são incríveis.",
-    "O cachorro correu rapidamente pelo parque.",
-    "Hoje eu comprei um livro sobre NLP.",
-    "As árvores estão balançando com o vento forte."
-]
-
-for texto in textos_brutos:
-    resultado = pre_processar_texto(texto)
-    print(f"Original: {texto}")
-    print(f"Processado: {resultado['tokens_limpos']}")
-    print(f"Stem: {resultado['tokens_stem']}\n")
-```
+O pipeline completo integra todas as etapas anteriores (lowercasing → remoção de pontuação → tokenização → stopwords → stemming) em uma única função. As bibliotecas utilizadas são **NLTK** (para tokenização, stopwords e stemming) e **spaCy** (para lematização).
 
 ---
 
@@ -462,91 +415,17 @@ nlp = spacy.load("pt_core_news_sm")
 
 ### Pipeline Completo - Text Mining e Sentiment Analysis
 
-```python
-import string
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import RSLPStemmer
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
+O pipeline de Sentiment Analysis segue as etapas: 
+1. **Coleta** de dados de avaliações/comentários
+2. **Pré-processamento** (lowercasing, limpeza, tokenização, remoção de stopwords)
+3. **Extração de características** (TF-IDF ou word embeddings)
+4. **Classificação** (com modelos como LogisticRegression, Naive Bayes)
+5. **Avaliação** de desempenho
+6. **Predição** em textos novos
 
-# 1. COLETA (simulada - dados de avaliações)
-avaliacoes = [
-    "Adorei o produto, super recomendo!",
-    "Odiei o produto, não funcionou nada.",
-    "O produto é ok, nada de especial.",
-    "Jogo difícil de largar, é muito viciante!!!",
-    "Nossa, que atendimento maravilhoso.",
-    "Atendimento péssimo, nunca mais compro.",
-]
-rotulos = ["positivo", "negativo", "neutro", "positivo", "positivo", "negativo"]
+### ABSA (Aspect-Based Sentiment Analysis) - Conceito
 
-# 2. PRÉ-PROCESSAMENTO
-def pre_processar(texto):
-    texto = texto.lower()
-    texto = texto.translate(str.maketrans('', '', string.punctuation))
-    tokens = word_tokenize(texto, language='portuguese')
-    stop_words = set(stopwords.words('portuguese'))
-    tokens = [t for t in tokens if t not in stop_words]
-    return " ".join(tokens)
-
-avaliacoes_limpas = [pre_processar(a) for a in avaliacoes]
-print(avaliacoes_limpas)
-
-# 3. EXTRAÇÃO DE CARACTERÍSTICAS (TF-IDF)
-vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(avaliacoes_limpas)
-
-# 4. CLASSIFICAÇÃO
-X_train, X_test, y_train, y_test = train_test_split(
-    X, rotulos, test_size=0.3, random_state=42
-)
-modelo = LogisticRegression()
-modelo.fit(X_train, y_train)
-
-# 5. AVALIAÇÃO
-predicoes = modelo.predict(X_test)
-print(classification_report(y_test, predicoes))
-
-# 6. PREDIÇÃO EM NOVO TEXTO
-novo_texto = "Que experiência incrível, amei tudo!"
-novo_texto_limpo = pre_processar(novo_texto)
-novo_texto_vetor = vectorizer.transform([novo_texto_limpo])
-print(f"Sentimento predito: {modelo.predict(novo_texto_vetor)[0]}")
-```
-
-### ABSA (Aspect-Based Sentiment Analysis) - Exemplo Ilustrativo
-
-```python
-import spacy
-nlp = spacy.load("pt_core_news_sm")
-
-def extrair_aspectos_e_sentimentos(frase, lexico_positivo, lexico_negativo):
-    """
-    Identifica substantivos (potenciais aspectos) e adjetivos próximos (potencial polaridade)
-    """
-    doc = nlp(frase)
-    aspectos = {}
-    for token in doc:
-        if token.pos_ == "NOUN":  # substantivo = possível aspecto
-            for filho in token.children:
-                if filho.pos_ == "ADJ":  # adjetivo relacionado
-                    palavra = filho.lemma_.lower()
-                    if palavra in lexico_positivo:
-                        aspectos[token.text] = "positivo"
-                    elif palavra in lexico_negativo:
-                        aspectos[token.text] = "negativo"
-    return aspectos
-
-lexico_positivo = {"excelente", "limpo", "confortável", "maravilhoso"}
-lexico_negativo = {"lento", "péssimo", "demorado"}
-
-frase = "O quarto do hotel estava limpo e confortável, mas o Wi-Fi era extremamente lento."
-print(extrair_aspectos_e_sentimentos(frase, lexico_positivo, lexico_negativo))
-```
+ABSA identifica aspectos específicos (substantivos) e seus sentimentos associados. Utilizando análise de POS (Part-of-Speech) com spaCy, é possível extrair substantivos como aspectos e adjetivos próximos como indicadores de sentimento, criando um mapeamento aspecto → sentimento ao invés de uma polaridade única para todo o texto.
 
 ---
 

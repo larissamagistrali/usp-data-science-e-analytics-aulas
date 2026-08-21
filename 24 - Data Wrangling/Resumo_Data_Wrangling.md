@@ -83,136 +83,16 @@ Fonte: https://online.hbs.edu/blog/post/data-wrangling
 
 #### 5.1 Definições
 
-- **Git**: software instalado no computador que realiza o **controle de versões** dos arquivos com códigos, isto é, rastreia e armazena as alterações e gera um histórico sobre tais modificações
-- **GitHub**: site que hospeda os arquivos na nuvem, mostra o histórico das versões, permite que os projetos sejam feitos colaborativamente, inclusive compartilhados publicamente com todos que utilizam a rede (quando desejado)
+- **Git**: software que realiza o **controle de versões** dos arquivos com códigos, rastreando e armazenando alterações
+- **GitHub**: plataforma web que hospeda repositórios, mostra histórico de versões e permite trabalho colaborativo
 
-#### 5.2 Esquema Básico do Fluxo Git
+#### 5.2 Workflow Básico
 
 ```
 Arquivo → git add → git commit → git push → GitHub
 ```
 
-#### 5.3 Instalando o Git
-
-- Acesse: https://git-scm.com/install/
-- **Windows**: clique em "Click here to download", execute o instalador mantendo as configurações padrão ("Next" em todos os passos) e finalize com "Install"
-- **macOS**: a instalação via **Xcode Command Line Tools** costuma ser a mais simples
-
-```bash
-xcode-select --install
-git --version   # confirma a instalação
-```
-
-- **Linux**: escolha a distribuição adequada (ex.: `apt-get install git` no Debian/Ubuntu, `yum install git` no Fedora até a versão 21, `dnf install git` a partir da versão 22) e siga as instruções do site oficial
-
-#### 5.4 Criando uma Conta no GitHub
-
-- Acesse: https://github.com/
-- Clique em **Sign up** (Criar uma conta) no canto superior direito e siga o cadastro solicitado
-
-#### 5.5 Configuração Inicial do Git (primeira utilização)
-
-```bash
-git config --global user.email "inserir_aqui_seu_email"
-git config --global user.name "inserir_aqui_nome_usuário"
-```
-
-#### 5.6 Criando e Acessando a Pasta do Projeto
-
-```bash
-# Crie uma pasta na área de trabalho, por exemplo "ProjetoDS"
-# Copie o caminho da pasta e no terminal execute:
-cd inserir_caminho_de_sua_pasta
-```
-
-#### 5.7 Clonando um Repositório Remoto
-
-```bash
-# 1. Crie um repositório remoto (privado) no GitHub
-# 2. No repositório criado, clique em "Code" e copie a URL
-# 3. No terminal:
-git clone inserir_URL_de_seu_repositório
-```
-
-- Na primeira vez, é solicitada a autenticação com o GitHub. A opção **"Sign in with a code"** (autenticação por dispositivo) costuma ser a mais simples:
-  1. Acesse o link informado (`https://github.com/login/device`)
-  2. Informe o código gerado no terminal
-  3. Autorize o Git (Git Credential Manager) no GitHub
-
-#### 5.8 Enviando um Arquivo para o GitHub (add → commit → push)
-
-```bash
-# 1. Acesse a pasta interna do repositório
-cd inserir_caminho_de_sua_pasta_interna
-
-# 2. Crie um script (ex.: no Spyder) com o conteúdo "# Versão 1"
-#    e salve como Exemplo.py
-
-# 3. Adicione o arquivo ao índice de arquivos a serem enviados
-git add Exemplo.py
-
-# 4. Verifique o estado do repositório
-git status
-
-# 5. Faça o commit (nomeando a versão)
-git commit -m "Primeira_Versao"
-git status
-
-# 6. Envie o arquivo local para o repositório remoto
-git push
-```
-
-#### 5.9 Criando e Comparando Versões
-
-```bash
-# Edite Exemplo.py adicionando "# Versão 2" e salve o arquivo
-git add Exemplo.py
-git commit -m "Segunda_Versao"
-git push
-
-# Verificar o histórico de versões
-git log --oneline
-```
-
-#### 5.10 Ramificações (Branches)
-
-```bash
-# Criar uma nova ramificação chamada "nova"
-git switch -c nova
-
-# Editar Exemplo.py adicionando "# Versão 3" e salvar
-git add Exemplo.py
-git commit -m "Terceira_Versao"
-git push -u origin nova
-
-# Visualizar as branches disponíveis e alternar entre elas
-git branch
-git switch main
-git branch
-```
-
-#### 5.11 Sincronizando Alterações Remotas e Fazendo Merge
-
-```bash
-# Baixar e integrar localmente alterações feitas na branch "nova"
-git switch nova
-git pull
-
-# Após validar as alterações, incorporá-las à branch principal (main)
-git switch main
-git merge nova
-git push
-```
-
----
-
-### 6. GOOGLE COLAB — TUTORIAL DE ACESSO
-
-1. Acesse o site: https://colab.research.google.com/
-2. **Caso já tenha uma conta Google**: clique em "Fazer login" e realize o acesso
-   - Nota: se ao acessar o site não aparecer a opção "Fazer login", mas sim uma janela "Abrir notebook (Open notebook)", significa que já está logado e pronto para iniciar
-3. **Caso não tenha uma conta Google**: clique em "Fazer login" → "Criar conta" → "Para uso pessoal" e finalize o cadastro
-4. Após a criação/login da conta, o Google Colab estará disponível para uso
+Detalhes de instalação e configuração completa consultar: https://git-scm.com/install/ e https://github.com/
 
 ---
 
